@@ -1,0 +1,82 @@
+<head>
+  <title>Todo List</title>
+</head>
+ 
+<body>
+  <div class="container">
+    <header>
+      <h1>New User</h1>
+ 
+      <br>
+      <h5>Avatar</h5>
+        <select class="first_choice" id="avatar" name="avatar">
+          <option id="choose_avatar" value="">Choose Avatar...</option>
+          <option value="cat">Cat</option>
+          <option value="dog">Dog</option>
+          <option value="human">Human</option>
+          <option value="abstract">Abstract</option>
+          <option value="custom">Custom</option>
+        </select>
+        <select style="display: none" id="cat_avatar" name="cat_avatar">
+          <option id="choose_avatar" value="">Choose Cat Avatar...</option>
+          <option value="jedi">Jedi</option>
+          <option value="warrior">Warrior</option>
+          <option value="wizard">Wizard</option>
+          <option value="healer">Healer</option>
+        </select>
+        <select style="display: none" id="dog_avatar" name="cat_avatar">
+          <option id="choose_avatar" value="">Choose Dog Avatar...</option>
+          <option value="jedi">Jedi</option>
+          <option value="warrior">Warrior</option>
+          <option value="wizard">Wizard</option>
+          <option value="healer">Healer</option>
+        </select>
+        <select style="display: none" id="mf_avatar" name="mf_avatar">
+          <option id="choose_avatar" value="">Choose Sex...</option>
+          <option value="male">Male</option>
+          <option value="female">Female</option>
+        </select>
+        <select style="display: none" id="abstract_avatar" name="abstract_avatar">
+          <option id="choose_avatar" value="">Choose Abstract Avatar...</option>
+          <option value="pat1">Pattern 1</option>
+          <option value="pat2">Pattern 2</option>
+          <option value="pat3">Pattern 3</option>
+          <option value="pat4">Pattern 4</option>
+        </select>
+        <input style="display: none" id="custom_avatar" type="text" name="custom_avatar" placeholder="Type avatar url" />
+        <br>
+        <!-- <input type="text" name="user_name" placeholder="Type to add user name" />
+        <br>
+        <input type="text" name="email" placeholder="Type to add email" />
+        <br>
+        <input type="password" name="password" placeholder="Type to add password" />
+        <br>
+        <select name="rps_images">
+          <option value="human">Human</option>
+          <option value="dog">Dog</option>
+          <option value="cat">Cat</option>
+          <option value="abstract">Abstract</option>
+          <option value="custom">Custom</option>
+        </select>
+        <br> -->
+       <!--  <input type="submit" name="submit" placeholder="Submit" /> -->
+    
+    </header>
+ 
+    <ul>
+      {{#each tasks}}
+        {{> task}}
+      {{/each}}
+    </ul>
+  </div>
+</body>
+ 
+<template name="task">
+  <li class="{{#if checked}}checked{{/if}}">
+    <button class="delete">&times;</button>
+ 
+    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
+ 
+    <span class="text">{{text}}</span>
+  </li>
+</template>
