@@ -2,7 +2,7 @@
 body {
   font-family: sans-serif;
   background-color: #315481;
-  background-image: url(http://40.media.tumblr.com/tumblr_m86ytlsaOI1rd1r5to1_1280.jpg);
+  background-image: url(/rps_images/sea-battle.JPG);
 	background-size: cover;
   /*background-image: linear-gradient(to bottom, #315481, #918e82 100%);*/
   background-attachment: fixed;
@@ -19,12 +19,23 @@ body {
   font-size: 14px;
 }
 
+.rps_image {
+  height: 75px;
+  width: 65px;
+}
+
+#avatar_image {
+  height: 100px;
+  max-width:150px;
+  border-radius: 20px;
+}
+
 .container {
   max-width: 600px;
   margin: 0 auto;
   min-height: 100%;
   background: white;
-  opacity: 0.4;
+  opacity: 0.8;
 }
 
 header {

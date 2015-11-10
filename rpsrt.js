@@ -103,12 +103,20 @@ if (Meteor.isClient) {
         document.getElementById("choose_cat_avatar").label = "Choose an avatar from list below";
       } else if (choice1 === "jedi") {
         console.log("Cat Jedi choice");
+        document.getElementById('cat_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/JEDIkitty.gif">');
       } else if (choice1 === "warrior") {
         console.log("Cat Warrior choice");
+        document.getElementById('cat_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-warrior.jpg">');
       } else if (choice1 === "wizard") {
         console.log("Cat Wizard choice");
+        document.getElementById('cat_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-wizard.jpg">');
       } else {
         console.log("Cat Healer choice");
+        document.getElementById('cat_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-healer.jpg">');
       } 
     },
 
@@ -120,12 +128,20 @@ if (Meteor.isClient) {
         document.getElementById("choose_dog_avatar").label = "Choose an avatar from list below";
       } else if (choice1 === "jedi") {
         console.log("Dog Jedi choice");
+        document.getElementById('dog_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-jedi.jpg">');
       } else if (choice1 === "warrior") {
         console.log("Dog Warrior choice");
+        document.getElementById('dog_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-warrior.jpg">');
       } else if (choice1 === "wizard") {
         console.log("Dog Wizard choice");
+        document.getElementById('dog_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-wizard.jpg">');
       } else {
         console.log("Dog Healer choice");
+        document.getElementById('dog_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-healer.JPG">');
       } 
     },
 
@@ -137,12 +153,20 @@ if (Meteor.isClient) {
         document.getElementById("choose_male_avatar").label = "Choose an avatar from list below";
       } else if (choice1 === "jedi") {
         console.log("Male Jedi choice");
+        document.getElementById('male_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-jedi.jpg">');
       } else if (choice1 === "warrior") {
         console.log("Male Warrior choice");
+        document.getElementById('male_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-warrior.jpg">');
       } else if (choice1 === "wizard") {
         console.log("Male Wizard choice");
+        document.getElementById('male_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-wizard.jpg">');
       } else {
         console.log("Male Healer choice");
+        document.getElementById('male_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-healer.jpg">');
       } 
     },
 
@@ -154,13 +178,31 @@ if (Meteor.isClient) {
         document.getElementById("choose_female_avatar").label = "Choose an avatar from list below";
       } else if (choice1 === "jedi") {
         console.log("Female Jedi choice");
+        document.getElementById('female_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/female-jedi.jpg">');
       } else if (choice1 === "warrior") {
         console.log("Female Warrior choice");
+        document.getElementById('female_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/female-warrior.jpg">');
       } else if (choice1 === "wizard") {
         console.log("Female Wizard choice");
+        document.getElementById('female_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/female-wizard.jpg">');
       } else {
         console.log("Female Healer choice");
+        document.getElementById('female_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/female-healer.jpg">');
       } 
+    },
+
+    "submit #custom_avatar_form": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+      var dropSelect = document.getElementById("custom_avatar");
+      var choice1 = dropSelect.value;
+      document.getElementById('custom_avatar').style.display = 'none';
+      var image_entry = '<img id="avatar_image" src="'+choice1+'">'
+      $("#avatar_placeholder").append(image_entry);
     },
 
     "change #abstract_avatar": function (event) {
@@ -171,12 +213,20 @@ if (Meteor.isClient) {
         document.getElementById("choose_abstract_avatar").label = "Choose an avatar from list below";
       } else if (choice1 === "pat1") {
         console.log("Pattern 1 choice");
+        document.getElementById('abstract_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern1.jpg">');
       } else if (choice1 === "pat2") {
         console.log("Pattern 2 choice");
+        document.getElementById('abstract_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern2.jpg">');
       } else if (choice1 === "pat3") {
         console.log("Pattern 3 choice");
+        document.getElementById('abstract_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern3.jpg">');
       } else {
         console.log("Pattern 4 choice");
+        document.getElementById('abstract_avatar').style.display = 'none'; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern4.jpg">');
       } 
     },
 
@@ -236,10 +286,12 @@ if (Meteor.isClient) {
         document.getElementById("choose_mf_rps_images").label = "Choose a sex from list below";
       } else if (choice1 === "male") {
         console.log("Male choice");
+        $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/malerock1left.jpg"><img class="rps_image" src="/rps_images/malepaper1left.jpg"><img class="rps_image" src="/rps_images/malescissors1left.jpg"><br><img class="rps_image" src="/rps_images/malerock1right.jpg"><img class="rps_image" src="/rps_images/malepaper1right.jpg"><img class="rps_image" src="/rps_images/malescissors1right.jpg">');
         document.getElementById('male_rps_images').style.display = '';
         document.getElementById('mf_rps_images').style.display = 'none';    
       } else {
         console.log("Female choice");
+        $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/femalerock1left.jpg"><img class="rps_image" src="/rps_images/femalepaper1left.jpg"><img class="rps_image" src="/rps_images/femalescissors1left.jpg"><br><img class="rps_image" src="/rps_images/femalerock1right.jpg"><img class="rps_image" src="/rps_images/femalepaper1right.jpg"><img class="rps_image" src="/rps_images/femalescissors1right.jpg">');
         document.getElementById('female_rps_images').style.display = '';
         document.getElementById('mf_rps_images').style.display = 'none';   
       } 
