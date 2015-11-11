@@ -1,10 +1,5 @@
-<head>
-  <title>Todo List</title>
-</head>
- 
-<body>
+<template name = "new_user">
   <div class="container">
-    <header>
       <h1>New User</h1>
       <div class="row">
         <div class="col-xs-4">
@@ -12,6 +7,11 @@
         </div>
         <div class="col-xs-8">
           <div id="rps_placeholder"></div>
+          <div class="row">
+            <div class="col-xs-2"><div id="rock_placeholder"></div></div>
+            <div class="col-xs-2"><div id="paper_placeholder"></div></div>
+            <div class="col-xs-2"><div id="scissor_placeholder"></div></div>
+          </div>
         </div> 
       </div> 
       <br>
@@ -26,7 +26,7 @@
         </select>
         <select style="display: none" id="cat_avatar" name="cat_avatar">
           <option id="choose_cat_avatar" value="">Choose Cat Avatar...</option>
-          <option value="jedi">Jedi</option>
+          <option value="jedi">Jedi <img class="avatar_list" src="/rps_images/JEDIkitty.gif"></option>
           <option value="warrior">Warrior</option>
           <option value="wizard">Wizard</option>
           <option value="healer">Healer</option>
@@ -65,7 +65,7 @@
           <option value="pat4">Pattern 4</option>
         </select>
         <form id="custom_avatar_form">
-        <input style="display: none" id="custom_avatar" type="text" name="custom_avatar" placeholder="Type avatar url" />
+          <input style="display: none" id="custom_avatar" type="text" name="custom_avatar" placeholder="Type avatar url" />
         </form>
         <br>
         <input type="text" name="user_name" placeholder="Type to add user name" />
@@ -103,29 +103,19 @@
         <div style="display: none" id="object1_rps_images">Rock1 image  Paper1 image  Scissors1 image
         </div> 
         <div style="display: none" id="object2_rps_images">Rock2 image  Paper2 image  Scissors2 image
-        </div>     
-        <input style="display: none" id="custom_rock" type="text" name="custom_rock" placeholder="Type rock image url" />
-        <input style="display: none" id="custom_paper" type="text" name="custom_paper" placeholder="Type paper image url" />
-        <input style="display: none" id="custom_scissors" type="text" name="custom_scissors" placeholder="Type scissors image url" />
+        </div>
+        <form id="custom_rock_form">
+          <input style="display: none" id="custom_rock" type="text" name="custom_rock" placeholder="Type rock image url" />
+        </form>
+        <form id="custom_paper_form">
+          <input style="display: none" id="custom_paper" type="text" name="custom_paper" placeholder="Type paper image url" />
+        </form>
+        <form id="custom_scissors_form">
+          <input style="display: none" id="custom_scissors" type="text" name="custom_scissors" placeholder="Type scissors image url" />
+        </form>
         <br>
-       <!--  <input type="submit" name="submit" placeholder="Submit" /> -->
-    
-    </header>
- 
-    <ul>
-      {{#each tasks}}
-        {{> task}}
-      {{/each}}
-    </ul>
-  </div>
-</body>
- 
-<template name="task">
-  <li class="{{#if checked}}checked{{/if}}">
-    <button class="delete">&times;</button>
- 
-    <input type="checkbox" checked="{{checked}}" class="toggle-checked" />
- 
-    <span class="text">{{text}}</span>
-  </li>
+      <input type="submit" name="submit" placeholder="Submit" /> 
+ </div>
+  
 </template>
+ 

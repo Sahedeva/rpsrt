@@ -20,35 +20,9 @@ if (Meteor.isClient) {
   // Meteor.startup(function(){
   //   document.getElementById("avatar").selectedIndex = "-1";
   // });
-  Template.body.helpers({
-    tasks: function () {
-      return Tasks.find({}, {sort: {createdAt: -1}});
-    }
-  });
- 
-  Template.body.events({
-    "submit .new-task": function (event) {
-      // Prevent default browser form submit
-      event.preventDefault();
- 
-      // Get value from form element
-      var text = event.target.text.value;
- 
-      // Insert a task into the collection
-      Tasks.insert({
-        text: text,
-        createdAt: new Date() // current time
-      });
- 
-      // Clear form
-      event.target.text.value = "";
-    }
-  });
-
   
-
-  Template.body.events({
-    
+  Template.new_user.events({
+    // first choice of avatar
     "change #avatar": function (event) {
       var dropSelect = document.getElementById("avatar");
       var choice1 = dropSelect.value;
@@ -78,6 +52,7 @@ if (Meteor.isClient) {
       }
     },
 
+    //male female avatar selector
     "change #mf_avatar": function (event) {
       var dropSelect = document.getElementById("mf_avatar");
       var choice1 = dropSelect.value;
@@ -95,6 +70,7 @@ if (Meteor.isClient) {
       } 
     },
 
+    //cat avatar selector
     "change #cat_avatar": function (event) {
       var dropSelect = document.getElementById("cat_avatar");
       var choice1 = dropSelect.value;
@@ -120,6 +96,7 @@ if (Meteor.isClient) {
       } 
     },
 
+    //dog avatar selector
     "change #dog_avatar": function (event) {
       var dropSelect = document.getElementById("dog_avatar");
       var choice1 = dropSelect.value;
@@ -145,6 +122,7 @@ if (Meteor.isClient) {
       } 
     },
 
+    //male avatar selector
     "change #male_avatar": function (event) {
       var dropSelect = document.getElementById("male_avatar");
       var choice1 = dropSelect.value;
@@ -158,7 +136,7 @@ if (Meteor.isClient) {
       } else if (choice1 === "warrior") {
         console.log("Male Warrior choice");
         document.getElementById('male_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-warrior.jpg">');
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-warrior.png">');
       } else if (choice1 === "wizard") {
         console.log("Male Wizard choice");
         document.getElementById('male_avatar').style.display = 'none'; 
@@ -170,6 +148,7 @@ if (Meteor.isClient) {
       } 
     },
 
+    //female avatar selector
     "change #female_avatar": function (event) {
       var dropSelect = document.getElementById("female_avatar");
       var choice1 = dropSelect.value;
@@ -195,16 +174,7 @@ if (Meteor.isClient) {
       } 
     },
 
-    "submit #custom_avatar_form": function (event) {
-      // Prevent default browser form submit
-      event.preventDefault();
-      var dropSelect = document.getElementById("custom_avatar");
-      var choice1 = dropSelect.value;
-      document.getElementById('custom_avatar').style.display = 'none';
-      var image_entry = '<img id="avatar_image" src="'+choice1+'">'
-      $("#avatar_placeholder").append(image_entry);
-    },
-
+    //abstract avatar selector
     "change #abstract_avatar": function (event) {
       var dropSelect = document.getElementById("abstract_avatar");
       var choice1 = dropSelect.value;
@@ -230,6 +200,18 @@ if (Meteor.isClient) {
       } 
     },
 
+    //custom avatar selector
+    "submit #custom_avatar_form": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+      var dropSelect = document.getElementById("custom_avatar");
+      var choice1 = dropSelect.value;
+      document.getElementById('custom_avatar').style.display = 'none';
+      var image_entry = '<img id="avatar_image" src="'+choice1+'">'
+      $("#avatar_placeholder").append(image_entry);
+    },
+
+    //rps image selector
     "change #rps_images": function (event) {
       var dropSelect = document.getElementById("rps_images");
       var choice1 = dropSelect.value;
@@ -238,10 +220,12 @@ if (Meteor.isClient) {
         document.getElementById("choose_rps_images").label = "Choose an RPS image set from list below";
       } else if (choice1 === "cat") {
         console.log("Cat RPS images");
+        $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/catrock.JPG"><img class="rps_image" src="/rps_images/catpaper.jpg"><img class="rps_image" src="/rps_images/catscissors.jpg"><br><img class="rps_image reverser" src="/rps_images/catrock.JPG"><img class="rps_image reverser" src="/rps_images/catpaper.jpg"><img class="rps_image reverser" src="/rps_images/catscissors.jpg">');
         document.getElementById('cat_rps_images').style.display = '';
         document.getElementById('rps_images').style.display = 'none';
       } else if (choice1 === "dog") {
         console.log("Dog RPS images");
+        $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/dogrock.jpg"><img class="rps_image" src="/rps_images/dogpaper.jpg"><img class="rps_image" src="/rps_images/dogscissors.jpg"><br><img class="rps_image reverser" src="/rps_images/dogrock.jpg"><img class="rps_image reverser" src="/rps_images/dogpaper.jpg"><img class="rps_image reverser" src="/rps_images/dogscissors.jpg">');
         document.getElementById('dog_rps_images').style.display = '';
         document.getElementById('rps_images').style.display = 'none';
       } else if (choice1 === "human") {
@@ -261,6 +245,52 @@ if (Meteor.isClient) {
       }
     },
 
+    //custom rock selector
+    "submit #custom_rock_form": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+      console.log("custom rock");
+      var rockSelect = document.getElementById("custom_rock");
+      var choice1 = rockSelect.value;
+      var image_entry1 = '<img class="rps_image" src="'+choice1+'">';
+      var image_entryr1 = '<img class="reverser rps_image" src="'+choice1+'">';
+      var rock_image = image_entry1 + "<br>" + image_entryr1
+      $("#rock_placeholder").append(rock_image);
+      document.getElementById('object1_rps_images').style.display = '';
+      document.getElementById('custom_rock').style.display = 'none';
+    },
+
+    //custom paper selector
+    "submit #custom_paper_form": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+      console.log("custom paper");
+      var paperSelect = document.getElementById("custom_paper");
+      var choice2 = paperSelect.value;
+      var image_entry2 = '<img class="rps_image" src="'+choice2+'">';
+      var image_entryr2 = '<img class="reverser rps_image" src="'+choice2+'">';
+      var paper_image = image_entry2 + "<br>" + image_entryr2;
+      $("#paper_placeholder").append(paper_image);
+      document.getElementById('object1_rps_images').style.display = '';
+      document.getElementById('custom_paper').style.display = 'none';
+    },
+
+    //custom scissor selector
+    "submit #custom_scissors_form": function (event) {
+      // Prevent default browser form submit
+      event.preventDefault();
+      console.log("custom scissors");
+      var scissorsSelect = document.getElementById("custom_scissors");
+      var choice3 = scissorsSelect.value;
+      var image_entry3 = '<img class="rps_image" src="'+choice3+'">';
+      var image_entryr3 = '<img class="reverser rps_image" src="'+choice3+'">';
+      var scissor_image = image_entry3 + "<br>" + image_entryr3;
+      $("#scissor_placeholder").append(scissor_image);
+      document.getElementById('object1_rps_images').style.display = '';
+      document.getElementById('custom_scissors').style.display = 'none';
+    },
+
+    //rps object selector
     "change #objects_choices": function (event) {
       var dropSelect = document.getElementById("objects_choices");
       var choice1 = dropSelect.value;
@@ -269,15 +299,18 @@ if (Meteor.isClient) {
         document.getElementById("choose_objects_choices").label = "Choose object RPS images from list below";
       } else if (choice1 === "pat1") {
         console.log("Pattern 1 choice");
+        $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/objectrock1left.jpg"><img class="rps_image" src="/rps_images/objectpaper1.jpg"><img class="rps_image" src="/rps_images/objectscissors1left.jpg"><br><img class="rps_image" src="/rps_images/objectrock1right.jpg"><img class="rps_image reverser" src="/rps_images/objectpaper1.jpg"><img class="rps_image" src="/rps_images/objectscissors1right.jpg">');
         document.getElementById('object1_rps_images').style.display = '';
         document.getElementById('objects_choices').style.display = 'none';
       } else {
         console.log("Pattern 2 choice");
+        $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/objectrock2left.jpg"><img class="rps_image" src="/rps_images/objectpaper2left.jpg"><img class="rps_image" src="/rps_images/objectscissors2left.jpg"><br><img class="rps_image" src="/rps_images/objectrock2right.jpg"><img class="rps_image" src="/rps_images/objectpaper2right.jpg"><img class="rps_image" src="/rps_images/objectscissors2right.jpg">');
         document.getElementById('object2_rps_images').style.display = '';
         document.getElementById('objects_choices').style.display = 'none';
       } 
     },
 
+    //rps male and female selector
     "change #mf_rps_images": function (event) {
       var dropSelect = document.getElementById("mf_rps_images");
       var choice1 = dropSelect.value;
@@ -295,14 +328,16 @@ if (Meteor.isClient) {
         document.getElementById('female_rps_images').style.display = '';
         document.getElementById('mf_rps_images').style.display = 'none';   
       } 
-    },
+    }
+  });
+}
 
-    "submit .new-user": function (event) {
+    // "submit .new-user": function (event) {
       // Prevent default browser form submit
-      event.preventDefault();
-      var e = document.getElementById("cat");
-      var avatar = e.value;
-      console.log(avatar);
+      // event.preventDefault();
+      // var e = document.getElementById("cat");
+      // var avatar = e.value;
+      // console.log(avatar);
       // Get value from form element
       // var user_name = event.target.user_name.value;
       // console.log (user_name);
@@ -324,19 +359,5 @@ if (Meteor.isClient) {
       // });
  
       // Clear form
-      event.target.text.value = "";
-    }
-  });
-
-  Template.task.events({
-    "click .toggle-checked": function () {
-      // Set the checked property to the opposite of its current value
-      Tasks.update(this._id, {
-        $set: {checked: ! this.checked}
-      });
-    },
-    "click .delete": function () {
-      Tasks.remove(this._id);
-    }
-  });
-}
+    //   event.target.text.value = "";
+    // }

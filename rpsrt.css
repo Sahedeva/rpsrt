@@ -121,6 +121,18 @@ header .hide-completed {
   float: right;
 }
 
+.avatar_list {
+  height: 30px;
+}
+
+.reverser {
+  -moz-transform: scale(-1, 1);
+  -webkit-transform: scale(-1, 1);
+  -o-transform: scale(-1, 1);
+  transform: scale(-1, 1);
+  filter: FlipH;
+}
+
 .toggle-private {
   margin-left: 5px;
 }
