@@ -22,20 +22,24 @@ body {
 .rps_image {
   height: 75px;
   width: 65px;
+  border-radius: 20px;
+  padding-top: 5px;
+  padding-bottom: 5px;
+  margin-left: 8px;
 }
 
 #avatar_image {
-  height: 100px;
-  max-width:150px;
+  height: 135px;
+  width:120px;
   border-radius: 20px;
+  margin-left: 8px;
 }
 
 .container {
-  max-width: 600px;
+  max-width: 800px;
   margin: 0 auto;
   min-height: 100%;
   background: white;
-  opacity: 0.8;
 }
 
 header {
@@ -108,6 +112,23 @@ li.checked {
   color: red;
 }
 
+#first {
+  margin-left: 8px;
+  margin-top: 40px;
+  padding-left: 0px;
+}
+
+#second {
+  text-align: center;
+  margin-top: 40px;
+}
+
+#third {
+  margin-left: -15px;
+  margin-top: 40px;
+  padding-left: 0px;
+}
+
 li.checked .text {
   text-decoration: line-through;
 }
@@ -150,4 +171,8 @@ header .hide-completed {
   .new-task input {
     padding-bottom: 5px;
   }
+}
+
+#obi {
+  border: 1px black solid;
 }

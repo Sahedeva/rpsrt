@@ -12,6 +12,10 @@ body {
 #main {
  position: relative;
 }
+
+#obi {
+	border: 2px solid black;
+}
 .page {
  position: absolute;
  top: 0px;

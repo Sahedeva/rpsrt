@@ -1,0 +1,49 @@
+<template name="postsGame">
+ <div class="post">
+		<div class="row">
+			<div class="col-xs-4">
+				<div class="row">
+					<div id="first" class="col-xs-6">
+						<div class="player_avatar"><img id="avatar_image" src="{{player_avatar}}"></div>
+					</div>
+					<div class="col-xs-6">
+						<div class="player_rps">
+							<div class="row">
+								<div class="col-xs-12"><img class="rps_image" src="{{player_rock}}"></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"><img class="rps_image" src="{{player_paper}}"></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"><img class="rps_image" src="{{player_scissors}}"></div>
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			<div id="second" class="col-xs-4">
+				<div class="countdown_results"><img id="avatar_image" src="{{countdown}}"></div>
+			</div>
+			<div class="col-xs-4">
+				<div class="row">
+					<div class="col-xs-6">
+						<div class="opponent_rps">
+							<div class="row">
+								<div class="col-xs-12"><img class="rps_image" src="{{opponent_rock}}"></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"><img class="rps_image" src="{{opponent_paper}}"></div>
+							</div>
+							<div class="row">
+								<div class="col-xs-12"><img class="rps_image" src="{{opponent_scissors}}"></div>
+							</div>
+						</div>
+					</div>
+					<div id="third" class="col-xs-6">
+						<div class="opponent_avatar"><img id="avatar_image" src="{{opponent_avatar}}"></div>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
+</template>
