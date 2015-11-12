@@ -29,8 +29,15 @@ body {
 }
 
 #avatar_image {
-  height: 135px;
-  width:120px;
+  height: 175px;
+  width:124px;
+  border-radius: 20px;
+  margin-left: 8px;
+}
+
+#count_image {
+  height: 201px;
+  width:100px;
   border-radius: 20px;
   margin-left: 8px;
 }
@@ -114,18 +121,22 @@ li.checked {
 
 #first {
   margin-left: 8px;
-  margin-top: 40px;
+  margin-top: 25px;
   padding-left: 0px;
+}
+
+.play_rps {
+  margin-left: 40px;
 }
 
 #second {
   text-align: center;
-  margin-top: 40px;
+  margin-top: 15px;
 }
 
 #third {
   margin-left: -15px;
-  margin-top: 40px;
+  margin-top: 25px;
   padding-left: 0px;
 }
 
