@@ -16,7 +16,7 @@ if (Meteor.isClient) {
   // Meteor.startup(function(){
   //   document.getElementById("avatar").selectedIndex = "-1";
   // });
-  
+  var currentUserId = Meteor.userId();
   Template.newUser.events({
     // first choice of avatar
     "change #avatar": function (event) {
@@ -202,6 +202,9 @@ if (Meteor.isClient) {
       event.preventDefault();
       var dropSelect = document.getElementById("custom_avatar");
       var choice1 = dropSelect.value;
+      // var choice = {avatar_url: choice1};
+      Meteor.call('sendLogMessage');
+      Meteor.call('modifyUsersAvatar', choice1);
       document.getElementById('custom_avatar').style.display = 'none';
       var image_entry = '<img id="avatar_image" src="'+choice1+'">'
       $("#avatar_placeholder").append(image_entry);
@@ -328,6 +331,27 @@ if (Meteor.isClient) {
   });
 }
 
+// "submit form": function(event) {
+//     e.preventDefault();
+
+//     var post = {
+//       url: $(e.target).find('[name=url]').val(),
+//       title: $(e.target).find('[name=title]').val()
+//     };
+
+//     Meteor.call('postInsert', post, function(error, result){
+//       // display the error to the user and about
+//       if (error)
+//         return alert(error.reason);
+
+//       // show this result but route anyway
+//       if (result.postExists)
+//         alert('This link has already been posted');
+
+//       Router.go('postPage', {_id: result._id});
+//     });
+//   }
+// var currentUserId = Meteor.userId();
     // "submit .new-user": function (event) {
       // Prevent default browser form submit
       // event.preventDefault();
@@ -357,3 +381,20 @@ if (Meteor.isClient) {
       // Clear form
     //   event.target.text.value = "";
     // }
+
+    if (Meteor.isServer) {
+      Meteor.methods({
+        'sendLogMessage': function(){
+          console.log("Hello world");
+        },
+        'modifyUsersAvatar': function(avatar_url){
+          check(avatar_url, Match.Any);
+          var currentUserId = Meteor.userId();
+          console.log(currentUserId+" " +avatar_url);
+          Meteor.users.update({_id: currentUserId},
+                       {$set:{avatar_url: avatar_url}})
+          // users.update(currentUserId, {avatar_url: avatar_url});
+        }
+      });
+    }
+
