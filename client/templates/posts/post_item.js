@@ -5,3 +5,27 @@ Template.postItem.helpers({
  return a.hostname;
  }
 });
+
+
+
+
+// Meteor.subscribe("messages");
+// 	Template.messages.helpers({
+// 		messages: function() {
+// 			return Messages.find();
+// 		}
+// 	});
+
+// <template name="messages">
+// 	<ul>
+// 		{{#each messages}}
+// 			{{> message}}
+// 		{{/each}}
+// 	</ul>
+// </template>
+
+// <template name="message">
+// 	<li>
+// 		{{message}}
+// 	</li>
+// </template>

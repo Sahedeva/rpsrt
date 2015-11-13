@@ -19,6 +19,14 @@ body {
   font-size: 14px;
 }
 
+.player_name {
+  text-align: center;
+  margin-left: 8px;
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+}
+
 .rps_image {
   height: 75px;
   width: 65px;
@@ -123,6 +131,7 @@ li.checked {
   margin-left: 8px;
   margin-top: 25px;
   padding-left: 0px;
+  padding-right: 0px;
 }
 
 .play_rps {
