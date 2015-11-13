@@ -19,6 +19,37 @@ body {
   font-size: 14px;
 }
 
+#reset_scores {
+  text-align: center;
+  border-radius: 5px;
+  margin-top: 20px;
+  background-color: red;
+  color: black;
+}
+
+
+#toggle_scores {
+  margin-top: 10px;
+}
+
+#stop {
+  margin-left: 66%;
+}
+
+#start {
+  margin-left: 65%;
+}
+
+table, th, td {
+    border: 1px solid black;
+    padding: 5px;
+    border-radius: 2px;
+}
+
+table {
+    border-spacing: 5px;
+}
+
 .player_name {
   text-align: center;
   margin-left: 8px;
