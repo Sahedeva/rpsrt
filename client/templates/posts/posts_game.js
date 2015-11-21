@@ -27,28 +27,52 @@ if (Meteor.isClient) {
 			$("#ctie").html(ctie);
 		}
 		storage_getter();
+		ptemp = parseInt(pwin) + 1;
+		if (ptemp) {
+			console.log("if ptemp is true: ptemp is "+ptemp+" pwin is "+pwin);
+		} else {
+			console.log("ptemp is false");
+		}
 		table_update();
-		setTimeout(function(){ 
-			document.getElementById('countthree').style.display = 'none';
-	    document.getElementById('go').style.display = '';
-	  }, 4000);
-		setTimeout(function(){ 
-			document.getElementById('counttwo').style.display = 'none';
-	    document.getElementById('countthree').style.display = '';
-		}, 3000);
-		setTimeout(function(){
-			document.getElementById('countone').style.display = 'none';
-	    document.getElementById('counttwo').style.display = '';
-		}, 2000);
-		setTimeout(function(){ 
-			document.getElementById('ready').style.display = 'none';
-	    document.getElementById('countone').style.display = '';
-		}, 1000);
+		Meteor.startup(function(){
+    	setTimeout(function(){ 
+				document.getElementById('countthree').style.display = 'none';
+		    document.getElementById('go').style.display = '';
+		  }, 5000);
+			setTimeout(function(){ 
+				document.getElementById('counttwo').style.display = 'none';
+		    document.getElementById('countthree').style.display = '';
+			}, 4000);
+			setTimeout(function(){
+				document.getElementById('countone').style.display = 'none';
+		    document.getElementById('counttwo').style.display = '';
+			}, 3000);
+			setTimeout(function(){ 
+				document.getElementById('ready').style.display = 'none';
+		    document.getElementById('countone').style.display = '';
+			}, 2000);
+	  });
+		// setTimeout(function(){ 
+		// 	document.getElementById('countthree').style.display = 'none';
+	 //    document.getElementById('go').style.display = '';
+	 //  }, 4000);
+		// setTimeout(function(){ 
+		// 	document.getElementById('counttwo').style.display = 'none';
+	 //    document.getElementById('countthree').style.display = '';
+		// }, 3000);
+		// setTimeout(function(){
+		// 	document.getElementById('countone').style.display = 'none';
+	 //    document.getElementById('counttwo').style.display = '';
+		// }, 2000);
+		// setTimeout(function(){ 
+		// 	document.getElementById('ready').style.display = 'none';
+	 //    document.getElementById('countone').style.display = '';
+		// }, 1000);
 		Template.postsGame.events({
 			"click #rock": function (event) {
 				var name = $(".player_name").attr("id");
 				console.log("you clicked Rock");
-				document.getElementById('rock').style.marginTop = '75px';
+				document.getElementById('rock').style.marginTop = '90px';
 				document.getElementById('rock').style.border = '4px solid red';
 				document.getElementById('rock').style.padding = '0px';
 				document.getElementById('paper').style.display = 'none';
@@ -76,6 +100,7 @@ if (Meteor.isClient) {
       		table_update();
 	      	storage_setter();
       		document.getElementById('go').style.display = 'none';
+      		$("#winner").addClass( "reverser" );
 	        document.getElementById('winner').style.display = '';
 	        document.getElementById('opp_scissors').style.border = '4px solid red';
 					document.getElementById('opp_scissors').style.padding = '0px';
@@ -91,7 +116,7 @@ if (Meteor.isClient) {
 	      	storage_setter();
       		document.getElementById('go').style.display = 'none';
 	        document.getElementById('tie').style.display = '';
-	        document.getElementById('opp_rock').style.marginTop = '75px';
+	        document.getElementById('opp_rock').style.marginTop = '90px';
 					document.getElementById('opp_rock').style.border = '4px solid red';
 					document.getElementById('opp_rock').style.padding = '0px';
 					document.getElementById('opp_paper').style.display = 'none';
@@ -127,8 +152,9 @@ if (Meteor.isClient) {
 	      		table_update();
 	      		storage_setter();
 	      		document.getElementById('go').style.display = 'none';
+	      		$("#winner").addClass( "reverser" );
 		        document.getElementById('winner').style.display = '';
-		        document.getElementById('opp_rock').style.marginTop = '75px';
+		        document.getElementById('opp_rock').style.marginTop = '90px';
 						document.getElementById('opp_rock').style.border = '4px solid red';
 						document.getElementById('opp_rock').style.padding = '0px';
 						document.getElementById('opp_paper').style.display = 'none';
@@ -165,7 +191,7 @@ if (Meteor.isClient) {
       		storage_setter();
 	        document.getElementById('go').style.display = 'none';
 	        document.getElementById('loser').style.display = '';
-	        document.getElementById('opp_rock').style.marginTop = '75px';
+	        document.getElementById('opp_rock').style.marginTop = '90px';
 					document.getElementById('opp_rock').style.border = '4px solid red';
 					document.getElementById('opp_rock').style.padding = '0px';
 					document.getElementById('opp_paper').style.display = 'none';
@@ -178,6 +204,7 @@ if (Meteor.isClient) {
 	      		table_update();
 	      		storage_setter();
 	      		document.getElementById('go').style.display = 'none';
+	      		$("#winner").addClass( "reverser" );
 		        document.getElementById('winner').style.display = '';
 		        document.getElementById('opp_paper').style.border = '4px solid red';
 						document.getElementById('opp_paper').style.padding = '0px';
@@ -191,7 +218,7 @@ if (Meteor.isClient) {
 	      		table_update();
 	      		storage_setter();
 	      		document.getElementById('go').style.display = 'none';
-		        document.getElementById('loser').style.display = '';
+		        document.getElementById('tie').style.display = '';
 		        document.getElementById('opp_scissors').style.border = '4px solid red';
 						document.getElementById('opp_scissors').style.padding = '0px';
 						document.getElementById('opp_rock').style.visibility = 'hidden';

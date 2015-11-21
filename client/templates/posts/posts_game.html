@@ -6,11 +6,11 @@
 					<div id="first" class="col-xs-6">
 						<div class="player_avatar"><img id="avatar_image" src="{{player.avatar_url}}"></div>
 						<p class = "player_name" id = "{{player.author}}">{{player.author}}</p>
-						<table class="score_table">
+						<table id="player_table" class="score_table">
 							<tr>
 	    					<th>Wins</th>
-	    					<th>Losses</th> 
-	    					<th>Ties</th>
+	    					<th>Loss</th> 
+	    					<th>Tie</th>
 	  					</tr>
 						  <tr>
 						    <td id="pwin">0</td>
@@ -63,11 +63,11 @@
 					<div id="third" class="col-xs-6">
 						<div class="opponent_avatar"><img class="reverser" id="avatar_image" src="{{opponent_avatar}}"></div>
 						<p class = "player_name" id = "{{opponent_name}}">{{opponent_name}}</p>
-						<table class="score_table">
+						<table id="opponent_table" class="score_table">
 							<tr>
-	    					<th>Wins</th>
-	    					<th>Losses</th> 
-	    					<th>Ties</th>
+	    					<th>Win</th>
+	    					<th>Loss</th> 
+	    					<th>Tie</th>
 	  					</tr>
 						  <tr>
 						    <td id="cwin">0</td>

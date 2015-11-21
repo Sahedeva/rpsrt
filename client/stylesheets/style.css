@@ -10,7 +10,11 @@ body {
  background: #eee;
  color: #666666; }
 #main {
+	min-height: 450px;
  position: relative;
+ background-attachment: fixed;
+ /*background-image: url(http://healtobe.com/wp-content/gallery/war-in-heaven/copy_0_copy_0_battle-of-evermore_angels.jpg);*/
+ background-size: cover;
 }
 
 #obi {
@@ -31,6 +35,10 @@ body {
 .post {
  /* For modern browsers */
  /* For IE 6/7 (trigger hasLayout) */
+  background-attachment: fixed;
+  /*min-height: 600px;*/
+ background-image: url(http://healtobe.com/wp-content/gallery/war-in-heaven/copy_0_copy_0_battle-of-evermore_angels.jpg);
+ background-size: cover;
  *zoom: 1;
  position: relative;
  opacity: 1; }

@@ -19,17 +19,45 @@ body {
   font-size: 14px;
 }
 
+#avatar_text {
+  color: orange;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 1px 1px 1px whitesmoke;
+  text-align: center;
+}
+
+#player_name {
+  color: green;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 1px 1px 1px whitesmoke;
+  text-align: center;
+}
+
+.rps_text {
+  color: black;
+  font-weight: bold;
+  font-size: 20px;
+  text-shadow: 1px 1px 1px whitesmoke;
+  text-align: center;
+  padding-left: 12px;
+}
+
 #reset_scores {
   text-align: center;
   border-radius: 5px;
   margin-top: 20px;
   background-color: red;
   color: black;
+  margin-left: 6px;
 }
 
 
 #toggle_scores {
   margin-top: 10px;
+  margin-left: 8px;
+  border-radius: 5px;
 }
 
 #stop {
@@ -37,13 +65,24 @@ body {
 }
 
 #start {
-  margin-left: 65%;
+  margin-left: 66%;
+  margin-right: 0%;
+  border-radius: 5px;
+}
+
+#opponent_table {
+  margin-left: 10px;
+}
+
+#player_table {
+  margin-left: 10px;
 }
 
 table, th, td {
     border: 1px solid black;
     padding: 5px;
     border-radius: 2px;
+    color: white;
 }
 
 table {
@@ -54,13 +93,14 @@ table {
   text-align: center;
   margin-left: 8px;
   color: green;
+  text-shadow: 2px 2px 2px black;
   font-weight: bold;
   font-size: 20px;
 }
 
 .rps_image {
-  height: 75px;
-  width: 65px;
+  height: 90px;
+  width: 80px;
   border-radius: 20px;
   padding-top: 5px;
   padding-bottom: 5px;
@@ -71,7 +111,12 @@ table {
   height: 175px;
   width:124px;
   border-radius: 20px;
-  margin-left: 8px;
+  margin-left: 6px;
+  margin-top: 15px;
+}
+
+.opponent_rps {
+  margin-left: -25px;
 }
 
 #count_image {
@@ -79,6 +124,7 @@ table {
   width:100px;
   border-radius: 20px;
   margin-left: 8px;
+  margin-top: 15px;
 }
 
 .container {
@@ -86,6 +132,9 @@ table {
   margin: 0 auto;
   min-height: 100%;
   background: white;
+  background-image: url(http://www.woa.tv/images/history/hi_samurai/hi_samurai_01_1776x960_or.jpg);
+  background-size: cover;
+  background-attachment: fixed;
 }
 
 header {
