@@ -34,7 +34,8 @@ if (Meteor.isClient) {
 			console.log("ptemp is false");
 		}
 		table_update();
-		Meteor.startup(function(){
+		// Meteor.startup(
+		// function(){
     	setTimeout(function(){ 
 				document.getElementById('countthree').style.display = 'none';
 		    document.getElementById('go').style.display = '';
@@ -51,7 +52,7 @@ if (Meteor.isClient) {
 				document.getElementById('ready').style.display = 'none';
 		    document.getElementById('countone').style.display = '';
 			}, 2000);
-	  });
+	  // });
 		// setTimeout(function(){ 
 		// 	document.getElementById('countthree').style.display = 'none';
 	 //    document.getElementById('go').style.display = '';
