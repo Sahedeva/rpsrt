@@ -492,7 +492,7 @@ if (Meteor.isClient) {
           check(avatar_url, Match.Any);
           var currentUserId = Meteor.userId();
           console.log(currentUserId+" " +avatar_url);
-          var player = {avatar_url: avatar_url};
+          var player = {avatar_url: avatar_url, win: 0, loss: 0, tie: 0, choice: '', name: '', active: false, wlt: ['']};
           console.log(player);
 
           Meteor.call('playerAvatarUpdate', player, function(error, result){

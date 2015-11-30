@@ -27,6 +27,50 @@ body {
   text-align: center;
 }
 
+.name_title {
+  color: blue;
+  margin-left: 50%;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px whitesmoke;
+}
+
+.lobby_avatar {
+  height: 175px;
+  width:124px;
+  border-radius: 20px;
+  margin-left: 44%;
+  margin-bottom: 8px;
+}
+
+.lobby_user {
+  color: red;
+  text-shadow: 1px 1px 1px black;
+  font-weight: bold;
+  font-size: 20px;
+  margin-left: 39%;
+}
+
+.lobby_challengers {
+  color: red;
+  text-shadow: 1px 1px 1px black;
+  font-weight: bold;
+  font-size: 20px;
+  border-radius: 10px;
+  margin-left: 35%;
+}
+
+.lobby_rps {
+  margin-left: 33%;
+}
+
+#lobby_title {
+  font-weight: bold;
+  color: black;
+  text-align: center;
+  text-shadow: 1px 1px 1px white;
+}
+
 #player_name {
   color: green;
   font-weight: bold;
