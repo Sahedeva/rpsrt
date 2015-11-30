@@ -27,30 +27,30 @@ if (Meteor.isClient) {
 			$("#ctie").html(ctie);
 		}
 		storage_getter();
-		ptemp = parseInt(pwin) + 1;
-		if (ptemp) {
-			console.log("if ptemp is true: ptemp is "+ptemp+" pwin is "+pwin);
+		// ptemp = parseInt(pwin) + 1;
+		if (pwin) {
+			console.log("if pwin is truthy: pwin is "+pwin);
 		} else {
-			console.log("ptemp is false");
+			console.log("pwin is falsey");
 		}
 		table_update();
 		// Meteor.startup(
 		// function(){
     	setTimeout(function(){ 
-				document.getElementById('countthree').style.display = 'none';
+				document.getElementById('countone').style.display = 'none';
 		    document.getElementById('go').style.display = '';
 		  }, 5000);
 			setTimeout(function(){ 
 				document.getElementById('counttwo').style.display = 'none';
-		    document.getElementById('countthree').style.display = '';
+		    document.getElementById('countone').style.display = '';
 			}, 4000);
 			setTimeout(function(){
-				document.getElementById('countone').style.display = 'none';
+				document.getElementById('countthree').style.display = 'none';
 		    document.getElementById('counttwo').style.display = '';
 			}, 3000);
 			setTimeout(function(){ 
 				document.getElementById('ready').style.display = 'none';
-		    document.getElementById('countone').style.display = '';
+		    document.getElementById('countthree').style.display = '';
 			}, 2000);
 	  // });
 		// setTimeout(function(){ 
