@@ -7,10 +7,26 @@
       <img class="rps_image" src="{{paper_url}}" alt="Paper"/>
       <img class="rps_image" src="{{scissors_url}}" alt="Scissors"/>
     </div>
-    {{#if currentUser}}
-    		<p class="lobby_user">Ready to Challenge!</p>
+    {{#if isCurrent author}}
+    		<p class="lobby_user {{challenge}}">Ready to Challenge!</p>
+        <div class="{{reject}}">
+          {{challenger_name}} has rejected your challenge!
+        </div>
+        <div class="{{game}}">
+          {{challenger_name}} has accepted your challenge!
+          <button class="game_on">RaShamBo!</button>
+        </div>
+        <div class="{{accept}}">
+          Does {{author}} accept {{challenger_name}}'s challenge?
+          <form>
+            <input class="yes_no" type="radio" id="{{challenger_id}}" name="yes_no" value="yes">Yes
+            <br>
+            <input class="yes_no" type="radio" id="{{challenger_id}}" name="yes_no" value="no">No
+          </form>
+        </div>
     {{else}}
-				<button class="lobby_challengers" id="{{_id}}" type="button">Challenge!</button>
+				<button class="lobby_challengers" id="{{_id}}" name="{{author}}" type="button">Challenge!</button>
+        
 		{{/if}}  
 	{{/each}}
 </template>

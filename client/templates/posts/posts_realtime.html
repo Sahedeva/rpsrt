@@ -1,0 +1,16 @@
+<template name="postsRealtime">
+	<h1>You made it to the real time page</h1>
+  {{#each players}}
+    <h3 class="name_title">{{author}}</h3><p class="wlt_list">Wins  {{win}} |  Losses  {{loss}}  |  Ties  {{tie}}</p><br>
+    <input style="display: none" id="{{player}}win" value={{win}}>
+    <input style="display: none" id="{{player}}loss" value={{loss}}>
+    <input style="display: none" id="{{player}}tie" value={{tie}}>
+    <img id="{{player}}" src="{{avatar_url}}" alt="{{choice}}">  <p class="selection"> {{choice}}  {{wlt}}</p>
+    <div id="play1_rps">
+      <img class="rps_image {{rock_class}}" id="{{player}}rock" src="{{rock_url}}" alt="{{_id}}"/>
+      <img class="rps_image {{paper_class}}" id="{{player}}paper" src="{{paper_url}}" alt="{{_id}}"/>
+      <img class="rps_image {{scissors_class}}" id="{{player}}scissors" src="{{scissors_url}}" alt="{{_id}}"/>
+    </div>   
+  {{/each}}
+  <button id="another_game">Another game?</button>
+</template>
