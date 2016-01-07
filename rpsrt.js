@@ -16,216 +16,384 @@ if (Meteor.isClient) {
   // Meteor.startup(function(){
   //   document.getElementById("avatar").selectedIndex = "-1";
   // });
+  var choice1 = "";
   Template.newUser.rendered = function() {
     Meteor.call('initializePlayer');
   }
   var currentUserId = Meteor.userId();
   Template.newUser.events({
     // first choice of avatar
-    "change #avatar": function (event) {
-      var dropSelect = document.getElementById("avatar");
-      var choice1 = dropSelect.value;
+    "click .first_choice": function(event){
+      choice1 = event.currentTarget.id;
+      document.getElementById('first_choice_div').style.display = 'none';
+      document.getElementById('first_choice_title').style.display = 'none';
       console.log(choice1);
-      if (choice1 === "") {
-        document.getElementById("choose_avatar").label = "Choose an avatar from list below";
-      } else if (choice1 === "cat") {
-        console.log("Cat choices");
-        document.getElementById('cat_avatar').style.display = '';
-        document.getElementById('avatar').style.display = 'none';
-      } else if (choice1 === "dog") {
-        console.log("Dog choices");
-        document.getElementById('dog_avatar').style.display = '';
-        document.getElementById('avatar').style.display = 'none';
-      } else if (choice1 === "human") {
-        console.log("Human choices");
-        document.getElementById('mf_avatar').style.display = '';
-        document.getElementById('avatar').style.display = 'none';
-      } else if (choice1 === "abstract") {
-        console.log("Abstract choices");
-        document.getElementById('abstract_avatar').style.display = '';
-        document.getElementById('avatar').style.display = 'none';
-      } else {
-        console.log("Custom choice");
+      if (choice1 === "abstract") {
+        console.log("element choices");
+        document.getElementById('element_choice_div').style.display = '';
+        document.getElementById('element_choice_title').style.display = '';
+      
+      } else if (choice1 === "custom") {
+        console.log("input avatar url");
         document.getElementById('custom_avatar').style.display = '';
-        document.getElementById('avatar').style.display = 'none';
+        document.getElementById('custom_title').style.display = '';
+      } else {
+        console.log("class choices")
+        document.getElementById('class_choice_div').style.display = '';
+        document.getElementById('class_choice_title').style.display = '';
       }
     },
 
-    //male female avatar selector
-    "change #mf_avatar": function (event) {
-      var dropSelect = document.getElementById("mf_avatar");
-      var choice1 = dropSelect.value;
-      console.log(choice1);
-      if (choice1 === "") {
-        document.getElementById("choose_mf_avatar").label = "Choose a sex from list below";
-      } else if (choice1 === "male") {
-        console.log("Male choice");
-        document.getElementById('male_avatar').style.display = '';
-        document.getElementById('mf_avatar').style.display = 'none';    
-      } else {
-        console.log("Female choice");
-        document.getElementById('female_avatar').style.display = '';
-        document.getElementById('mf_avatar').style.display = 'none';   
-      } 
-    },
-
-    //cat avatar selector
-    "change #cat_avatar": function (event) {
-      var dropSelect = document.getElementById("cat_avatar");
-      var choice1 = dropSelect.value;
-      console.log(choice1);
-      if (choice1 === "") {
-        document.getElementById("choose_cat_avatar").label = "Choose an avatar from list below";
-      } else if (choice1 === "jedi") {
-        console.log("Cat Jedi choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/catjedi1.jpg');
-        document.getElementById('cat_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/catjedi1.jpg">');
-      } else if (choice1 === "warrior") {
-        console.log("Cat Warrior choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/cat-warrior.jpg');
-        document.getElementById('cat_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-warrior.jpg">');
-      } else if (choice1 === "wizard") {
-        console.log("Cat Wizard choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/cat-wizard.jpg');
-        document.getElementById('cat_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-wizard.jpg">');
-      } else {
-        console.log("Cat Healer choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/cat-healer.jpg');
-        document.getElementById('cat_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-healer.jpg">');
-      } 
-    },
-
-    //dog avatar selector
-    "change #dog_avatar": function (event) {
-      var dropSelect = document.getElementById("dog_avatar");
-      var choice1 = dropSelect.value;
-      console.log(choice1);
-      if (choice1 === "") {
-        document.getElementById("choose_dog_avatar").label = "Choose an avatar from list below";
-      } else if (choice1 === "jedi") {
-        console.log("Dog Jedi choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/dog-jedi.jpg');
-        document.getElementById('dog_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-jedi.jpg">');
-      } else if (choice1 === "warrior") {
-        console.log("Dog Warrior choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/dog-warrior.jpg');
-        document.getElementById('dog_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dogwarrior.jpg">');
-      } else if (choice1 === "wizard") {
-        console.log("Dog Wizard choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/dog-wizard.jpg');
-        document.getElementById('dog_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-wizard.jpg">');
-      } else {
-        console.log("Dog Healer choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/dog-healer.jpeg');
-        document.getElementById('dog_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/doghealer1.jpg">');
-      } 
-    },
-
-    //male avatar selector
-    "change #male_avatar": function (event) {
-      var dropSelect = document.getElementById("male_avatar");
-      var choice1 = dropSelect.value;
-      console.log(choice1);
-      if (choice1 === "") {
-        document.getElementById("choose_male_avatar").label = "Choose an avatar from list below";
-      } else if (choice1 === "jedi") {
-        console.log("Male Jedi choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/pickthisone.jpg');
-        document.getElementById('male_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pickthisone.jpg">');
-      } else if (choice1 === "warrior") {
-        console.log("Male Warrior choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/malewarrior.jpg');
-        document.getElementById('male_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/malewarrior.jpg">');
-      } else if (choice1 === "wizard") {
-        console.log("Male Wizard choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/male-wizard.jpg');
-        document.getElementById('male_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-wizard.jpg">');
-      } else {
-        console.log("Male Healer choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/male-healer.jpg');
-        document.getElementById('male_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-healer.jpg">');
-      } 
-    },
-
-    //female avatar selector
-    "change #female_avatar": function (event) {
-      var dropSelect = document.getElementById("female_avatar");
-      var choice1 = dropSelect.value;
-      console.log(choice1);
-      if (choice1 === "") {
-        document.getElementById("choose_female_avatar").label = "Choose an avatar from list below";
-      } else if (choice1 === "jedi") {
+    "click .second_choice": function(event){
+      var choice2 = event.currentTarget.id;
+      document.getElementById('element_choice_div').style.display = 'none';
+      document.getElementById('element_choice_title').style.display = 'none';
+      document.getElementById('class_choice_div').style.display = 'none';
+      document.getElementById('class_choice_title').style.display = 'none';
+      console.log(choice2);
+      if (choice2 === "jedi") {
+        console.log("jedi");
+        if (choice1 === "female") {
         console.log("Female Jedi choice");
         Meteor.call('modifyUsersAvatar', '/rps_images/femalejedi.jpg');
         $("#avatar_text").html("Female Jedi");
         document.getElementById('player_name').style.display = ''; 
-        document.getElementById('female_avatar').style.display = 'none'; 
         $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalejedi.jpg">');
-      } else if (choice1 === "warrior") {
+        } else if (choice1 === "male"){
+          console.log("Male Jedi choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/pickthisone.jpg');
+          $("#avatar_text").html("Male Jedi");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pickthisone.jpg">');
+        } else if (choice1 === "cat"){
+          console.log("Cat Jedi choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/catjedi1.jpg');
+          $("#avatar_text").html("Cat Jedi");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/catjedi1.jpg">');
+        } else if (choice1 === "dog"){
+          console.log("Dog Jedi choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/dog-jedi.jpg');
+          $("#avatar_text").html("Dog Jedi");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-jedi.jpg">');
+        } 
+      } else if (choice2 === "warrior") {
+        console.log("warrior");
+        if (choice1 === "female") {
         console.log("Female Warrior choice");
         Meteor.call('modifyUsersAvatar', '/rps_images/femalewarrior.jpg');
         $("#avatar_text").html("Female Warrior");
         document.getElementById('player_name').style.display = ''; 
-        document.getElementById('female_avatar').style.display = 'none'; 
         $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalewarrior.jpg">');
-      } else if (choice1 === "wizard") {
+        } else if (choice1 === "male"){
+          console.log("Male Warrior choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/malewarrior.jpg');
+          $("#avatar_text").html("Male Warrior");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/malewarrior.jpg">');
+        } else if (choice1 === "cat"){
+          console.log("Cat Warrior choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/cat-warrior.jpg');
+          $("#avatar_text").html("Cat Warrior");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-warrior.jpg">');
+        } else if (choice1 === "dog"){
+          console.log("Dog Warrior choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/dogwarrior.jpg');
+          $("#avatar_text").html("Dog Warrior");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dogwarrior.jpg">');
+        } 
+      } else if (choice2 === "wizard") {
+        console.log("wizard");
+        if (choice1 === "female") {
         console.log("Female Wizard choice");
         Meteor.call('modifyUsersAvatar', '/rps_images/female-wizard.jpg');
         $("#avatar_text").html("Female Wizard");
         document.getElementById('player_name').style.display = ''; 
-        document.getElementById('female_avatar').style.display = 'none'; 
         $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/female-wizard.jpg">');
-      } else {
+        } else if (choice1 === "male"){
+          console.log("Male Wizard choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/male-wizard.jpg');
+          $("#avatar_text").html("Male Wizard");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-wizard.jpg">');
+        } else if (choice1 === "cat"){
+          console.log("Cat Wizard choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/cat-wizard.jpg');
+          $("#avatar_text").html("Cat Wizard");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-wizard.jpg">');
+        } else if (choice1 === "dog"){
+          console.log("Dog Wizard choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/dog-wizard.jpg');
+          $("#avatar_text").html("Dog Wizard");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-wizard.jpg">');
+        } 
+      } else if (choice2 === "healer") {
+        console.log("healer");
+        if (choice1 === "female") {
         console.log("Female Healer choice");
         Meteor.call('modifyUsersAvatar', '/rps_images/femalehealer.jpg');
         $("#avatar_text").html("Female Healer");
         document.getElementById('player_name').style.display = ''; 
-        document.getElementById('female_avatar').style.display = 'none'; 
         $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalehealer.jpg">');
-      } 
+        } else if (choice1 === "male"){
+          console.log("Male Healer choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/male-healer.jpg');
+          $("#avatar_text").html("Male Healer");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-healer.jpg">');
+        } else if (choice1 === "cat"){
+          console.log("Cat Healer choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/cat-healer.jpg');
+          $("#avatar_text").html("Cat Healer");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-healer.jpg">');
+        } else if (choice1 === "dog"){
+          console.log("Dog Healer choice");
+          Meteor.call('modifyUsersAvatar', '/rps_images/dog-healer.jpg');
+          $("#avatar_text").html("Dog Healer");
+          document.getElementById('player_name').style.display = ''; 
+          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-healer.jpg">');
+        } 
+      } else if (choice2 === "earth") {
+        console.log("earth");
+        Meteor.call('modifyUsersAvatar', '/rps_images/pattern1.jpg');
+        $("#avatar_text").html("Earth");
+        document.getElementById('player_name').style.display = ''; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern1.jpg">');
+      } else if (choice2 === "wind") {
+        console.log("wind");
+        Meteor.call('modifyUsersAvatar', '/rps_images/pattern2.jpg');
+        $("#avatar_text").html("Wind");
+        document.getElementById('player_name').style.display = ''; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/patternw.jpg">');
+      } else if (choice2 === "fire") {
+        console.log("fire");
+        Meteor.call('modifyUsersAvatar', '/rps_images/pattern3.jpg');
+        $("#avatar_text").html("Fire");
+        document.getElementById('player_name').style.display = ''; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern3.jpg">');
+      } else if (choice2 === "water") {
+        console.log("water");
+        Meteor.call('modifyUsersAvatar', '/rps_images/pattern4.jpg');
+        $("#avatar_text").html("Water");
+        document.getElementById('player_name').style.display = ''; 
+        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern4.jpg">');
+      }else {
+        console.log("class choices")
+        document.getElementById('class_choice_div').style.display = '';
+        document.getElementById('class_choice_title').style.display = '';
+      }
     },
 
+    // "change #avatar": function (event) {
+    //   var dropSelect = document.getElementById("avatar");
+    //   var choice1 = dropSelect.value;
+    //   console.log(choice1);
+    //   if (choice1 === "") {
+    //     document.getElementById("choose_avatar").label = "Choose an avatar from list below";
+    //   } else if (choice1 === "cat") {
+    //     console.log("Cat choices");
+    //     document.getElementById('cat_avatar').style.display = '';
+    //     document.getElementById('avatar').style.display = 'none';
+    //   } else if (choice1 === "dog") {
+    //     console.log("Dog choices");
+    //     document.getElementById('dog_avatar').style.display = '';
+    //     document.getElementById('avatar').style.display = 'none';
+    //   } else if (choice1 === "human") {
+    //     console.log("Human choices");
+    //     document.getElementById('mf_avatar').style.display = '';
+    //     document.getElementById('avatar').style.display = 'none';
+    //   } else if (choice1 === "abstract") {
+    //     console.log("Abstract choices");
+    //     document.getElementById('abstract_avatar').style.display = '';
+    //     document.getElementById('avatar').style.display = 'none';
+    //   } else {
+    //     console.log("Custom choice");
+    //     document.getElementById('custom_avatar').style.display = '';
+    //     document.getElementById('avatar').style.display = 'none';
+    //   }
+    // },
+
+    //male female avatar selector
+    // "change #mf_avatar": function (event) {
+    //   var dropSelect = document.getElementById("mf_avatar");
+    //   var choice1 = dropSelect.value;
+    //   console.log(choice1);
+    //   if (choice1 === "") {
+    //     document.getElementById("choose_mf_avatar").label = "Choose a sex from list below";
+    //   } else if (choice1 === "male") {
+    //     console.log("Male choice");
+    //     document.getElementById('male_avatar').style.display = '';
+    //     document.getElementById('mf_avatar').style.display = 'none';    
+    //   } else {
+    //     console.log("Female choice");
+    //     document.getElementById('female_avatar').style.display = '';
+    //     document.getElementById('mf_avatar').style.display = 'none';   
+    //   } 
+    // },
+
+    //cat avatar selector
+    // "change #cat_avatar": function (event) {
+    //   var dropSelect = document.getElementById("cat_avatar");
+    //   var choice1 = dropSelect.value;
+    //   console.log(choice1);
+    //   if (choice1 === "") {
+    //     document.getElementById("choose_cat_avatar").label = "Choose an avatar from list below";
+    //   } else if (choice1 === "jedi") {
+    //     console.log("Cat Jedi choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/catjedi1.jpg');
+    //     document.getElementById('cat_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/catjedi1.jpg">');
+    //   } else if (choice1 === "warrior") {
+    //     console.log("Cat Warrior choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/cat-warrior.jpg');
+    //     document.getElementById('cat_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-warrior.jpg">');
+    //   } else if (choice1 === "wizard") {
+    //     console.log("Cat Wizard choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/cat-wizard.jpg');
+    //     document.getElementById('cat_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-wizard.jpg">');
+    //   } else {
+    //     console.log("Cat Healer choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/cat-healer.jpg');
+    //     document.getElementById('cat_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-healer.jpg">');
+    //   } 
+    // },
+
+    //dog avatar selector
+    // "change #dog_avatar": function (event) {
+    //   var dropSelect = document.getElementById("dog_avatar");
+    //   var choice1 = dropSelect.value;
+    //   console.log(choice1);
+    //   if (choice1 === "") {
+    //     document.getElementById("choose_dog_avatar").label = "Choose an avatar from list below";
+    //   } else if (choice1 === "jedi") {
+    //     console.log("Dog Jedi choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/dog-jedi.jpg');
+    //     document.getElementById('dog_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-jedi.jpg">');
+    //   } else if (choice1 === "warrior") {
+    //     console.log("Dog Warrior choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/dog-warrior.jpg');
+    //     document.getElementById('dog_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dogwarrior.jpg">');
+    //   } else if (choice1 === "wizard") {
+    //     console.log("Dog Wizard choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/dog-wizard.jpg');
+    //     document.getElementById('dog_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-wizard.jpg">');
+    //   } else {
+    //     console.log("Dog Healer choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/dog-healer.jpeg');
+    //     document.getElementById('dog_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/doghealer1.jpg">');
+    //   } 
+    // },
+
+    //male avatar selector
+    // "change #male_avatar": function (event) {
+    //   var dropSelect = document.getElementById("male_avatar");
+    //   var choice1 = dropSelect.value;
+    //   console.log(choice1);
+    //   if (choice1 === "") {
+    //     document.getElementById("choose_male_avatar").label = "Choose an avatar from list below";
+    //   } else if (choice1 === "jedi") {
+    //     console.log("Male Jedi choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/pickthisone.jpg');
+    //     document.getElementById('male_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pickthisone.jpg">');
+    //   } else if (choice1 === "warrior") {
+    //     console.log("Male Warrior choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/malewarrior.jpg');
+    //     document.getElementById('male_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/malewarrior.jpg">');
+    //   } else if (choice1 === "wizard") {
+    //     console.log("Male Wizard choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/male-wizard.jpg');
+    //     document.getElementById('male_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-wizard.jpg">');
+    //   } else {
+    //     console.log("Male Healer choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/male-healer.jpg');
+    //     document.getElementById('male_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-healer.jpg">');
+    //   } 
+    // },
+
+    //female avatar selector
+    // "change #female_avatar": function (event) {
+    //   var dropSelect = document.getElementById("female_avatar");
+    //   var choice1 = dropSelect.value;
+    //   console.log(choice1);
+    //   if (choice1 === "") {
+    //     document.getElementById("choose_female_avatar").label = "Choose an avatar from list below";
+    //   } else if (choice1 === "jedi") {
+    //     console.log("Female Jedi choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/femalejedi.jpg');
+    //     $("#avatar_text").html("Female Jedi");
+    //     document.getElementById('player_name').style.display = ''; 
+    //     document.getElementById('female_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalejedi.jpg">');
+    //   } else if (choice1 === "warrior") {
+    //     console.log("Female Warrior choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/femalewarrior.jpg');
+    //     $("#avatar_text").html("Female Warrior");
+    //     document.getElementById('player_name').style.display = ''; 
+    //     document.getElementById('female_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalewarrior.jpg">');
+    //   } else if (choice1 === "wizard") {
+    //     console.log("Female Wizard choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/female-wizard.jpg');
+    //     $("#avatar_text").html("Female Wizard");
+    //     document.getElementById('player_name').style.display = ''; 
+    //     document.getElementById('female_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/female-wizard.jpg">');
+    //   } else {
+    //     console.log("Female Healer choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/femalehealer.jpg');
+    //     $("#avatar_text").html("Female Healer");
+    //     document.getElementById('player_name').style.display = ''; 
+    //     document.getElementById('female_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalehealer.jpg">');
+    //   } 
+    // },
+
     //abstract avatar selector
-    "change #abstract_avatar": function (event) {
-      var dropSelect = document.getElementById("abstract_avatar");
-      var choice1 = dropSelect.value;
-      console.log(choice1);
-      if (choice1 === "") {
-        document.getElementById("choose_abstract_avatar").label = "Choose an avatar from list below";
-      } else if (choice1 === "pat1") {
-        console.log("Pattern 1 choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/pattern1.jpg');
-        document.getElementById('abstract_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern1.jpg">');
-      } else if (choice1 === "pat2") {
-        console.log("Pattern 2 choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/pattern2.jpg');
-        document.getElementById('abstract_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern2.jpg">');
-      } else if (choice1 === "pat3") {
-        console.log("Pattern 3 choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/pattern3.jpg');
-        document.getElementById('abstract_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern3.jpg">');
-      } else {
-        console.log("Pattern 4 choice");
-        Meteor.call('modifyUsersAvatar', '/rps_images/pattern4.jpg');
-        document.getElementById('abstract_avatar').style.display = 'none'; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern4.jpg">');
-      } 
-    },
+    // "change #abstract_avatar": function (event) {
+    //   var dropSelect = document.getElementById("abstract_avatar");
+    //   var choice1 = dropSelect.value;
+    //   console.log(choice1);
+    //   if (choice1 === "") {
+    //     document.getElementById("choose_abstract_avatar").label = "Choose an avatar from list below";
+    //   } else if (choice1 === "pat1") {
+    //     console.log("Pattern 1 choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/pattern1.jpg');
+    //     document.getElementById('abstract_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern1.jpg">');
+    //   } else if (choice1 === "pat2") {
+    //     console.log("Pattern 2 choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/pattern2.jpg');
+    //     document.getElementById('abstract_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern2.jpg">');
+    //   } else if (choice1 === "pat3") {
+    //     console.log("Pattern 3 choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/pattern3.jpg');
+    //     document.getElementById('abstract_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern3.jpg">');
+    //   } else {
+    //     console.log("Pattern 4 choice");
+    //     Meteor.call('modifyUsersAvatar', '/rps_images/pattern4.jpg');
+    //     document.getElementById('abstract_avatar').style.display = 'none'; 
+    //     $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern4.jpg">');
+    //   } 
+    // },
 
     //custom avatar selector
     "submit #custom_avatar_form": function (event) {

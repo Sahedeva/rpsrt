@@ -1,3 +1,33 @@
+/* CSS for index template */
+.first_choice, .second_choice, .rps_choice {
+  max-height: 150px;
+  max-width: 125px;
+  border-radius: 100px;
+  display: inline;
+  padding: 5px;
+  align: center;
+}
+
+#first_choice_title, #class_choice_title, #element_choice_title, #custom_title, #rps_title {
+  text-align: center;
+  font-size: 30px;
+  color: yellow;
+  text-shadow: 2px 2px 2px black;
+}
+
+#first_choice_div, #class_choice_div, #custom_rock_form, #custom_paper_form, #custom_scissors_form, #element_choice_div, #custom_avatar_form, #rps_choice_div {
+  text-align: center;
+}
+
+#chosen_avatar {
+  height: 175px;
+  width:124px;
+  border-radius: 20px;
+  margin-left: 22px;
+  margin-top: 2px;
+}
+
+
 /* CSS for game template */
 #player1, #player2 {
   height: 150px;
@@ -81,19 +111,55 @@ body {
   text-align: center;
 }
 
+#current {
+  position: fixed;
+  top: 14%;
+  left: 22%;
+}
+
 .name_title {
   color: blue;
-  margin-left: 50%;
+  margin-left: 67%;
   font-weight: bold;
   font-size: 22px;
   text-shadow: 1px 1px 1px whitesmoke;
+  margin-bottom: 10px;
 }
 
 .lobby_avatar {
   height: 175px;
   width:124px;
   border-radius: 20px;
-  margin-left: 44%;
+  margin-left: 65%;
+  margin-bottom: 8px;
+  margin-top: 8px;
+}
+
+#current_avatar {
+  height: 175px;
+  width:124px;
+  border-radius: 20px;
+  margin-bottom: 8px;
+  margin-left: 55px;
+}
+
+#current_title {
+  color: green;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px whitesmoke;
+  margin-left: 80px;
+}
+
+.current_rps {
+  height: 90px;
+  width: 80px;
+  border-radius: 20px;
+  margin-top: 5px;
+  margin-bottom: 5px;
+}
+
+#current_lobby_rps {
   margin-bottom: 8px;
 }
 
@@ -102,7 +168,7 @@ body {
   text-shadow: 1px 1px 1px black;
   font-weight: bold;
   font-size: 20px;
-  margin-left: 39%;
+  margin-left: 25px;
 }
 
 .lobby_challengers {
@@ -111,11 +177,12 @@ body {
   font-weight: bold;
   font-size: 20px;
   border-radius: 10px;
-  margin-left: 44%;
+  margin-left: 65%;
+  margin-bottom: 10px;
 }
 
 .lobby_rps {
-  margin-left: 33%;
+  margin-left: 57%;
   margin-bottom: 8px;
 }
 
@@ -143,12 +210,12 @@ body {
 }
 
 .rps_text {
-  color: black;
+  color: blue;
   font-weight: bold;
   font-size: 20px;
   text-shadow: 1px 1px 1px whitesmoke;
   text-align: center;
-  padding-left: 12px;
+  padding-right: 20px;
 }
 
 #reset_scores {
@@ -209,9 +276,8 @@ table {
   height: 90px;
   width: 80px;
   border-radius: 20px;
-  padding-top: 5px;
-  padding-bottom: 5px;
-  margin-left: 8px;
+  margin-top: 5px;
+  margin-bottom: 5px;
 }
 
 #avatar_image {
@@ -383,3 +449,31 @@ header .hide-completed {
 #obi {
   border: 1px black solid;
 }
+
+/* styling for game lobby */
+
+.challenge_form {
+  margin-left: 35%;
+  font-size: 20px;
+  font-weight: bold;
+  color: beige;
+}
+
+.challenger {
+  margin-left: 30%;
+  font-size: 20px;
+  font-weight: bold;
+  color: beige;
+}
+
+.reject {
+  margin-left: 35%;
+  font-size: 20px;
+  font-weight: bold;
+  color: beige;
+}
+
+.game_on {
+  color: purple;
+}
+

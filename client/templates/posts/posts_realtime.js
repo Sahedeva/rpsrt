@@ -11,8 +11,10 @@ if (Meteor.isClient) {
   Template.postsRealtime.events({
     "click #player1rock": function (event) {
       $("#player1rock").css("pointer-events", "none");
+      $("#player1paper").css("pointer-events", "none");
+      $("#player1scissors").css("pointer-events", "none");
       console.log("Player one chose rock");
-      var id = $("#player1scissors").attr('alt');
+      var id = $("#player1rock").attr('alt');
       var game_id = {id: id};
       var changes = {rock_class: 'rps_red', scissors_class: 'rps_hidden', paper_class: 'rps_hidden', choice: 'rock'};
   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){

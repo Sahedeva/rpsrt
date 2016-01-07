@@ -1,4 +1,12 @@
 <template name = "newUser">
+  <audio class="my_audio" loop="loop" autoplay="autoplay" preload="none">
+    <source src="/audio/neonGenesis.mp3" type="audio/mpeg">
+  </audio>
+  <p id='first_choice_title'>Choose avatar general type</p>
+  <p style="display: none" id='class_choice_title'>Choose class of comabatant</p>
+  <p style="display: none" id='element_choice_title'>Choose element of comabatant</p>
+  <p style="display: none" id='custom_title'>Input Url of Avatar Image</p>
+
   <br><br><br>
       <div class="row">
         <div class="col-xs-3">
@@ -16,6 +24,43 @@
         </div> 
       </div> 
       <br>
+      <div class="row">
+        <div id="first_choice_div" class="col-sx-12">
+          <img class="first_choice" id="female" src="/choice_images/femaleSilhouette.jpg">
+          <img class="first_choice" id="male" src="/choice_images/maleSilhouette.jpg">
+          <img class="first_choice" id="cat" src="/choice_images/catSilhouette.jpeg">
+          <img class="first_choice" id="dog" src="/choice_images/dogSilhouette.jpg">
+          <img class="first_choice" id="abstract" src="/choice_images/abstractSilhouette.jpg">
+          <img class="first_choice" id="custom" src="/choice_images/questionSilhouette.jpg">
+        </div>
+      </div>
+      <div class="row">
+        <div style="display: none" id="class_choice_div" class="col-sx-12">
+          <img class="second_choice" id="jedi" src="/class_choices/jedi.png">
+          <img class="second_choice" id="warrior" src="/class_choices/warrior.jpg">
+          <img class="second_choice" id="wizard" src="/class_choices/wizard.jpg">
+          <img class="second_choice" id="healer" src="/class_choices/healer.png">
+        </div>
+      </div>
+      <div class="row">
+        <div style="display: none" id="element_choice_div" class="col-sx-12">
+          <img class="second_choice" id="earth" src="/element_choices/earth.jpg">
+          <img class="second_choice" id="wind" src="/element_choices/wind.jpg">
+          <img class="second_choice" id="fire" src="/element_choices/fire.jpg">
+          <img class="second_choice" id="water" src="/element_choices/water.jpg">
+        </div>
+      </div>
+      <div class="row">
+        <div id="rps_choice_div" class="col-sx-12">
+          <img class="rps_choice" id="female" src="/choice_images/femaleSilhouette.jpg">
+          <img class="rps_choice" id="male" src="/choice_images/maleSilhouette.jpg">
+          <img class="rps_choice" id="cat" src="/choice_images/catSilhouette.jpeg">
+          <img class="rps_choice" id="dog" src="/choice_images/dogSilhouette.jpg">
+          <img class="rps_choice" id="modern" src="/choice_images/abstractSilhouette.jpg">
+          <img class="rps_choice" id="ancient" src="/choice_images/abstractSilhouette.jpg">
+          <img class="rps_choice" id="custom" src="/choice_images/questionSilhouette.jpg">
+        </div>
+      </div>
         <select class="first_choice" id="avatar" name="avatar">
           <option id="choose_avatar" value="">Choose Race...</option>
           <option value="cat">Cat</option>
@@ -65,7 +110,7 @@
           <option value="pat4">Air</option>
         </select>
         <form id="custom_avatar_form">
-          <input style="display: none" id="custom_avatar" type="text" name="custom_avatar" placeholder="Type avatar url" />
+          <input style="display: none" id="custom_avatar" type="text" name="custom_avatar" placeholder="Type avatar url" size="70"/>
         </form>
         <br><br><br><br><br>
         <select id="rps_images" name="rps_images">

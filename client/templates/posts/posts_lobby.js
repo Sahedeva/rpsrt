@@ -1,15 +1,15 @@
 Template.postsLobby.helpers({
-    players: function() {
-      return Players.find({lobby: true});
-    },
-    isCurrent: function (name) {
-    	var currentUserName = Meteor.user().username;
-    	return name === currentUserName;
-  	}
-    // choices: function() {
-    //   return Choices.find({});
-    // }
-  });
+  players: function() {
+    return Players.find({lobby: true});
+  },
+  isCurrent: function (name) {
+  	var currentUserName = Meteor.user().username;
+  	return name === currentUserName;
+	}
+  // choices: function() {
+  //   return Choices.find({});
+  // }
+});
 
 Template.postsLobby.events({
 	"click .lobby_challengers": function (event) {
@@ -41,29 +41,27 @@ Template.postsLobby.events({
 		var selection = $('input[name=yes_no]:checked').val();
 		console.log(selection);
 		var click_opponent = $('.yes_no').attr('id');
-		var opponent_id = {id: click_opponent};
-		console.log("yes click opponent_id: " + opponent_id);
+		var opponent_id = {id: click_opponent};		
 		if (selection === 'yes') {
-
+			console.log("yes click opponent_id: " + opponent_id);
 			Meteor.call('playerActiveUpdate', opponent_id, function(error, result){
       if (error)
         console.log(error);
     	});
     	Router.go('/realtime');
-		} else {
-		var currentUserName = Meteor.user().username;
-		var player = {reject: 'show', challenger_name: currentUserName};
-		Meteor.call('playerLobbyChallengeUpdate', player, opponent_id,function(error, result){
+		} else if (selection === 'no') {
+		console.log('No click opponent_id '+ opponent_id);
+		Meteor.call('playerRejectUpdate', opponent_id,function(error, result){
       if (error)
         console.log(error)
     });
-    var click_user = Meteor.userId();
-    var opponent_id = {id: click_user};
-    var player = {challenge: 'show', accept: 'hidden', challenger_name: "", challenger_id: ""};
-    Meteor.call('playerLobbyChallengeUpdate', player, opponent_id,function(error, result){
-      if (error)
-        console.log(error)
-    });
+    // var click_user = Meteor.userId();
+    // var opponent_id = {id: click_user};
+    // var player = {challenge: 'show', accept: 'hidden', challenger_name: "", challenger_id: ""};
+    // Meteor.call('playerLobbyChallengeUpdate', player, opponent_id,function(error, result){
+    //   if (error)
+    //     console.log(error)
+    // });
   }
 	}
 });

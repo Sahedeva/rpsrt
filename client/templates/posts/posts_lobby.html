@@ -1,32 +1,50 @@
 <template name="postsLobby">
+  <audio class="my_audio" autoplay="autoplay" loop="loop" preload="none">
+    <source src="/audio/moribito.mp3" type="audio/mpeg">
+  </audio>
 	{{#each players}}
-		<h3 class="name_title">{{author}}</h3>
+		<!-- <h3 class="name_title">{{author}}</h3>
     <img class="lobby_avatar" src="{{avatar_url}}" alt="{{author}}">
     <div class="lobby_rps">
       <img class="rps_image" src="{{rock_url}}" alt="Rock"/>
       <img class="rps_image" src="{{paper_url}}" alt="Paper"/>
       <img class="rps_image" src="{{scissors_url}}" alt="Scissors"/>
-    </div>
+    </div> -->
     {{#if isCurrent author}}
+      <div id="current">
+        <h3 id="current_title">{{author}}</h3>
+        <img id="current_avatar" src="{{avatar_url}}" alt="{{author}}">
+        <div id="current_lobby_rps">
+          <img class="current_rps" src="{{rock_url}}" alt="Rock"/>
+          <img class="current_rps" src="{{paper_url}}" alt="Paper"/>
+          <img class="current_rps" src="{{scissors_url}}" alt="Scissors"/>
+        </div>
     		<p class="lobby_user {{challenge}}">Ready to Challenge!</p>
-        <div class="{{reject}}">
+        <div class="{{reject}} challenger">
           {{challenger_name}} has rejected your challenge!
         </div>
-        <div class="{{game}}">
+        <div class="{{game}} challenger">
           {{challenger_name}} has accepted your challenge!
           <button class="game_on">RaShamBo!</button>
         </div>
-        <div class="{{accept}}">
+        <div class="{{accept}} challenge_form">
           Does {{author}} accept {{challenger_name}}'s challenge?
           <form>
-            <input class="yes_no" type="radio" id="{{challenger_id}}" name="yes_no" value="yes">Yes
+            <input class="yes_no" type="radio" id="{{challenger_id}}" name="yes_no" value="yes"> Yes
             <br>
-            <input class="yes_no" type="radio" id="{{challenger_id}}" name="yes_no" value="no">No
+            <input class="yes_no" type="radio" id="{{challenger_id}}" name="yes_no" value="no"> No
           </form>
         </div>
+      </div>
     {{else}}
-				<button class="lobby_challengers" id="{{_id}}" name="{{author}}" type="button">Challenge!</button>
-        
+      <h3 class="name_title">{{author}}</h3>
+      <img class="lobby_avatar" src="{{avatar_url}}" alt="{{author}}">
+      <div class="lobby_rps">
+        <img class="rps_image" src="{{rock_url}}" alt="Rock"/>
+        <img class="rps_image" src="{{paper_url}}" alt="Paper"/>
+        <img class="rps_image" src="{{scissors_url}}" alt="Scissors"/>
+      </div>
+			<button class="lobby_challengers" id="{{_id}}" name="{{author}}" type="button">Challenge!</button>    
 		{{/if}}  
 	{{/each}}
 </template>
