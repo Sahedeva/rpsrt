@@ -106,8 +106,8 @@ body {
 #avatar_text {
   color: orange;
   font-weight: bold;
-  font-size: 20px;
-  text-shadow: 1px 1px 1px whitesmoke;
+  font-size: 21px;
+  text-shadow: 2px 2px 2px black;
   text-align: center;
 }
 
@@ -202,18 +202,18 @@ body {
 }
 
 #player_name {
-  color: green;
+  color: aqua;
   font-weight: bold;
-  font-size: 20px;
-  text-shadow: 1px 1px 1px whitesmoke;
+  font-size: 22px;
+  text-shadow: 2px 2px 2px black;
   text-align: center;
 }
 
 .rps_text {
-  color: blue;
+  color: gold;
   font-weight: bold;
-  font-size: 20px;
-  text-shadow: 1px 1px 1px whitesmoke;
+  font-size: 21px;
+  text-shadow: 1px 1px 1px black;
   text-align: center;
   padding-right: 20px;
 }

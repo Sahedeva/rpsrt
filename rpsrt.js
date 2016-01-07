@@ -58,25 +58,25 @@ if (Meteor.isClient) {
         Meteor.call('modifyUsersAvatar', '/rps_images/femalejedi.jpg');
         $("#avatar_text").html("Female Jedi");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalejedi.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/femalejedi.jpg">');
         } else if (choice1 === "male"){
           console.log("Male Jedi choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/pickthisone.jpg');
           $("#avatar_text").html("Male Jedi");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pickthisone.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/pickthisone.jpg">');
         } else if (choice1 === "cat"){
           console.log("Cat Jedi choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/catjedi1.jpg');
           $("#avatar_text").html("Cat Jedi");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/catjedi1.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/catjedi1.jpg">');
         } else if (choice1 === "dog"){
           console.log("Dog Jedi choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/dog-jedi.jpg');
           $("#avatar_text").html("Dog Jedi");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-jedi.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/dog-jedi.jpg">');
         } 
       } else if (choice2 === "warrior") {
         console.log("warrior");
@@ -85,25 +85,25 @@ if (Meteor.isClient) {
         Meteor.call('modifyUsersAvatar', '/rps_images/femalewarrior.jpg');
         $("#avatar_text").html("Female Warrior");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalewarrior.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/femalewarrior.jpg">');
         } else if (choice1 === "male"){
           console.log("Male Warrior choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/malewarrior.jpg');
           $("#avatar_text").html("Male Warrior");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/malewarrior.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/malewarrior.jpg">');
         } else if (choice1 === "cat"){
           console.log("Cat Warrior choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/cat-warrior.jpg');
           $("#avatar_text").html("Cat Warrior");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-warrior.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/cat-warrior.jpg">');
         } else if (choice1 === "dog"){
           console.log("Dog Warrior choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/dogwarrior.jpg');
           $("#avatar_text").html("Dog Warrior");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dogwarrior.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/dogwarrior.jpg">');
         } 
       } else if (choice2 === "wizard") {
         console.log("wizard");
@@ -112,25 +112,25 @@ if (Meteor.isClient) {
         Meteor.call('modifyUsersAvatar', '/rps_images/female-wizard.jpg');
         $("#avatar_text").html("Female Wizard");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/female-wizard.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/female-wizard.jpg">');
         } else if (choice1 === "male"){
           console.log("Male Wizard choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/male-wizard.jpg');
           $("#avatar_text").html("Male Wizard");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-wizard.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/male-wizard.jpg">');
         } else if (choice1 === "cat"){
           console.log("Cat Wizard choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/cat-wizard.jpg');
           $("#avatar_text").html("Cat Wizard");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-wizard.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/cat-wizard.jpg">');
         } else if (choice1 === "dog"){
           console.log("Dog Wizard choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/dog-wizard.jpg');
           $("#avatar_text").html("Dog Wizard");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-wizard.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/dog-wizard.jpg">');
         } 
       } else if (choice2 === "healer") {
         console.log("healer");
@@ -139,54 +139,153 @@ if (Meteor.isClient) {
         Meteor.call('modifyUsersAvatar', '/rps_images/femalehealer.jpg');
         $("#avatar_text").html("Female Healer");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/femalehealer.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/femalehealer.jpg">');
         } else if (choice1 === "male"){
           console.log("Male Healer choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/male-healer.jpg');
           $("#avatar_text").html("Male Healer");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/male-healer.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/male-healer.jpg">');
         } else if (choice1 === "cat"){
           console.log("Cat Healer choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/cat-healer.jpg');
           $("#avatar_text").html("Cat Healer");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/cat-healer.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/cat-healer.jpg">');
         } else if (choice1 === "dog"){
           console.log("Dog Healer choice");
           Meteor.call('modifyUsersAvatar', '/rps_images/dog-healer.jpg');
           $("#avatar_text").html("Dog Healer");
           document.getElementById('player_name').style.display = ''; 
-          $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/dog-healer.jpg">');
+          $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/dog-healer.jpg">');
         } 
       } else if (choice2 === "earth") {
         console.log("earth");
         Meteor.call('modifyUsersAvatar', '/rps_images/pattern1.jpg');
         $("#avatar_text").html("Earth");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern1.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/pattern1.jpg">');
       } else if (choice2 === "wind") {
         console.log("wind");
         Meteor.call('modifyUsersAvatar', '/rps_images/pattern2.jpg');
         $("#avatar_text").html("Wind");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/patternw.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/patternw.jpg">');
       } else if (choice2 === "fire") {
         console.log("fire");
         Meteor.call('modifyUsersAvatar', '/rps_images/pattern3.jpg');
         $("#avatar_text").html("Fire");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern3.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/pattern3.jpg">');
       } else if (choice2 === "water") {
         console.log("water");
         Meteor.call('modifyUsersAvatar', '/rps_images/pattern4.jpg');
         $("#avatar_text").html("Water");
         document.getElementById('player_name').style.display = ''; 
-        $("#avatar_placeholder").append('<img id="avatar_image" src="/rps_images/pattern4.jpg">');
+        $("#avatar_placeholder").append('<img id="chosen_avatar" src="/rps_images/pattern4.jpg">');
       }else {
         console.log("class choices")
         document.getElementById('class_choice_div').style.display = '';
         document.getElementById('class_choice_title').style.display = '';
+      }
+      document.getElementById('rps_choice_div').style.display = '';
+      document.getElementById('rps_title').style.display = '';
+    },
+
+    "click .rps_choice": function(event){
+      var rpsChoice = event.currentTarget.id;
+      document.getElementById('rps_choice_div').style.display = 'none';
+      document.getElementById('rps_title').style.display = 'none';
+      console.log(rpsChoice);
+      if (rpsChoice === "female") {
+        console.log("Female RPS choice");
+        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/femalerock.jpg">');
+        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/femalepaper.jpg">');
+        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/femalescissors.jpg">');
+        var choice1 = "/rps_images/femalerock.jpg"
+        var choice2 = "/rps_images/femalepaper.jpg"
+        var choice3 = "/rps_images/femalescissors.jpg"
+        Meteor.call('modifyUsersRock', choice1);
+        Meteor.call('modifyUsersPaper', choice2);
+        Meteor.call('modifyUsersScissors', choice3);
+        document.getElementById('rock_image').style.display = '';
+        document.getElementById('paper_image').style.display = '';
+        document.getElementById('scissors_image').style.display = '';     
+      } else if (rpsChoice === "male") {
+        console.log("Male RPS choice");
+        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/malerock.jpg">');
+        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/malepaper.jpg">');
+        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/malescissors.jpg">');
+        var choice1 = "/rps_images/malerock.jpg"
+        var choice2 = "/rps_images/malepaper.jpg"
+        var choice3 = "/rps_images/malescissors.jpg"
+        Meteor.call('modifyUsersRock', choice1);
+        Meteor.call('modifyUsersPaper', choice2);
+        Meteor.call('modifyUsersScissors', choice3);
+        document.getElementById('rock_image').style.display = '';
+        document.getElementById('paper_image').style.display = '';
+        document.getElementById('scissors_image').style.display = '';
+      } else if (rpsChoice === "cat") {
+        console.log("Cat RPS choice");
+        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/catrock.JPG">');
+        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/catpaper.jpg">');
+        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/catscissors.jpg">');
+        var choice1 = "/rps_images/catrock.JPG"
+        var choice2 = "/rps_images/catpaper.jpg"
+        var choice3 = "/rps_images/catscissors.jpg"
+        Meteor.call('modifyUsersRock', choice1);
+        Meteor.call('modifyUsersPaper', choice2);
+        Meteor.call('modifyUsersScissors', choice3);
+        document.getElementById('rock_image').style.display = '';
+        document.getElementById('paper_image').style.display = '';
+        document.getElementById('scissors_image').style.display = '';
+      } else if (rpsChoice === "dog") {
+        console.log("Dog RPS choice");
+        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/dogrock.jpg">');
+        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/dogpaper.jpg">');
+        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/dogscissors.jpg">');
+        var choice1 = "/rps_images/dogrock.jpg"
+        var choice2 = "/rps_images/dogpaper.jpg"
+        var choice3 = "/rps_images/dogscissors.jpg"
+        Meteor.call('modifyUsersRock', choice1);
+        Meteor.call('modifyUsersPaper', choice2);
+        Meteor.call('modifyUsersScissors', choice3);
+        document.getElementById('rock_image').style.display = '';
+        document.getElementById('paper_image').style.display = '';
+        document.getElementById('scissors_image').style.display = '';
+      } else if (rpsChoice === "modern") {
+        console.log("Modern RPS choice");
+        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/objectrock1.jpg">');
+        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/objectpaper1.jpg">');
+        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/objectscissors1.jpg">');
+        var choice1 = "/rps_images/objectrock1.jpg"
+        var choice2 = "/rps_images/objectpaper1.jpg"
+        var choice3 = "/rps_images/objectscissors1.jpg"
+        Meteor.call('modifyUsersRock', choice1);
+        Meteor.call('modifyUsersPaper', choice2);
+        Meteor.call('modifyUsersScissors', choice3);
+        document.getElementById('rock_image').style.display = '';
+        document.getElementById('paper_image').style.display = '';
+        document.getElementById('scissors_image').style.display = '';
+      } else if (rpsChoice === "ancient") {
+        console.log("Ancient RPS choice");
+        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/objectrock2.jpg">');
+        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/objectpaper2.jpg">');
+        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/objectscissors2.jpg">');
+        var choice1 = "/rps_images/objectrock2.jpg"
+        var choice2 = "/rps_images/objectpaper2.jpg"
+        var choice3 = "/rps_images/objectscissors2.jpg"
+        Meteor.call('modifyUsersRock', choice1);
+        Meteor.call('modifyUsersPaper', choice2);
+        Meteor.call('modifyUsersScissors', choice3);
+        document.getElementById('rock_image').style.display = '';
+        document.getElementById('paper_image').style.display = '';
+        document.getElementById('scissors_image').style.display = '';
+      } else if (rpsChoice === "custom") {
+        console.log("Custom RPS choice");
+        document.getElementById('custom_rock').style.display = '';
+        document.getElementById('custom_paper').style.display = '';
+        document.getElementById('custom_scissors').style.display = '';
       }
     },
 
@@ -405,7 +504,7 @@ if (Meteor.isClient) {
       Meteor.call('sendLogMessage');
       Meteor.call('modifyUsersAvatar', choice1);
       document.getElementById('custom_avatar').style.display = 'none';
-      var image_entry = '<img id="avatar_image" src="'+choice1+'">'
+      var image_entry = '<img id="chosen_avatar" src="'+choice1+'">'
       $("#avatar_placeholder").append(image_entry);
     },
 
@@ -501,7 +600,7 @@ if (Meteor.isClient) {
       var scissorsSelect = document.getElementById("custom_scissors");
       var choice3 = scissorsSelect.value;
       var scissor_image = '<img class="rps_image" src="'+choice3+'">';
-      $("#scissor_placeholder").append(scissor_image);
+      $("#scissors_placeholder").append(scissor_image);
       Meteor.call('modifyUsersScissors', choice3);
       document.getElementById('scissors_image').style.display = '';
       document.getElementById('custom_scissors').style.display = 'none';

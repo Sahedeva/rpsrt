@@ -14,16 +14,17 @@
           <div id="avatar_placeholder"></div>
           <div id="player_name" style="display: none">{{author}}</div>
         </div>
-        <div class="col-xs-8">
+        <div class="col-xs-8 col-xs-offset-1">
           <div id="rps_placeholder"></div>
           <div class="row">
-            <div class="col-xs-2"><div class="rps_text" style="display: none" id="rock_image">Rock</div><br><div id="rock_placeholder"></div></div>
-            <div class="col-xs-2"><div class="rps_text" style="display: none" id="paper_image">Paper</div><br><div id="paper_placeholder"></div></div>
-            <div class="col-xs-2"><div class="rps_text" style="display: none" id="scissors_image">Scissors</div><br><div id="scissors_placeholder"></div></div>
+            <div class="col-xs-3"><div class="rps_text" style="display: none" id="rock_image">Rock</div><br><div id="rock_placeholder"></div></div>
+            <div class="col-xs-3"><div class="rps_text" style="display: none" id="paper_image">Paper</div><br><div id="paper_placeholder"></div></div>
+            <div class="col-xs-3"><div class="rps_text" style="display: none" id="scissors_image">Scissors</div><br><div id="scissors_placeholder"></div></div>
           </div>
         </div> 
       </div> 
       <br>
+      <p style="display: none" id='rps_title'>Choose the type of troops you will lead to victory!</p>
       <div class="row">
         <div id="first_choice_div" class="col-sx-12">
           <img class="first_choice" id="female" src="/choice_images/femaleSilhouette.jpg">
@@ -51,17 +52,17 @@
         </div>
       </div>
       <div class="row">
-        <div id="rps_choice_div" class="col-sx-12">
+        <div style="display: none" id="rps_choice_div" class="col-sx-12">
           <img class="rps_choice" id="female" src="/choice_images/femaleSilhouette.jpg">
           <img class="rps_choice" id="male" src="/choice_images/maleSilhouette.jpg">
           <img class="rps_choice" id="cat" src="/choice_images/catSilhouette.jpeg">
           <img class="rps_choice" id="dog" src="/choice_images/dogSilhouette.jpg">
-          <img class="rps_choice" id="modern" src="/choice_images/abstractSilhouette.jpg">
-          <img class="rps_choice" id="ancient" src="/choice_images/abstractSilhouette.jpg">
+          <img class="rps_choice" id="modern" src="/choice_images/modern.jpg">
+          <img class="rps_choice" id="ancient" src="/choice_images/ancient.jpg">
           <img class="rps_choice" id="custom" src="/choice_images/questionSilhouette.jpg">
         </div>
       </div>
-        <select class="first_choice" id="avatar" name="avatar">
+<!--         <select class="first_choice" id="avatar" name="avatar">
           <option id="choose_avatar" value="">Choose Race...</option>
           <option value="cat">Cat</option>
           <option value="dog">Dog</option>
@@ -108,11 +109,11 @@
           <option value="pat2">Water</option>
           <option value="pat3">Earth</option>
           <option value="pat4">Air</option>
-        </select>
+        </select> -->
         <form id="custom_avatar_form">
           <input style="display: none" id="custom_avatar" type="text" name="custom_avatar" placeholder="Type avatar url" size="70"/>
         </form>
-        <br><br><br><br><br>
+<!--         <br><br><br><br><br>
         <select id="rps_images" name="rps_images">
           <option id="choose_rps_images" value="">Choose RPS race...</option>
           <option value="human">Human</option>
@@ -140,7 +141,7 @@
         <div style="display: none" id="object1_rps_images">Rock1 image  Paper1 image  Scissors1 image
         </div> 
         <div style="display: none" id="object2_rps_images">Rock2 image  Paper2 image  Scissors2 image
-        </div>
+        </div> -->
         <form id="custom_rock_form">
           <input style="display: none" id="custom_rock" type="text" name="custom_rock" placeholder="Type rock image url" />
         </form>
