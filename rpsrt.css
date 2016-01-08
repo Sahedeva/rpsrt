@@ -29,10 +29,68 @@
 
 
 /* CSS for game template */
+#realtimeBackground {
+  background-image: url(http://healtobe.com/wp-content/gallery/war-in-heaven/copy_0_copy_0_battle-of-evermore_angels.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 600px;
+}
+
+#realtime_opponent_table {
+  margin-left: -6px;
+  margin-top: 15px;
+}
+
+#realtime_player_table {
+  margin-left: -10px;
+  margin-top: 15px;
+}
+
+#currentRealtimePlayer {
+  position: fixed;
+  top: 26%;
+  left: 20%;
+}
+
+#opponentRealtimePlayer {
+  position: fixed;
+  top: 26%;
+  right: 11%;
+}
+
+.realtimeCountdown {
+  position: fixed;
+  top: 30%;
+  left: 45%;
+}
+
+#realtime_player_title {
+  color: gold;
+  margin-left: 6px;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px black;
+}
+
+#realtime_opponent_title {
+  color: green;
+  margin-left: 6px;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px black;
+}
+
+#another_game {
+  position: fixed;
+  top: 88%;
+  left: 46%;
+}
+
 #player1, #player2 {
   height: 150px;
   width: 100px;
   border-radius: 20px;
+  margin-top: 10px;
 }
 
 .rps_image {
@@ -288,8 +346,12 @@ table {
   margin-top: 15px;
 }
 
-.opponent_rps {
-  margin-left: -25px;
+#opponent_realtime_rps {
+  text-align: right;
+}
+
+#player_realtime_rps {
+  margin-right: 0px;
 }
 
 #count_image {

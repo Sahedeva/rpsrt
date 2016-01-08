@@ -2,6 +2,10 @@ if (Meteor.isClient) {
 	Template.postsRealtime.helpers({
     players: function() {
       return Players.find({active: true});
+    },
+    isCurrent: function (name) {
+    var currentUserName = Meteor.user().username;
+    return name === currentUserName;
     }
     // choices: function() {
     //   return Choices.find({});
