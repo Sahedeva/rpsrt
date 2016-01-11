@@ -103,6 +103,20 @@ if (Meteor.isClient) {
     $("#player2rock").css("pointer-events", "none");
     $("#player2paper").css("pointer-events", "none");
     $("#player2scissors").css("pointer-events", "none");
+    var id = $("#player1rock").attr('alt');
+    var game_id = {id: id};
+    var changes = {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: ''};
+    Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+        if (error)
+          console.log(error)
+        }); 
+    var comp_id = $("#player2rock").attr('alt');
+    var comp_game_id = {id: comp_id};
+    var changes =  {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: ''};
+    Meteor.call('realtimeGameUpdate', changes, comp_game_id, function(error, result){
+      if (error)
+        console.log(error)
+    });   
     countdown_timer();
   };
 	Template.computer.helpers({
