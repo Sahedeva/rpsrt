@@ -1,4 +1,92 @@
 if (Meteor.isClient) {
+  function countdown_timer() {
+    var id = $("#player1rock").attr('alt');
+    var game_id = {id: id};    
+    setTimeout(function(){ 
+      var changes = {countone_class: 'countdown_none', go_class: 'countdown_show'};
+      Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+        if (error)
+          console.log(error)
+        });  
+      $("#player1rock").css("pointer-events", "auto");
+      $("#player1paper").css("pointer-events", "auto");
+      $("#player1scissors").css("pointer-events", "auto");  
+      // document.getElementById('countone').style.display = 'none';
+      // document.getElementById('go').style.display = '';
+    }, 5000);
+    setTimeout(function(){ 
+      var changes = {counttwo_class: 'countdown_none', countone_class: 'countdown_show'};
+      Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+        if (error)
+          console.log(error)
+        });   
+      // document.getElementById('counttwo').style.display = 'none';
+      // document.getElementById('countone').style.display = '';
+    }, 4000);
+    setTimeout(function(){
+      var changes = {countthree_class: 'countdown_none', counttwo_class: 'countdown_show'};
+      Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+        if (error)
+          console.log(error)
+        });   
+      // document.getElementById('countthree').style.display = 'none';
+      // document.getElementById('counttwo').style.display = '';
+    }, 3000);
+    setTimeout(function(){ 
+      var changes = {ready_class: 'countdown_none', countthree_class: 'countdown_show'};
+      Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+        if (error)
+          console.log(error)
+        });   
+      // document.getElementById('ready').style.display = 'none';
+      // document.getElementById('countthree').style.display = '';
+    }, 2000);
+  };
+  Template.postsRealtime.rendered = function() {
+    $("#player1rock").css("pointer-events", "none");
+    $("#player1paper").css("pointer-events", "none");
+    $("#player1scissors").css("pointer-events", "none");
+    $("#player2rock").css("pointer-events", "none");
+    $("#player2paper").css("pointer-events", "none");
+    $("#player2scissors").css("pointer-events", "none");
+    // "click .realtime_ready": function (event) {
+    //   var id1 = $("#player1scissors").attr('alt');
+    //   var game_id1 = {id: id1};
+    //   var id2 = $("#player2scissors").attr('alt');
+    //   var game_id2 = {id: id2};
+    //   var play1_ready = $("#player1ready").attr('title');
+    //   var play2_ready = $("#player2ready").attr('title');
+    //   if (play1_ready=="yes" && play2_ready=="yes") {
+    //     var changes = {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', wlt: '', choice: ''};
+    //     Meteor.call('realtimeGameUpdate', changes, game_id1, function(error, result){
+    //     if (error)
+    //       console.log(error)
+    //     });    
+    //     var changes = {ready1_class: 'ready_check', ready1_text: 'Ready'};
+    //     var changes = {ready2_class: 'ready_check', ready2_text: 'Ready'};
+    //     Meteor.call('realtimeGameUpdate', changes, game_id2, function(error, result){
+    //     if (error)
+    //       console.log(error)
+    //     }); 
+    //     $(".realtime_ready").append("Game will start in 1 second");
+    //     setTimeout(function(){
+    //       countdown_timer()
+    //     },1000);  
+    //   } else if (play1_ready=="yes") {
+    //     var changes = {ready1_class: 'ready_check', ready1_text: 'Ready'};
+    //     Meteor.call('realtimeGameUpdate', changes, game_id1, function(error, result){
+    //       if (error)
+    //         console.log(error)
+    //     });    
+    //   } else if (play2_ready=="yes") {   
+    //    var changes = {ready2_class: 'ready_check', ready2_text: 'Ready'};
+    //     Meteor.call('realtimeGameUpdate', changes, game_id2, function(error, result){
+    //       if (error)
+    //         console.log(error)
+    //     });    
+    // }
+    // };
+  };
 	Template.postsRealtime.helpers({
     players: function() {
       return Players.find({active: true});
@@ -7,12 +95,48 @@ if (Meteor.isClient) {
     var currentUserName = Meteor.user().username;
     return name === currentUserName;
     }
-    // choices: function() {
-    //   return Choices.find({});
-    // }
   });
 
   Template.postsRealtime.events({
+    "click .realtime_ready": function (event) {
+      var id1 = $("#player1scissors").attr('alt');
+      var game_id1 = {id: id1};
+      var id2 = $("#player2scissors").attr('alt');
+      var game_id2 = {id: id2};
+      var play1_ready = $("#player1ready").attr('title');
+      var play2_ready = $("#player2ready").attr('title');
+      if (play1_ready=="yes" && play2_ready=="yes") {
+        var changes = {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', wlt: '', choice: ''};
+        Meteor.call('realtimeGameUpdate', changes, game_id1, function(error, result){
+        if (error)
+          console.log(error)
+        });    
+        var changes = {ready1_class: 'ready_check', ready1_text: 'Ready'};
+        var changes = {ready2_class: 'ready_check', ready2_text: 'Ready'};
+        Meteor.call('realtimeGameUpdate', changes, game_id2, function(error, result){
+        if (error)
+          console.log(error)
+        }); 
+        $(".realtime_ready").append("Game will start in 1 second");
+        setTimeout(function(){
+          countdown_timer()
+        },1000);  
+      } else if (play1_ready=="yes") {
+        var changes = {ready1_class: 'ready_check', ready1_text: 'Ready'};
+        Meteor.call('realtimeGameUpdate', changes, game_id1, function(error, result){
+          if (error)
+            console.log(error)
+        });    
+      } else if (play2_ready=="yes") {   
+       var changes = {ready2_class: 'ready_check', ready2_text: 'Ready'};
+        Meteor.call('realtimeGameUpdate', changes, game_id2, function(error, result){
+          if (error)
+            console.log(error)
+        });    
+    }
+    },
+
+
     "click #player1rock": function (event) {
       $("#player1rock").css("pointer-events", "none");
       $("#player1paper").css("pointer-events", "none");
@@ -20,7 +144,7 @@ if (Meteor.isClient) {
       console.log("Player one chose rock");
       var id = $("#player1rock").attr('alt');
       var game_id = {id: id};
-      var changes = {rock_class: 'rps_red', scissors_class: 'rps_hidden', paper_class: 'rps_hidden', choice: 'rock'};
+      var changes = {rock_class: 'rps_red rps_rock', scissors_class: 'rps_hidden', paper_class: 'rps_none', choice: 'rock'};
   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 	      if (error)
 	        console.log(error)
@@ -104,7 +228,7 @@ if (Meteor.isClient) {
       console.log("Player one chose scissors");
       var id = $("#player1scissors").attr('alt');
       var game_id = {id: id};
-      var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_red', paper_class: 'rps_hidden', choice: 'scissors'};
+      var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_red', paper_class: 'rps_none', choice: 'scissors'};
       Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
       if (error)
         console.log(error)
@@ -141,132 +265,132 @@ if (Meteor.isClient) {
         }
       }, 5000);
     },
-    "click #player2rock": function (event) {
-      console.log("You chose rock");
-      $("#player2rock").css("pointer-events", "none");
-      var id = $("#player2scissors").attr('alt');
-      var game_id = {id: id};    
-      var changes = {rock_class: 'rps_red', scissors_class: 'rps_hidden', paper_class: 'rps_hidden', choice: 'rock'};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-      setTimeout(function(){ 
-        var choice1 = $("#player1").attr('alt');
-        if (choice1 === "paper") {
-          var player2loss = parseInt($("#player2loss").val());
-          var loss = player2loss += 1;
-          console.log("Opponent chose paper - you lose");
-          var changes = {wlt: 'lose', loss: loss};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        } else if (choice1 === "rock") {
-          var player2tie = parseInt($("#player2tie").val());
-          var tie = player2tie += 1;
-          console.log("Opponent chose rock - you tie");
-          var changes = {wlt: 'tie', tie: tie};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        } else {
-          var player2win = parseInt($("#player2win").val());
-          var win = player2win += 1;
-          console.log("Opponent chose scissors or nothing - you win");
-          var changes = {wlt: 'win', win: win};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        }
-      }, 5000);
-    },
-    "click #player2paper": function (event) {
-      console.log("Player two chose paper");
-      $("#player2paper").css("pointer-events", "none");
-      var id = $("#player2scissors").attr('alt');
-      var game_id = {id: id};  
-      var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_hidden', paper_class: 'rps_red', choice: 'paper'};
-  		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-	      if (error)
-	        console.log(error)
-	    	});    
-      setTimeout(function(){ 
-        var choice1 = $("#player1").attr('alt');
-        if (choice1 === "scissors") {
-          var player2loss = parseInt($("#player2loss").val());
-          var loss = player2loss += 1;
-          console.log("Player one chose scissors - you lose");
-          var changes = {wlt: 'lose', loss: loss};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        } else if (choice1 === "paper") {
-          var player2tie = parseInt($("#player2tie").val());
-          var tie = player2tie += 1;
-          console.log("Player one chose paper - you tie");
-          var changes = {wlt: 'tie', tie: tie};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        } else {
-          var player2win = parseInt($("#player2win").val());
-          var win = player2win += 1;
-          console.log("Player one chose rock or nothing - you win");
-          var changes = {wlt: 'win', win: win};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        }
-      }, 5000);
-    },
-    "click #player2scissors": function (event) {
-      console.log("Player two chose scissors");
-      $("#player2scissors").css("pointer-events", "none");
-      var id = $("#player2scissors").attr('alt');
-      var game_id = {id: id};      
-      var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_red', paper_class: 'rps_hidden', choice: 'scissors'};
-  		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-	      if (error)
-	        console.log(error)
-	    	});    
-      setTimeout(function(){ 
-        var choice1 = $("#player1").attr('alt');
-        if (choice1 === "rock") {
-          var player2loss = parseInt($("#player2loss").val());
-          var loss = player2loss += 1;
-          console.log("Player one chose rock - you lose");
-          var changes = {wlt: 'lose', loss: loss};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        } else if (choice1 === "scissors") {
-          var player2tie = parseInt($("#player2tie").val());
-          var tie = player2tie += 1;
-          console.log("Player one chose scissors - you tie");
-          var changes = {wlt: 'tie', tie: tie};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        } else {
-          var player2win = parseInt($("#player2win").val());
-          var win = player2win += 1;
-          console.log("Player one chose paper or nothing - you win");
-          var changes = {wlt: 'win', win: win};
-      		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
-			      if (error)
-			        console.log(error)
-			    	});    
-        }
-      }, 5000);
-    },
+    // "click #player2rock": function (event) {
+    //   console.log("You chose rock");
+    //   $("#player2rock").css("pointer-events", "none");
+    //   var id = $("#player2scissors").attr('alt');
+    //   var game_id = {id: id};    
+    //   var changes = {rock_class: 'rps_red', scissors_class: 'rps_hidden', paper_class: 'rps_hidden', choice: 'rock'};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //   setTimeout(function(){ 
+    //     var choice1 = $("#player1").attr('alt');
+    //     if (choice1 === "paper") {
+    //       var player2loss = parseInt($("#player2loss").val());
+    //       var loss = player2loss += 1;
+    //       console.log("Opponent chose paper - you lose");
+    //       var changes = {wlt: 'lose', loss: loss};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     } else if (choice1 === "rock") {
+    //       var player2tie = parseInt($("#player2tie").val());
+    //       var tie = player2tie += 1;
+    //       console.log("Opponent chose rock - you tie");
+    //       var changes = {wlt: 'tie', tie: tie};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     } else {
+    //       var player2win = parseInt($("#player2win").val());
+    //       var win = player2win += 1;
+    //       console.log("Opponent chose scissors or nothing - you win");
+    //       var changes = {wlt: 'win', win: win};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     }
+    //   }, 5000);
+    // },
+    // "click #player2paper": function (event) {
+    //   console.log("Player two chose paper");
+    //   $("#player2paper").css("pointer-events", "none");
+    //   var id = $("#player2scissors").attr('alt');
+    //   var game_id = {id: id};  
+    //   var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_hidden', paper_class: 'rps_red', choice: 'paper'};
+  		// Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+	   //    if (error)
+	   //      console.log(error)
+	   //  	});    
+    //   setTimeout(function(){ 
+    //     var choice1 = $("#player1").attr('alt');
+    //     if (choice1 === "scissors") {
+    //       var player2loss = parseInt($("#player2loss").val());
+    //       var loss = player2loss += 1;
+    //       console.log("Player one chose scissors - you lose");
+    //       var changes = {wlt: 'lose', loss: loss};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     } else if (choice1 === "paper") {
+    //       var player2tie = parseInt($("#player2tie").val());
+    //       var tie = player2tie += 1;
+    //       console.log("Player one chose paper - you tie");
+    //       var changes = {wlt: 'tie', tie: tie};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     } else {
+    //       var player2win = parseInt($("#player2win").val());
+    //       var win = player2win += 1;
+    //       console.log("Player one chose rock or nothing - you win");
+    //       var changes = {wlt: 'win', win: win};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     }
+    //   }, 5000);
+    // },
+    // "click #player2scissors": function (event) {
+    //   console.log("Player two chose scissors");
+    //   $("#player2scissors").css("pointer-events", "none");
+    //   var id = $("#player2scissors").attr('alt');
+    //   var game_id = {id: id};      
+    //   var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_red', paper_class: 'rps_hidden', choice: 'scissors'};
+  		// Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+	   //    if (error)
+	   //      console.log(error)
+	   //  	});    
+    //   setTimeout(function(){ 
+    //     var choice1 = $("#player1").attr('alt');
+    //     if (choice1 === "rock") {
+    //       var player2loss = parseInt($("#player2loss").val());
+    //       var loss = player2loss += 1;
+    //       console.log("Player one chose rock - you lose");
+    //       var changes = {wlt: 'lose', loss: loss};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     } else if (choice1 === "scissors") {
+    //       var player2tie = parseInt($("#player2tie").val());
+    //       var tie = player2tie += 1;
+    //       console.log("Player one chose scissors - you tie");
+    //       var changes = {wlt: 'tie', tie: tie};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     } else {
+    //       var player2win = parseInt($("#player2win").val());
+    //       var win = player2win += 1;
+    //       console.log("Player one chose paper or nothing - you win");
+    //       var changes = {wlt: 'win', win: win};
+    //   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
+			 //      if (error)
+			 //        console.log(error)
+			 //    	});    
+    //     }
+    //   }, 5000);
+    // },
     "click #another_game": function(event) {
       var id1 = $("#player1scissors").attr('alt');
       var game_id1 = {id: id1};
@@ -275,9 +399,9 @@ if (Meteor.isClient) {
       $("#player1rock").css("pointer-events", "auto");
       $("#player1paper").css("pointer-events", "auto");
       $("#player1scissors").css("pointer-events", "auto");
-      $("#player2rock").css("pointer-events", "auto");
-      $("#player2paper").css("pointer-events", "auto");
-      $("#player2scissors").css("pointer-events", "auto");
+      // $("#player2rock").css("pointer-events", "auto");
+      // $("#player2paper").css("pointer-events", "auto");
+      // $("#player2scissors").css("pointer-events", "auto");
       var changes = {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', wlt: '', choice: ''};
   		Meteor.call('realtimeGameUpdate', changes, game_id1, function(error, result){
 	      if (error)

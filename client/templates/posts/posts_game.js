@@ -1,5 +1,29 @@
 if (Meteor.isClient) {
 	// Meteor.startup(function(){
+		Template.postsGame.rendered = function() {
+    	setTimeout(function(){ 
+    		console.log("go");
+				document.getElementById('countone').style.display = 'none';
+		    document.getElementById('go').style.display = '';
+		  }, 5000);
+			setTimeout(function(){ 
+				console.log("one");
+				document.getElementById('counttwo').style.display = 'none';
+		    document.getElementById('countone').style.display = '';
+			}, 4000);
+			setTimeout(function(){
+				console.log("two");
+				document.getElementById('countthree').style.display = 'none';
+		    document.getElementById('counttwo').style.display = '';
+			}, 3000);
+			setTimeout(function(){ 
+				console.log("three");
+				document.getElementById('ready').style.display = 'none';
+		    document.getElementById('countthree').style.display = '';
+			}, 2000);
+			console.log('hitting removeLobbyActive');
+    	Meteor.call('removeLobbyActive');
+		};
 		var comp_random = Math.floor(Math.random()*3);
 		function storage_getter() {
 			pwin = localStorage.getItem("pwin");
@@ -36,22 +60,7 @@ if (Meteor.isClient) {
 		table_update();
 		// Meteor.startup(
 		// function(){
-    	setTimeout(function(){ 
-				document.getElementById('countone').style.display = 'none';
-		    document.getElementById('go').style.display = '';
-		  }, 5000);
-			setTimeout(function(){ 
-				document.getElementById('counttwo').style.display = 'none';
-		    document.getElementById('countone').style.display = '';
-			}, 4000);
-			setTimeout(function(){
-				document.getElementById('countthree').style.display = 'none';
-		    document.getElementById('counttwo').style.display = '';
-			}, 3000);
-			setTimeout(function(){ 
-				document.getElementById('ready').style.display = 'none';
-		    document.getElementById('countthree').style.display = '';
-			}, 2000);
+    	
 	  // });
 		// setTimeout(function(){ 
 		// 	document.getElementById('countthree').style.display = 'none';

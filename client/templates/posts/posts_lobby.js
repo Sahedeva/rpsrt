@@ -1,3 +1,7 @@
+Template.postsLobby.rendered = function() {
+    Meteor.call('removeActive');
+};
+
 Template.postsLobby.helpers({
   players: function() {
     return Players.find({lobby: true});
@@ -6,9 +10,6 @@ Template.postsLobby.helpers({
   	var currentUserName = Meteor.user().username;
   	return name === currentUserName;
 	}
-  // choices: function() {
-  //   return Choices.find({});
-  // }
 });
 
 Template.postsLobby.events({
@@ -16,10 +17,6 @@ Template.postsLobby.events({
 		var currentUserName = Meteor.user().username;
 		var currentUserId = Meteor.userId();
 		var clicked_id = $('.lobby_challengers').attr('id');
-		// var id = $('.lobby_challengers').attr('id');
-		// console.log("This is the name: "+ name);
-		// // var opponent_name = $(this).attr('name');
-		// $('.challenge').html(currentUserName+" is challenging "+name+" to single combat!\n<button class='accept' id='"+id+"' type='button'>Accept?</button>");
 		var player = {challenge: 'hidden', accept: 'show', challenger_name: currentUserName, challenger_id: currentUserId};
 		var opponent_id = {id: clicked_id}
 		Meteor.call('playerLobbyChallengeUpdate', player, opponent_id,function(error, result){
@@ -27,6 +24,8 @@ Template.postsLobby.events({
       if (error)
         console.log(error)
     });
+    var opponent = Players.find(opponent_id).fetch();
+    console.log("lobby challenger clicked and opponent clicked something: opponent object: "+opponent);
 	},
 	"click .game_on": function(event) {
 		var click_opponent = $('.yes_no').attr('id');
@@ -55,13 +54,6 @@ Template.postsLobby.events({
       if (error)
         console.log(error)
     });
-    // var click_user = Meteor.userId();
-    // var opponent_id = {id: click_user};
-    // var player = {challenge: 'show', accept: 'hidden', challenger_name: "", challenger_id: ""};
-    // Meteor.call('playerLobbyChallengeUpdate', player, opponent_id,function(error, result){
-    //   if (error)
-    //     console.log(error)
-    // });
   }
 	}
 });

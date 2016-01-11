@@ -19,9 +19,9 @@
 </template> -->
 
 <template name="postsRealtime">
-  <audio class="my_audio" loop="loop" autoplay="autoplay" volume="0.5" preload="none">
+  <!-- <audio class="my_audio" loop="loop" autoplay="autoplay" volume = 0.5 preload="none">
     <source src="/audio/noragami.mp3" type="audio/mpeg">
-  </audio>
+  </audio> -->
   <div id="realtimeBackground" class="post">
   {{#each players}}   
     <div class="row">
@@ -61,6 +61,19 @@
             </div>
           </div>
         </div>
+      </div>
+      <div class="ready_col col-xs-2">
+        <div id="{{player}}ready" class="realtime_ready {{ready1_class}}" title="no">{{ready1_text}}</div>
+      </div>
+      <div class="realtimeCountdown col-xs-4">
+        <div id="ready" style="display: none" class="countdown_results  {{ready_class}}"><img id="count_image" src="http://img14.deviantart.net/8841/i/2012/348/5/c/spongebob__are_you_ready__bubbles_by_catz537-d5o1ap0.png"></div>
+        <div id="countone" style="display: none" class="countdown_results {{countone_class}}"><img id="count_image" src="https://marcojohnsonblog.files.wordpress.com/2014/10/count-sesame-street.jpg"></div>
+        <div id="counttwo" style="display: none" class="countdown_results {{counttwo_class}}"><img id="count_image" src="https://muppetmindset.files.wordpress.com/2009/12/count-bats.png"></div>
+        <div id="countthree" style="display: none" class="countdown_results {{countthree_class}}"><img id="count_image" src="/rps_images/counttothree.png"></div>
+        <div id="go" style="display: none" class="countdown_results {{go_class}}"><img id="count_image" src="http://2.bp.blogspot.com/-FfOLA82EikQ/VKd1dhH_eFI/AAAAAAAAGn4/6WIjRzgHaTU/s1600/go.png"></div>
+        <div style="display: none" id="winner" class="countdown_results {{win_class}}"><img id="count_image" src="http://www.reunionsmag.com/images/computer-winner1.jpg"></div>
+        <div style="display: none" id="loser" class="countdown_results {{lose_class}}"><img id="count_image" src="http://recruitingdaily.com/wp-content/uploads/sites/6/2014/08/HelloLoserPX1.jpg"></div>
+        <div style="display: none" id="tie" class="countdown_results {{tie_class}}"><img id="count_image" src="http://cdn.meme.am/instances/57849610.jpg"></div>
       </div>
       {{else}} 
       <div id="opponentRealtimePlayer" class="col-xs-4">
@@ -102,16 +115,16 @@
       {{/if}}
     </div>
     {{/each}}
-    <div class="realtimeCountdown col-xs-4">
-        <div id="ready" class="countdown_results"><img id="count_image" src="http://img14.deviantart.net/8841/i/2012/348/5/c/spongebob__are_you_ready__bubbles_by_catz537-d5o1ap0.png"></div>
-        <div id="countone" style="display: none" class="countdown_results"><img id="count_image" src="https://marcojohnsonblog.files.wordpress.com/2014/10/count-sesame-street.jpg"></div>
-        <div id="counttwo" style="display: none" class="countdown_results"><img id="count_image" src="https://muppetmindset.files.wordpress.com/2009/12/count-bats.png"></div>
-        <div id="countthree" style="display: none" class="countdown_results"><img id="count_image" src="/rps_images/counttothree.png"></div>
-        <div id="go" style="display: none" class="countdown_results"><img id="count_image" src="http://2.bp.blogspot.com/-FfOLA82EikQ/VKd1dhH_eFI/AAAAAAAAGn4/6WIjRzgHaTU/s1600/go.png"></div>
-        <div style="display: none" id="winner" class="countdown_results"><img id="count_image" src="http://www.reunionsmag.com/images/computer-winner1.jpg"></div>
-        <div style="display: none" id="loser" class="countdown_results"><img id="count_image" src="http://recruitingdaily.com/wp-content/uploads/sites/6/2014/08/HelloLoserPX1.jpg"></div>
-        <div style="display: none" id="tie" class="countdown_results"><img id="count_image" src="http://cdn.meme.am/instances/57849610.jpg"></div>
-      </div>
+    <!-- <div class="realtimeCountdown col-xs-4">
+        <div id="ready" class="countdown_results  {{ready_class}}"><img id="count_image" src="http://img14.deviantart.net/8841/i/2012/348/5/c/spongebob__are_you_ready__bubbles_by_catz537-d5o1ap0.png"></div>
+        <div id="countone" style="display: none" class="countdown_results {{countone_class}}"><img id="count_image" src="https://marcojohnsonblog.files.wordpress.com/2014/10/count-sesame-street.jpg"></div>
+        <div id="counttwo" style="display: none" class="countdown_results {{counttwo_class}}"><img id="count_image" src="https://muppetmindset.files.wordpress.com/2009/12/count-bats.png"></div>
+        <div id="countthree" style="display: none" class="countdown_results {{countthree_class}}"><img id="count_image" src="/rps_images/counttothree.png"></div>
+        <div id="go" style="display: none" class="countdown_results {{go_class}}"><img id="count_image" src="http://2.bp.blogspot.com/-FfOLA82EikQ/VKd1dhH_eFI/AAAAAAAAGn4/6WIjRzgHaTU/s1600/go.png"></div>
+        <div style="display: none" id="winner" class="countdown_results {{win_class}}"><img id="count_image" src="http://www.reunionsmag.com/images/computer-winner1.jpg"></div>
+        <div style="display: none" id="loser" class="countdown_results {{lose_class}}"><img id="count_image" src="http://recruitingdaily.com/wp-content/uploads/sites/6/2014/08/HelloLoserPX1.jpg"></div>
+        <div style="display: none" id="tie" class="countdown_results {{tie_class}}"><img id="count_image" src="http://cdn.meme.am/instances/57849610.jpg"></div>
+      </div> -->
     <button id="another_game">Another game?</button> 
   </div>
 </template>

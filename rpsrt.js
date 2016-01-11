@@ -1,24 +1,32 @@
 User = new Mongo.Collection("user");
-// if (Meteor.isServer) {
-//   Meteor.publish('user', function() {
-//     return User.find({
-//       $or: [
-//         { private: {$ne: true} },
-//         { owner: this.userID }
-//         ]
-//     });
-//   });
-// }
 
 if (Meteor.isClient) {
-  // This code only runs on the client
-  // Meteor.subscribe('players');
-  // Meteor.startup(function(){
-  //   document.getElementById("avatar").selectedIndex = "-1";
-  // });
   var choice1 = "";
   Template.newUser.rendered = function() {
-    Meteor.call('initializePlayer');
+    for (i=0;i<5;i++) {
+      var control_audio = "audio_player"+i;
+      var audio = document.getElementById(control_audio);
+      var control_test = audio.hasAttribute("controls");
+      console.log("control_audio: "+control_audio);
+      console.log("control_test: "+control_test);
+      if (control_test) {
+          var start_audio = "#audio_player"+i;
+          console.log("start_audio: "+start_audio);
+          $(start_audio)[0].play();
+      }  
+    }
+    currentUserId = Meteor.userId();
+    console.log("On screen load: "+currentUserId);
+    var test = Players.find({'userId': currentUserId}).fetch();
+    console.log("On screen load - Players.find fxn : "+test);
+    console.log("On screen load - typeof test: "+ typeof(test));
+    console.log("On screen load - test.length: "+ test.length);
+    if (test.length==0) {
+      console.log("On screen load - should only get here the first time you select an avatar");
+      Meteor.call('initializePlayer');
+    }
+    console.log("should hit this to make active and lobby false");
+    Meteor.call('removeActiveLobbyFxn');
   }
   var currentUserId = Meteor.userId();
   Template.newUser.events({
@@ -810,6 +818,13 @@ if (Meteor.isClient) {
               console.log(error)
           });
           // users.update(currentUserId, {avatar_url: avatar_url});
+        },
+        'removeActiveLobbyFxn': function() {
+          Meteor.call('removeLobbyActive', function(error, result){
+            // display the error to the user and about
+            if (error)
+              console.log(error)
+          });
         }
         // 'modifyUsersRock': function(avatar_url)
       });

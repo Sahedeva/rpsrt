@@ -1,4 +1,22 @@
 /* CSS for index template */
+#history {
+  color: gold;
+  font-size: 23px;
+  font-weight: bold;
+  padding: 50px;
+  text-shadow: 2px 2px 2px black;
+  margin-top: -40px;
+}
+
+#characters {
+  color: white;
+}
+
+#rashambo {
+  color: red;
+  font-size: 24px;
+}
+
 .first_choice, .second_choice, .rps_choice {
   max-height: 150px;
   max-width: 125px;
@@ -27,6 +45,11 @@
   margin-top: 2px;
 }
 
+.my_audio {
+  opacity: 0.4;
+  margin-left: 39%;
+}
+
 
 /* CSS for game template */
 #realtimeBackground {
@@ -49,18 +72,18 @@
 #currentRealtimePlayer {
   position: fixed;
   top: 26%;
-  left: 20%;
+  left: 23%;
 }
 
 #opponentRealtimePlayer {
   position: fixed;
   top: 26%;
-  right: 11%;
+  right: 13%;
 }
 
 .realtimeCountdown {
   position: fixed;
-  top: 30%;
+  top: 26%;
   left: 45%;
 }
 
@@ -74,7 +97,7 @@
 
 #realtime_opponent_title {
   color: green;
-  margin-left: 6px;
+  margin-left: -17px;
   font-weight: bold;
   font-size: 22px;
   text-shadow: 1px 1px 1px black;
@@ -82,7 +105,7 @@
 
 #another_game {
   position: fixed;
-  top: 88%;
+  top: 86%;
   left: 46%;
 }
 
@@ -110,11 +133,19 @@
 }
 
 .rps_hidden {
+  visibility: hidden;
+}
+
+.rps_none {
   display: none;
 }
 
 .rps_show {
   display: inline;
+}
+
+.rps_rock {
+  margin-top: 100px !important;
 }
 
 .wlt_list {
@@ -126,6 +157,21 @@
   left: 65px;
 }
 
+.countdown_show {
+  display: inline;
+}
+
+.countdown_none {
+  display: none;
+}
+
+.wlt_show {
+  display: inline;
+}
+
+.wlt_none {
+  display: none;
+}
 .name_title {
   display: inline;
   padding-left: 20px;
@@ -348,10 +394,12 @@ table {
 
 #opponent_realtime_rps {
   text-align: right;
+  margin-top: -30px;
 }
 
 #player_realtime_rps {
   margin-right: 0px;
+  margin-top: -30px;
 }
 
 #count_image {
