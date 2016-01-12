@@ -37,7 +37,7 @@ body {
  /* For IE 6/7 (trigger hasLayout) */
   background-attachment: fixed;
   /*min-height: 600px;*/
- background-image: url(http://healtobe.com/wp-content/gallery/war-in-heaven/copy_0_copy_0_battle-of-evermore_angels.jpg);
+ background-image: url(/backgound_images/battleInHeaven.jpg);
  background-size: cover;
  *zoom: 1;
  position: relative;

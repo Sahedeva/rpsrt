@@ -11,6 +11,7 @@
             <input style="display: none" id="{{player}}win" value={{win}}>
             <input style="display: none" id="{{player}}loss" value={{loss}}>
             <input style="display: none" id="{{player}}tie" value={{tie}}>
+            <input style="display: none" id="{{player}}clicked" value={{clicked}}>
             <table id="realtime_player_table" class="score_table">
               <tr>
                 <th>Wins</th>
@@ -40,14 +41,14 @@
         </div>
       </div>
       <div class="realtimeCountdown col-xs-4">
-        <div id="ready" class="countdown_results  {{ready_class}}"><img id="count_image" src="http://img14.deviantart.net/8841/i/2012/348/5/c/spongebob__are_you_ready__bubbles_by_catz537-d5o1ap0.png"></div>
-        <div id="countone" class="countdown_results {{countone_class}}"><img id="count_image" src="https://marcojohnsonblog.files.wordpress.com/2014/10/count-sesame-street.jpg"></div>
-        <div id="counttwo" class="countdown_results {{counttwo_class}}"><img id="count_image" src="https://muppetmindset.files.wordpress.com/2009/12/count-bats.png"></div>
-        <div id="countthree" class="countdown_results {{countthree_class}}"><img id="count_image" src="/rps_images/counttothree.png"></div>
-        <div id="go" class="countdown_results {{go_class}}"><img id="count_image" src="http://2.bp.blogspot.com/-FfOLA82EikQ/VKd1dhH_eFI/AAAAAAAAGn4/6WIjRzgHaTU/s1600/go.png"></div>
-        <div id="winner" class="countdown_results {{win_class}}"><img class="reverser" id="count_image" src="http://www.reunionsmag.com/images/computer-winner1.jpg"></div>
-        <div id="loser" class="countdown_results {{lose_class}}"><img id="count_image" src="http://recruitingdaily.com/wp-content/uploads/sites/6/2014/08/HelloLoserPX1.jpg"></div>
-        <div id="tie" class="countdown_results {{tie_class}}"><img id="count_image" src="http://cdn.meme.am/instances/57849610.jpg"></div>
+        <div id="ready" class="countdown_results  {{ready_class}}"><img id="count_image" src="/rps_images/ready.png"></div>
+        <div id="countone" class="countdown_results {{countone_class}}"><img id="count_image" src="/rps_images/countOne.jpg"></div>
+        <div id="counttwo" class="countdown_results {{counttwo_class}}"><img id="count_image" src="/rps_images/countTwo.png"></div>
+        <div id="countthree" class="countdown_results {{countthree_class}}"><img id="count_image" src="/rps_images/countThree.png"></div>
+        <div id="go" class="countdown_results {{go_class}}"><img id="count_image" src="/rps_images/go.png"></div>
+        <div id="winner" class="countdown_results {{win_class}}"><img class="reverser" id="count_image" src="/rps_images/winner.jpg"></div>
+        <div id="loser" class="countdown_results {{lose_class}}"><img id="count_image" src="/rps_images/loser.jpg"></div>
+        <div id="tie" class="countdown_results {{tie_class}}"><img id="count_image" src="/rps_images/tie.jpg"></div>
       </div>
       {{else}} 
       <div id="opponentRealtimePlayer" class="col-xs-4">
@@ -89,6 +90,6 @@
       {{/if}}
     </div>
     {{/each}}
-    <button id="another_game">Another game?</button> 
+    <button style="display: none" id="another_game">Another game?</button> 
   </div>
 </template>

@@ -1,5 +1,4 @@
 if (Meteor.isClient) {
-	var clicked = "no";
 	var comp_choice_array = ['rock','paper','scissors']; 
   function countdown_timer() {
     var id = $("#player1rock").attr('alt');
@@ -10,7 +9,7 @@ if (Meteor.isClient) {
           console.log(error)
         }); 
     setTimeout(function(){ 
-      var changes = {countone_class: 'countdown_none', go_class: 'countdown_show'};
+      var changes = {countthree_class: 'countdown_none', go_class: 'countdown_show'};
       console.log('5 seconds should have elapsed');
       console.log('changes: '+JSON.stringify(changes));
       console.log('game_id: '+JSON.stringify(game_id));
@@ -22,6 +21,7 @@ if (Meteor.isClient) {
       $("#player1paper").css("pointer-events", "auto");
       $("#player1scissors").css("pointer-events", "auto");
       setTimeout(function(){
+        var clicked = $('#player1clicked').val();
       	if (clicked=="no") {
 	      	console.log('player did not choose fast enough and so forfeited');
 	      	$("#player1rock").css("pointer-events", "none");
@@ -62,11 +62,12 @@ if (Meteor.isClient) {
 			        console.log(error)
 			    	});    
     			}
+          $('#another_game').css('display', 'inline');
 			  }    
-      }, 2000);
+      }, 1000);
     }, 5000);
     setTimeout(function(){ 
-      var changes = {counttwo_class: 'countdown_none', countone_class: 'countdown_show'};
+      var changes = {counttwo_class: 'countdown_none', countthree_class: 'countdown_show'};
       console.log('4 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -76,7 +77,7 @@ if (Meteor.isClient) {
         });   
     }, 4000);
     setTimeout(function(){
-      var changes = {countthree_class: 'countdown_none', counttwo_class: 'countdown_show'};
+      var changes = {countone_class: 'countdown_none', counttwo_class: 'countdown_show'};
       console.log('3 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -86,7 +87,7 @@ if (Meteor.isClient) {
         });   
     }, 3000);
     setTimeout(function(){ 
-      var changes = {ready_class: 'countdown_none', countthree_class: 'countdown_show'};
+      var changes = {ready_class: 'countdown_none', countone_class: 'countdown_show'};
       console.log('2 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -131,14 +132,14 @@ if (Meteor.isClient) {
 
   Template.computer.events({
     "click #player1rock": function (event) {
-    	clicked = "yes";
+    	// clicked = "yes";
       $("#player1rock").css("pointer-events", "none");
       $("#player1paper").css("pointer-events", "none");
       $("#player1scissors").css("pointer-events", "none");
       console.log("Player one chose rock");
       var id = $("#player1rock").attr('alt');
       var game_id = {id: id};
-      var changes = {rock_class: 'rps_red rps_rock', scissors_class: 'rps_hidden', paper_class: 'rps_none', choice: 'rock'};
+      var changes = {rock_class: 'rps_red rps_rock', scissors_class: 'rps_hidden', paper_class: 'rps_none', choice: 'rock', clicked: 'yes'};
   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 	      if (error)
 	        console.log(error)
@@ -162,7 +163,7 @@ if (Meteor.isClient) {
 	  		Meteor.call('realtimeGameUpdate', changes, comp_game_id, function(error, result){
 		      if (error)
 		        console.log(error)
-		    });   
+		    });  
       } else if (choice2 === "rock") {
         var player1tie = parseInt($("#player1tie").val());
         var tie = player1tie += 1;
@@ -200,14 +201,14 @@ if (Meteor.isClient) {
 	        console.log(error)
 	    	});   
       }
+      $('#another_game').css('display', 'inline');
     },
     "click #player1paper": function (event) {
-    	clicked="yes";
       $("#player1paper").css("pointer-events", "none");
       console.log("Player one chose paper");
       var id = $("#player1scissors").attr('alt');
       var game_id = {id: id};
-      var changes =  {rock_class: 'rps_hidden', scissors_class: 'rps_hidden', paper_class: 'rps_red', choice: 'paper'};
+      var changes =  {rock_class: 'rps_hidden', scissors_class: 'rps_hidden', paper_class: 'rps_red', choice: 'paper', clicked: 'yes'};
   		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 	      if (error)
 	        console.log(error)
@@ -271,14 +272,14 @@ if (Meteor.isClient) {
       			console.log(error)
   			}); 
       }
+      $('#another_game').css('display', 'inline');
     },
     "click #player1scissors": function (event) {
-    	clicked="yes";
       $("#player1scissors").css("pointer-events", "none");
       console.log("Player one chose scissors");
       var id = $("#player1scissors").attr('alt');
       var game_id = {id: id};
-      var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_red', paper_class: 'rps_none', choice: 'scissors'};
+      var changes = {rock_class: 'rps_hidden', scissors_class: 'rps_red', paper_class: 'rps_none', choice: 'scissors', clicked: 'yes'};
       Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
       if (error)
         console.log(error)
@@ -340,9 +341,16 @@ if (Meteor.isClient) {
 		        console.log(error)
 		    });
       }
+      $('#another_game').css('display', 'inline');
     },
     "click #another_game": function(event) {
-    	clicked="no";
+      $("#player1rock").css("pointer-events", "none");
+      $("#player1paper").css("pointer-events", "none");
+      $("#player1scissors").css("pointer-events", "none");
+      $("#player2rock").css("pointer-events", "none");
+      $("#player2paper").css("pointer-events", "none");
+      $("#player2scissors").css("pointer-events", "none");
+      $('#another_game').css('display', 'none');
       var id1 = $("#player1scissors").attr('alt');
       var game_id1 = {id: id1};
       var id2 = $("#player2scissors").attr('alt');
@@ -353,7 +361,7 @@ if (Meteor.isClient) {
 		  var rock_array = ["/rps_images/malerock.jpg","/rps_images/femalerock.jpg","/rps_images/catrock.JPG","/rps_images/dogrock.jpg","/rps_images/objectrock1.jpg","/rps_images/objectrock2.jpg"];
 		  var paper_array = ["/rps_images/malepaper.jpg","/rps_images/femalepaper.jpg","/rps_images/catpaper.jpg","/rps_images/dogpaper.jpg","/rps_images/objectpaper1.jpg","/rps_images/objectpaper2.jpg"];
 		  var scissors_array = ["/rps_images/malescissors.jpg","/rps_images/femalescissors.jpg","/rps_images/catscissors.jpg","/rps_images/dogscissors.jpg","/rps_images/objectscissors1.jpg","/rps_images/objectscissors2.jpg"];
-      var changes = {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: ''};
+      var changes = {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: '', clicked: 'no'};
   		Meteor.call('realtimeGameUpdate', changes, game_id1, function(error, result){
 	      if (error)
 	        console.log(error)
