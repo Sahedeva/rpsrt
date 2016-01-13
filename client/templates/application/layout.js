@@ -29,7 +29,3 @@ Template.footer.events({
       $(next_audio)[0].play();
     }
 });
-
-Accounts.ui.config({
-    passwordSignupFields: "USERNAME_ONLY"
-});

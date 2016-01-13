@@ -1,6 +1,7 @@
 var songNum = -1;
 var stop_audio ="";
 Template.history.rendered = function() {
+  $('.container').css('background-image', 'url(/background_images/samurai.jpg');
   var test = Players.find({'hal': 'yes'}).fetch();
   console.log("On screen load - Players.find fxn : "+test);
   console.log("On screen load - typeof test: "+ typeof(test));

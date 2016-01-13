@@ -1,5 +1,6 @@
 if (Meteor.isClient) {
   Template.postsLobby.rendered = function() {
+    $('.container').css('background-image', 'url(/background_images/samurai.jpg');
     for (i=0;i<5;i++) {
       var control_audio = "audio_player"+i;
       var audio = document.getElementById(control_audio);
