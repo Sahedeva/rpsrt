@@ -15,6 +15,16 @@ if (Meteor.isClient) {
           $(start_audio)[0].play();
       }  
     }
+    currentUserId = Meteor.userId();
+    console.log("On screen load: "+currentUserId);
+    var test = Players.find({'userId': currentUserId}).fetch();
+    console.log("On screen load avatar page - Players.find fxn : "+test);
+    console.log("On screen load - typeof test: "+ typeof(test));
+    console.log("On screen load - test.length: "+ test.length);
+    if (test.length==0) {
+      console.log("On screen load avatar page - should only get here the first time you select an avatar");
+      Meteor.call('initializePlayer');
+    }
     console.log("should hit this to make active and lobby false");
     Meteor.call('removeActiveLobbyFxn');
   }
@@ -746,13 +756,13 @@ if (Meteor.isClient) {
         'sendLogMessage': function(){
           console.log("Hello world");
         },
-        // 'initializePlayer': function(){
-        //   var player = {initialize: true};
-        //   Meteor.call('playerInsert', player, function (error, result){
-        //     if (error)
-        //       console.log(error)
-        //   });
-        // },
+        'initializePlayer': function(){
+          var player = {initialize: true};
+          Meteor.call('playerInsert', player, function (error, result){
+            if (error)
+              console.log(error)
+          });
+        },
         'modifyUsersAvatar': function(avatar_url){
           check(avatar_url, Match.Any);
           var currentUserId = Meteor.userId();

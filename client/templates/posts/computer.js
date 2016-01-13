@@ -98,6 +98,30 @@ if (Meteor.isClient) {
     }, 2000);
   };
   Template.computer.rendered = function() {
+    for (i=0;i<5;i++) {
+      var control_audio = "audio_player"+i;
+      var audio = document.getElementById(control_audio);
+      var control_test = audio.hasAttribute("controls");
+      console.log("control_audio: "+control_audio);
+      console.log("control_test: "+control_test);
+      if (control_test) {
+          var start_audio = "#audio_player"+i;
+          console.log("start_audio: "+start_audio);
+          $(start_audio)[0].play();
+      }  
+    }
+    currentUserId = Meteor.userId();
+    console.log("On screen load: "+currentUserId);
+    var test = Players.find({'userId': currentUserId}).fetch();
+    console.log("On screen load computer - Players.find fxn : "+test);
+    console.log("On screen load - typeof test: "+ typeof(test));
+    console.log("On screen load - test.length: "+ test.length);
+    if (test.length==0) {
+      console.log("On screen load computer page - should only get here the first time you create a new user");
+      Meteor.call('initializePlayer');
+    }
+    console.log("should hit this to make active and lobby false");
+    Meteor.call('compRemoveLobbyActive');
     $("#player1rock").css("pointer-events", "none");
     $("#player1paper").css("pointer-events", "none");
     $("#player1scissors").css("pointer-events", "none");
@@ -317,7 +341,7 @@ if (Meteor.isClient) {
 				var comp_game_id = {id: comp_id};
 				var player2tie = parseInt($("#player2tie").val());
 	      var tie = player2tie += 1;
-	      var changes = {tie: tie, rock_class: 'rps_red rps_rock', scissors_class: 'rps_hidden', paper_class: 'rps_none', choice: 'rock'};
+	      var changes = {tie: tie, rock_class: 'rps_hidden', scissors_class: 'rps_show', paper_class: 'rps_none', choice: 'scissors'};
 				Meteor.call('realtimeGameUpdate', changes, comp_game_id, function(error, result){
     			if (error)
       			console.log(error)
@@ -372,6 +396,18 @@ if (Meteor.isClient) {
 	        console.log(error)
 	    	});
 	    countdown_timer();    
+    }
+  });
+}
+
+if (Meteor.isServer) {
+  Meteor.methods({
+    'initializePlayer': function(){
+      var player = {initialize: true};
+      Meteor.call('playerInsert', player, function (error, result){
+        if (error)
+          console.log(error)
+      });
     }
   });
 }

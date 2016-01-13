@@ -1,6 +1,33 @@
-Template.postsLobby.rendered = function() {
+if (Meteor.isClient) {
+  Template.postsLobby.rendered = function() {
+    for (i=0;i<5;i++) {
+      var control_audio = "audio_player"+i;
+      var audio = document.getElementById(control_audio);
+      var control_test = audio.hasAttribute("controls");
+      console.log("control_audio: "+control_audio);
+      console.log("control_test: "+control_test);
+      if (control_test) {
+          var start_audio = "#audio_player"+i;
+          console.log("start_audio: "+start_audio);
+          $(start_audio)[0].play();
+      }  
+    }
+    currentUserId = Meteor.userId();
+    console.log("On screen load: "+currentUserId);
+    var test = Players.find({'userId': currentUserId}).fetch();
+    console.log("On screen load avatar page - Players.find fxn : "+test);
+    console.log("On screen load - typeof test: "+ typeof(test));
+    console.log("On screen load - test.length: "+ test.length);
+    if (test.length==0) {
+      console.log("On screen load avatar page - should only get here the first time you select an avatar");
+      Meteor.call('initializePlayer');
+    }
+    console.log("should hit this to make active false");
     Meteor.call('removeActive');
-};
+  }
+// Template.postsLobby.rendered = function() {
+//     Meteor.call('removeActive');
+// };
 
 Template.postsLobby.helpers({
   players: function() {
@@ -57,3 +84,16 @@ Template.postsLobby.events({
   }
 	}
 });
+}
+
+if (Meteor.isServer) {
+  Meteor.methods({
+    'initializePlayer': function(){
+      var player = {initialize: true};
+      Meteor.call('playerInsert', player, function (error, result){
+        if (error)
+          console.log(error)
+      });
+    }
+  });
+}
