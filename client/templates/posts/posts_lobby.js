@@ -13,16 +13,25 @@ if (Meteor.isClient) {
           $(start_audio)[0].play();
       }  
     }
-    currentUserId = Meteor.userId();
-    console.log("On screen load: "+currentUserId);
-    var test = Players.find({'userId': currentUserId}).fetch();
-    console.log("On screen load avatar page - Players.find fxn : "+test);
-    console.log("On screen load - typeof test: "+ typeof(test));
-    console.log("On screen load - test.length: "+ test.length);
-    if (test.length==0) {
-      console.log("On screen load avatar page - should only get here the first time you select an avatar");
-      Meteor.call('initializePlayer');
-    }
+    // var test = Hal.find({'userId': currentUserId}).fetch();
+    // console.log("On screen load - Hal.find fxn : "+test);
+    // console.log("On screen load - typeof test: "+ typeof(test));
+    // console.log("On screen load - test.length: "+ test.length);
+    // if (test.length==0) {
+    //   console.log("On screen load - should only get here the first time the program loads");
+    //   var halAttributes = {initialize: true};
+    //   Meteor.call('initializeHal', halAttributes);
+    // }
+    // currentUserId = Meteor.userId();
+    // console.log("On screen load: "+currentUserId);
+    // var test = Players.find({'userId': currentUserId}).fetch();
+    // console.log("On screen load avatar page - Players.find fxn : "+test);
+    // console.log("On screen load - typeof test: "+ typeof(test));
+    // console.log("On screen load - test.length: "+ test.length);
+    // if (test.length==0) {
+    //   console.log("On screen load avatar page - should only get here the first time you select an avatar");
+    //   Meteor.call('initializePlayer');
+    // }
     console.log("should hit this to make active false");
     Meteor.call('removeActive');
   }

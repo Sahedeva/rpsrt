@@ -3,29 +3,38 @@ User = new Mongo.Collection("user");
 if (Meteor.isClient) {
   var choice1 = "";
   Template.newUser.rendered = function() {
-      $('.container').css('background-image', 'url(/background_images/samurai.jpg');
+    $('.container').css('background-image', 'url(/background_images/samurai.jpg');
     for (i=0;i<5;i++) {
       var control_audio = "audio_player"+i;
       var audio = document.getElementById(control_audio);
       var control_test = audio.hasAttribute("controls");
-      console.log("control_audio: "+control_audio);
-      console.log("control_test: "+control_test);
+      // console.log("control_audio: "+control_audio);
+      // console.log("control_test: "+control_test);
       if (control_test) {
           var start_audio = "#audio_player"+i;
-          console.log("start_audio: "+start_audio);
+          // console.log("start_audio: "+start_audio);
           $(start_audio)[0].play();
       }  
     }
-    currentUserId = Meteor.userId();
-    console.log("On screen load: "+currentUserId);
-    var test = Players.find({'userId': currentUserId}).fetch();
-    console.log("On screen load avatar page - Players.find fxn : "+test);
-    console.log("On screen load - typeof test: "+ typeof(test));
-    console.log("On screen load - test.length: "+ test.length);
-    if (test.length==0) {
-      console.log("On screen load avatar page - should only get here the first time you select an avatar");
-      Meteor.call('initializePlayer');
-    }
+    // var test = Hal.find({'userId': 42}).fetch();
+    // console.log("On screen load - Hal.find fxn : "+test);
+    // console.log("On screen load - typeof test: "+ typeof(test));
+    // console.log("On screen load - test.length: "+ test.length);
+    // if (test.length==0) {
+    //   console.log("On screen load - should only get here the first time the program loads");
+    //   var halAttributes = {initialize: true};
+    //   Meteor.call('initializeHal', halAttributes);
+    // }
+    // currentUserId = Meteor.userId();
+    // console.log("On avatar page render - currentUserId: "+currentUserId);
+    // var test = Players.find({'userId': currentUserId}).fetch();
+    // console.log("On avatar page render - Players.find fxn : "+test);
+    // console.log("On avatar page render - typeof test: "+ typeof(test));
+    // console.log("On avatar page render - test.length: "+ test.length);
+    // if (test.length==0) {
+    //   console.log("On avatar page render - should only get here the first time you select an avatar");
+    //   Meteor.call('initializePlayer');
+    // }
     console.log("should hit this to make active and lobby false");
     Meteor.call('removeActiveLobbyFxn');
   }
@@ -509,8 +518,6 @@ if (Meteor.isClient) {
       event.preventDefault();
       var dropSelect = document.getElementById("custom_avatar");
       var choice1 = dropSelect.value;
-      // var choice = {avatar_url: choice1};
-      Meteor.call('sendLogMessage');
       Meteor.call('modifyUsersAvatar', choice1);
       document.getElementById('custom_avatar').style.display = 'none';
       var image_entry = '<img id="chosen_avatar" src="'+choice1+'">'
@@ -526,7 +533,6 @@ if (Meteor.isClient) {
         document.getElementById("choose_rps_images").label = "Choose an RPS image set from list below";
       } else if (choice1 === "cat") {
         console.log("Cat RPS images");
-        // $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/catrock.JPG"><img class="rps_image" src="/rps_images/catpaper.jpg"><img class="rps_image" src="/rps_images/catscissors.jpg"><br><img class="rps_image reverser" src="/rps_images/catrock.JPG"><img class="rps_image reverser" src="/rps_images/catpaper.jpg"><img class="rps_image reverser" src="/rps_images/catscissors.jpg">');
         $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/catrock.JPG">');
         $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/catpaper.jpg">');
         $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/catscissors.jpg">');
@@ -542,7 +548,6 @@ if (Meteor.isClient) {
         document.getElementById('rps_images').style.display = 'none';
       } else if (choice1 === "dog") {
         console.log("Dog RPS images");
-        // $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/dogrock.jpg"><img class="rps_image" src="/rps_images/dogpaper.jpg"><img class="rps_image" src="/rps_images/dogscissors.jpg"><br><img class="rps_image reverser" src="/rps_images/dogrock.jpg"><img class="rps_image reverser" src="/rps_images/dogpaper.jpg"><img class="rps_image reverser" src="/rps_images/dogscissors.jpg">');
         $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/dogrock.jpg">');
         $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/dogpaper.jpg">');
         $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/dogscissors.jpg">');
@@ -624,7 +629,6 @@ if (Meteor.isClient) {
         document.getElementById("choose_objects_choices").label = "Choose object RPS images from list below";
       } else if (choice1 === "pat1") {
         console.log("Pattern 1 choice");
-        // $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/objectrock1left.jpg"><img class="rps_image" src="/rps_images/objectpaper1.jpg"><img class="rps_image" src="/rps_images/objectscissors1left.jpg"><br><img class="rps_image" src="/rps_images/objectrock1right.jpg"><img class="rps_image reverser" src="/rps_images/objectpaper1.jpg"><img class="rps_image" src="/rps_images/objectscissors1right.jpg">');
         $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/objectrock1.jpg">');
         $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/objectpaper1.jpg">');
         $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/objectscissors1.jpg">');
@@ -640,7 +644,6 @@ if (Meteor.isClient) {
         document.getElementById('objects_choices').style.display = 'none';
       } else {
         console.log("Pattern 2 choice");
-        // $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/objectrock2left.jpg"><img class="rps_image" src="/rps_images/objectpaper2left.jpg"><img class="rps_image" src="/rps_images/objectscissors2left.jpg"><br><img class="rps_image" src="/rps_images/objectrock2right.jpg"><img class="rps_image" src="/rps_images/objectpaper2right.jpg"><img class="rps_image" src="/rps_images/objectscissors2right.jpg">');
         $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/objectrock2.jpg">');
         $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/objectpaper2.jpg">');
         $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/objectscissors2.jpg">');
@@ -666,8 +669,6 @@ if (Meteor.isClient) {
         document.getElementById("choose_mf_rps_images").label = "Choose a sex from list below";
       } else if (choice1 === "male") {
         console.log("Male choice");
-        // $("#rps_placeholder").append('<img class="rps_image" src="/rps_images/malerock.jpg"><img class="rps_image" src="/rps_images/malepaper.jpg"><img class="rps_image" src="/rps_images/malescissors.jpg">');
-
         $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/malerock.jpg">');
         $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/malepaper.jpg">');
         $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/malescissors.jpg">');
@@ -754,9 +755,6 @@ if (Meteor.isClient) {
 
     if (Meteor.isServer) {
       Meteor.methods({
-        'sendLogMessage': function(){
-          console.log("Hello world");
-        },
         'initializePlayer': function(){
           var player = {initialize: true};
           Meteor.call('playerInsert', player, function (error, result){
@@ -767,66 +765,52 @@ if (Meteor.isClient) {
         'modifyUsersAvatar': function(avatar_url){
           check(avatar_url, Match.Any);
           var currentUserId = Meteor.userId();
-          console.log(currentUserId+" " +avatar_url);
+          console.log("Modify users avatar fxn = userId and avatar-url: "+currentUserId+" " +avatar_url);
           var player = {avatar_url: avatar_url, win: 0, loss: 0, tie: 0, choice: '', name: '', active: false, lobby: false, wlt: ''};
-          console.log(player);
-
+          console.log("player object: "+JSON.stringify(player));
           Meteor.call('playerAvatarUpdate', player, function(error, result){
-            // display the error to the user and about
             if (error)
               console.log(error)
           });
-          // users.update(currentUserId, {avatar_url: avatar_url});
         },
         'modifyUsersRock': function(rock_url){
           check(rock_url, Match.Any);
           var currentUserId = Meteor.userId();
-          console.log(currentUserId+" " +rock_url);
+          console.log("Modify users rock fxn = userId and rock-url: "+currentUserId+" " +rock_url);
           var player = {rock_url: rock_url};
-          console.log(player);
-
+          console.log("player object: "+JSON.stringify(player));
           Meteor.call('playerRockUpdate', player, function(error, result){
-            // display the error to the user and about
             if (error)
               console.log(error)
           });
-          // users.update(currentUserId, {avatar_url: avatar_url});
         },
         'modifyUsersPaper': function(paper_url){
           check(paper_url, Match.Any);
           var currentUserId = Meteor.userId();
-          console.log(currentUserId+" " +paper_url);
+          console.log("Modify users paper fxn = userId and paper-url: "+currentUserId+" " +paper_url);
           var player = {paper_url: paper_url};
-          console.log(player);
-
+          console.log("player object: "+JSON.stringify(player));
           Meteor.call('playerPaperUpdate', player, function(error, result){
-            // display the error to the user and about
             if (error)
               console.log(error)
           });
-          // users.update(currentUserId, {avatar_url: avatar_url});
         },
         'modifyUsersScissors': function(scissors_url){
           check(scissors_url, Match.Any);
           var currentUserId = Meteor.userId();
-          console.log(currentUserId+" " +scissors_url);
+          console.log("Modify users scissors fxn = userId and scissors-url: "+currentUserId+" " +scissors_url);
           var player = {scissors_url: scissors_url};
-          console.log(player);
-
+          console.log("player object: "+JSON.stringify(player));
           Meteor.call('playerScissorsUpdate', player, function(error, result){
-            // display the error to the user and about
             if (error)
               console.log(error)
           });
-          // users.update(currentUserId, {avatar_url: avatar_url});
         },
         'removeActiveLobbyFxn': function() {
           Meteor.call('removeLobbyActive', function(error, result){
-            // display the error to the user and about
             if (error)
               console.log(error)
           });
         }
-        // 'modifyUsersRock': function(avatar_url)
       });
     }

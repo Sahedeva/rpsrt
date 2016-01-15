@@ -2,14 +2,6 @@ var songNum = -1;
 var stop_audio ="";
 Template.history.rendered = function() {
   $('.container').css('background-image', 'url(/background_images/samurai.jpg');
-  var test = Players.find({'hal': 'yes'}).fetch();
-  console.log("On screen load - Players.find fxn : "+test);
-  console.log("On screen load - typeof test: "+ typeof(test));
-  console.log("On screen load - test.length: "+ test.length);
-  if (test.length==0) {
-    console.log("On screen load - should only get here the first time the program loads");
-    Meteor.call('initializeHal');
-  }
   for (i=0;i<5;i++) {
     var control_audio = "audio_player"+i;
     var audio = document.getElementById(control_audio);
@@ -24,6 +16,18 @@ Template.history.rendered = function() {
       	$(stop_audio)[0].pause();
     }  
 	}
+  var currentUserId = Meteor.userId();
+  console.log(currentUserId);
+  var countPlayer = Players.find({userId: currentUserId}).count();
+  console.log("countPlayers: "+countPlayer);
+  if (countPlayer === 0) {
+    console.log("On login - should only get here the first time you create a new user");
+    var player = {initialize: true};
+    Meteor.call('playerInsert', player, function (error, result){
+      if (error)
+        console.log(error)
+    });
+  }
 }
 
 Template.history.events({
