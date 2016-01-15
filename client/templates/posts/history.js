@@ -16,19 +16,27 @@ Template.history.rendered = function() {
       	$(stop_audio)[0].pause();
     }  
 	}
+};
+
+Tracker.autorun(function(){
   var currentUserId = Meteor.userId();
   console.log(currentUserId);
-  var countPlayer = Players.find({userId: currentUserId}).count();
-  console.log("countPlayers: "+countPlayer);
-  if (countPlayer === 0) {
-    console.log("On login - should only get here the first time you create a new user");
-    var player = {initialize: true};
-    Meteor.call('playerInsert', player, function (error, result){
-      if (error)
-        console.log(error)
-    });
+  if (currentUserId == null) {
+    console.log("currentUserId is null");
+  } else {
+    console.log("currentUserId is not null");
+    var countPlayer = Players.find({userId: currentUserId}).count();
+    console.log("countPlayers: "+countPlayer);
+    if (countPlayer === 0) {
+      console.log("On login - should only get here the first time you create a new user");
+      var player = {initialize: true};
+      Meteor.call('playerInsert', player, function (error, result){
+        if (error)
+          console.log(error)
+      });
+    }
   }
-}
+});  
 
 Template.history.events({
   "ended .my_audio": function(event){

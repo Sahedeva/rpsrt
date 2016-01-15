@@ -161,7 +161,7 @@ if (Meteor.isClient) {
     $("#player2scissors").css("pointer-events", "none");
     var id = $("#player1rock").attr('alt');
     var game_id = {id: id};
-    var changes = {win_class: 'countdown_none',lose_class: 'countdown_none',tie_class: 'countdown_none',ready_class: 'countdown_show',rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: '', hal_rock_class: 'rps_show', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_show', hal_choice: ''};
+    var changes = {win_class: 'countdown_none',lose_class: 'countdown_none',tie_class: 'countdown_none',ready_class: 'countdown_show',rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: '', hal_rock_class: 'rps_show', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_show', hal_choice: '', ready_class: 'countdown_show', countone_class: 'countdown_none', counttwo_class: 'countdown_none', countthree_class: 'countdown_none', go_class: 'countdown_none', win_class: 'countdown_none', lose_class: 'countdown_none', tie_class: 'countdown_none', clicked: 'no'};
     Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
         if (error)
           console.log(error)

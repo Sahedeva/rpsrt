@@ -12,18 +12,27 @@ Template.about.rendered = function() {
         $(start_audio)[0].play();
     }  
   }
+}
+
+Tracker.autorun(function(){
   var currentUserId = Meteor.userId();
   console.log(currentUserId);
-  var countPlayer = Players.find({userId: currentUserId}).count();
-  console.log("countPlayers: "+countPlayer);
-  if (countPlayer === 0) {
-    console.log("On login - should only get here the first time you create a new user");
-    var player = {initialize: true};
-		Meteor.call('playerInsert', player, function (error, result){
-			if (error)
-  			console.log(error)
-		});
+  if (currentUserId == null) {
+    console.log("currentUserId is null");
+  } else {
+    console.log("currentUserId is not null");
+    var countPlayer = Players.find({userId: currentUserId}).count();
+    console.log("countPlayers: "+countPlayer);
+    if (countPlayer === 0) {
+      console.log("On login - should only get here the first time you create a new user");
+      var player = {initialize: true};
+      Meteor.call('playerInsert', player, function (error, result){
+        if (error)
+          console.log(error)
+      });
+    }
   }
+});  
   // Tracker.autorun(function(){
   //   var countPlayers = 1;
   //   var countPlayers = Players.find().count();
@@ -52,4 +61,3 @@ Template.about.rendered = function() {
   //     }
   //   }
   // });
-}
