@@ -14,7 +14,7 @@
               <tr>
                 <th>Wins</th>
                 <th>Loss</th> 
-                <th>Tie</th>
+                <th>Ties</th>
               </tr>
               <tr>
                 <td id="pwin">{{player.win}}</td>
@@ -71,9 +71,9 @@
             <input style="display: none" id="{{player.hal_player}}tie" value="{{player.hal_tie}}">
             <table id="realtime_opponent_table" class="score_table">
               <tr>
-                <th>Win</th>
+                <th>Wins</th>
                 <th>Loss</th> 
-                <th>Tie</th>
+                <th>Ties</th>
               </tr>
               <tr>
                 <td id="cwin">{{player.hal_win}}</td>
@@ -87,4 +87,37 @@
     </div>
     <button style="display: none" id="another_game">Another game?</button> 
   </div>
+  <audio id="readySound" class="my_audio" preload="none">
+    <source src="/audio/ready.wav" type="audio/wav">
+  </audio>
+  <audio id="oneSound" class="my_audio" preload="none">
+    <source src="/audio/one.wav" type="audio/wav">
+  </audio>
+  <audio id="twoSound" class="my_audio" preload="none">
+    <source src="/audio/two.wav" type="audio/wav">
+  </audio>
+  <audio id="threeSound" class="my_audio" preload="none">
+    <source src="/audio/three.wav" type="audio/wav">
+  </audio>
+  <audio id="goSound" class="my_audio" preload="none">
+    <source src="/audio/go.wav" type="audio/wav">
+  </audio>
+  <audio id="winnerSound" class="my_audio" preload="none">
+    <source src="/audio/victory.wav" type="audio/wav">
+  </audio>
+  <audio id="loserSound" class="my_audio" preload="none">
+    <source src="/audio/defeat.wav" type="audio/wav">
+  </audio>
+  <audio id="tieSound" class="my_audio" preload="none">
+    <source src="/audio/draw.wav" type="audio/wav">
+  </audio>
+  <audio id="rockScissorsSound" class="my_audio" preload="none">
+    <source src="/audio/rockCrushScissors.wav" type="audio/wav">
+  </audio>
+  <audio id="paperRockSound" class="my_audio" preload="none">
+    <source src="/audio/paperCoversRock.wav" type="audio/wav">
+  </audio>
+  <audio id="scissorsPaperSound" class="my_audio" preload="none">
+    <source src="/audio/scissorsCutsPaper.wav" type="audio/wav">
+  </audio>
 </template>

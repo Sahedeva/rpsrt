@@ -1,7 +1,7 @@
 if (Meteor.isClient) {
   Template.postsLobby.rendered = function() {
     $('.container').css('background-image', 'url(/background_images/samurai.jpg');
-    for (i=0;i<5;i++) {
+    for (i=0;i<7;i++) {
       var control_audio = "audio_player"+i;
       var audio = document.getElementById(control_audio);
       var control_test = audio.hasAttribute("controls");
@@ -13,31 +13,20 @@ if (Meteor.isClient) {
           $(start_audio)[0].play();
       }  
     }
-    // var test = Hal.find({'userId': currentUserId}).fetch();
-    // console.log("On screen load - Hal.find fxn : "+test);
-    // console.log("On screen load - typeof test: "+ typeof(test));
-    // console.log("On screen load - test.length: "+ test.length);
-    // if (test.length==0) {
-    //   console.log("On screen load - should only get here the first time the program loads");
-    //   var halAttributes = {initialize: true};
-    //   Meteor.call('initializeHal', halAttributes);
-    // }
-    // currentUserId = Meteor.userId();
-    // console.log("On screen load: "+currentUserId);
-    // var test = Players.find({'userId': currentUserId}).fetch();
-    // console.log("On screen load avatar page - Players.find fxn : "+test);
-    // console.log("On screen load - typeof test: "+ typeof(test));
-    // console.log("On screen load - test.length: "+ test.length);
-    // if (test.length==0) {
-    //   console.log("On screen load avatar page - should only get here the first time you select an avatar");
-    //   Meteor.call('initializePlayer');
-    // }
     console.log("should hit this to make active false");
     Meteor.call('removeActive');
+    Tracker.autorun(function(){
+      var currentUserId = Meteor.userId();
+      console.log(currentUserId);
+      var player = Players.find({userId: currentUserId}).fetch();
+      var checkActive = player[0]['active'];
+      console.log("checkActive"+checkActive);
+      if (checkActive == true) {
+        console.log("checkActive is true - reroute to human");
+        Router.go('/human');
+      }
+    }); 
   }
-// Template.postsLobby.rendered = function() {
-//     Meteor.call('removeActive');
-// };
 
 Template.postsLobby.helpers({
   players: function() {
@@ -64,15 +53,7 @@ Template.postsLobby.events({
     var opponent = Players.find(opponent_id).fetch();
     console.log("lobby challenger clicked and opponent clicked something: opponent object: "+opponent);
 	},
-	"click .game_on": function(event) {
-		var click_opponent = $('.yes_no').attr('id');
-		var opponent_id = {id: click_opponent};
-		Meteor.call('playerGameUpdate', opponent_id, function(error, result){
-			if (error)
-        console.log(error);
-		});
-		Router.go('/realtime');
-	},
+	
 	"click .yes_no": function (event) {
 		var selection = $('input[name=yes_no]:checked').val();
 		console.log(selection);
@@ -84,7 +65,7 @@ Template.postsLobby.events({
       if (error)
         console.log(error);
     	});
-    	Router.go('/realtime');
+    	// Router.go('/human');
 		} else if (selection === 'no') {
 		console.log('No click opponent_id '+ opponent_id);
 		Meteor.call('playerRejectUpdate', opponent_id,function(error, result){

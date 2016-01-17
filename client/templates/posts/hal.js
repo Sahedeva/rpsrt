@@ -14,6 +14,7 @@ if (Meteor.isClient) {
         }); 
     setTimeout(function(){ 
       var changes = {countthree_class: 'countdown_none', go_class: 'countdown_show'};
+      $('#goSound')[0].play();
       console.log('5 seconds should have elapsed');
       console.log('changes: '+JSON.stringify(changes));
       console.log('game_id: '+JSON.stringify(game_id));
@@ -38,41 +39,53 @@ if (Meteor.isClient) {
           var player2win = parseInt($("#player2win").val());
           var win = player2win += 1;
 	        var changes = {go_class: 'countdown_none', lose_class: 'countdown_show', loss: loss};
+          setTimeout(function(){
+            $('#loserSound')[0].play();
+            setTimeout(function(){
+              for (i=0;i<7;i++) {
+                var control_audio = "audio_player"+i;
+                var audio = document.getElementById(control_audio);
+                var control_test = audio.hasAttribute("controls");
+                console.log("control_audio: "+control_audio);
+                console.log("control_test: "+control_test);
+                if (control_test) {
+                    var start_audio = "#audio_player"+i;
+                    console.log("start_audio: "+start_audio);
+                    $(start_audio)[0].play();
+                }  
+              }
+              $('#another_game').css('display', 'inline');
+            },1000);
+          },500);
 	    		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 			      if (error)
 			        console.log(error)
 			    	});
-	    		// var comp_id = $("#player2rock").attr('alt');
-    			// var comp_game_id = {id: comp_id};
     			if (comp_choice=="rock") {
             var changes = {hal_win: win, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'}
-    				// var changes = {win: win, rock_class: 'rps_red rps_rock', scissors_class: 'rps_hidden', paper_class: 'rps_none', choice: 'rock'};
-    				// console.log('comp rock choice - comp_game_id: '+JSON.stringify(comp_game_id));
   					Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 	      			if (error)
 	        			console.log(error)
 	    			});    
     			} else if (comp_choice=="paper") {
     				var changes =  {hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
-    				// console.log('comp paper choice - comp_game_id: '+JSON.stringify(comp_game_id));
 			  		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 				      if (error)
 				        console.log(error)
 				    });
     			} else if (comp_choice=="scissors") {
     				var changes = {hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
-    				// console.log('comp scissors choice - comp_game_id: '+JSON.stringify(comp_game_id));
 			      Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 			      if (error)
 			        console.log(error)
 			    	});    
     			}
-          $('#another_game').css('display', 'inline');
 			  }    
-      }, 1000);
-    }, 5000);
+      }, 1300);
+    }, 6200);
     setTimeout(function(){ 
       var changes = {counttwo_class: 'countdown_none', countthree_class: 'countdown_show'};
+      $('#threeSound')[0].play();
       console.log('4 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -80,9 +93,10 @@ if (Meteor.isClient) {
         if (error)
           console.log(error)
         });   
-    }, 4000);
+    }, 4800);
     setTimeout(function(){
       var changes = {countone_class: 'countdown_none', counttwo_class: 'countdown_show'};
+      $('#twoSound')[0].play();
       console.log('3 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -90,9 +104,10 @@ if (Meteor.isClient) {
         if (error)
           console.log(error)
         });   
-    }, 3000);
+    }, 4000);
     setTimeout(function(){ 
       var changes = {ready_class: 'countdown_none', countone_class: 'countdown_show'};
+      $('#oneSound')[0].play();
       console.log('2 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -100,26 +115,12 @@ if (Meteor.isClient) {
         if (error)
           console.log(error)
         });   
-    }, 2000);
+    }, 2800);
   };
 
-	// Template.hal.helpers({
- //    player: function() {
- //    	var currentUserId = Meteor.userId();
- //      return Players.findOne({userId: currentUserId});
- //    },
- //    hal: function() {
- //    	return hal;
- //    },
- //    isCurrent: function (name) {
- //    var currentUserName = Meteor.user().username;
- //    return name === currentUserName;
- //    }
- //  });
-  
   Template.hal.rendered = function() {
     $('.container').css('background-image', 'url(/background_images/battleInHeaven.jpg');
-    for (i=0;i<5;i++) {
+    for (i=0;i<7;i++) {
       var control_audio = "audio_player"+i;
       var audio = document.getElementById(control_audio);
       var control_test = audio.hasAttribute("controls");
@@ -128,29 +129,11 @@ if (Meteor.isClient) {
       if (control_test) {
           var start_audio = "#audio_player"+i;
           console.log("start_audio: "+start_audio);
-          $(start_audio)[0].play();
+          $(start_audio)[0].pause();
       }  
     }
     var currentUserId = Meteor.userId();
     console.log("On Hal screen load: "+currentUserId);
-    // var countPlayers = Players.find({userId: currentUserId}).count();
-    // console.log("countPlayers: "+countPlayers);
-    // if (countPlayer === 0) {
-    //     console.log("On login - should only get here the first time you create a new user");
-    //     Meteor.call('initializePlayer');
-    // }
-    
-    // var test = Players.find({'userId': currentUserId}).fetch();
-    // console.log("On Hal screen load - Players.find fxn : "+test);
-    // console.log("On Hal screen load - typeof test: "+ typeof(test));
-    // console.log("On Hal screen load - test.length: "+ test.length);
-    // if (test.length==0) {
-    // var countPlayer = Players.find({userId: currentUserId}).count();
-    // console.log("On Hal screen load - countPlayer: "+countPlayer);
-    // if (countPlayer === 0) {
-    //   console.log("On Hal screen - should only get here the first time you create a new user");
-    //   Meteor.call('initializePlayer');
-    // }
     console.log("should hit this to make active and lobby false");
     Meteor.call('compRemoveLobbyActive');
     $("#player1rock").css("pointer-events", "none");
@@ -166,27 +149,26 @@ if (Meteor.isClient) {
         if (error)
           console.log(error)
         }); 
-    // var comp_id = $("#player2rock").attr('alt');
-    // var comp_game_id = {id: comp_id};
-    // var changes =  {hal_rock_class: 'rps_show', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_show', hal_choice: ''};
-    // Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-    //   if (error)
-    //     console.log(error)
-    // });   
+    $('#readySound')[0].play();  
     countdown_timer();
   };
-	// Template.computer.helpers({
- //    // players: function() {
- //    //   return Players.find({computer: true});
- //    // },
- //    isCurrent: function (name) {
- //    var currentUserName = Meteor.user().username;
- //    return name === currentUserName;
- //    }
- //  });
 
   Template.hal.events({
     "click #player1rock": function (event) {
+      function songStart() {
+        for (i=0;i<7;i++) {
+          var control_audio = "audio_player"+i;
+          var audio = document.getElementById(control_audio);
+          var control_test = audio.hasAttribute("controls");
+          console.log("control_audio: "+control_audio);
+          console.log("control_test: "+control_test);
+          if (control_test) {
+              var start_audio = "#audio_player"+i;
+              console.log("start_audio: "+start_audio);
+              $(start_audio)[0].play();
+          }  
+        }
+      }
       $("#player1rock").css("pointer-events", "none");
       $("#player1paper").css("pointer-events", "none");
       $("#player1scissors").css("pointer-events", "none");
@@ -211,14 +193,16 @@ if (Meteor.isClient) {
 		      if (error)
 		        console.log(error)
 		    	});
-        // var comp_id = $("#player2rock").attr('alt');
-        // var comp_game_id = {id: comp_id};
-				
-     //  	var changes =  {hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
-	  		// Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-		   //    if (error)
-		   //      console.log(error)
-		   //  });  
+        setTimeout(function(){
+          $('#paperRockSound')[0].play();
+          setTimeout(function(){
+            $('#loserSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
+          },2000);
+        },500); 
       } else if (choice2 === "rock") {
         var player1tie = parseInt($("#player1tie").val());
         var tie = player1tie += 1;
@@ -230,37 +214,51 @@ if (Meteor.isClient) {
 		      if (error)
 		        console.log(error)
 		    	});
-		    // var comp_id = $("#player2rock").attr('alt');
-        // var comp_game_id = {id: comp_id};
-				
-    //   	var changes = {hal_tie: tie, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
-				// Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-    // 			if (error)
-    //   			console.log(error)
-  		// 	});     
-      } else {
+        setTimeout(function(){
+          $('#tieSound')[0].play();
+          setTimeout(function(){
+            songStart();
+            $('#another_game').css('display', 'inline');
+          },1000);
+        },500);
+      } else {   
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
         var player2loss = parseInt($("#player2loss").val());
         var loss = player2loss += 1;
-        console.log("Player two chose scissors or nothing - you win");
+        console.log("Hal chose scissors - you win");
         var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show',hal_loss: loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
-		    	});
-		    // var comp_id = $("#player2rock").attr('alt');
-				// var comp_game_id = {id: comp_id};
-				
-      	// var changes = {hal_loss: loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
-	      // Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-	      // if (error)
-	        // console.log(error)
-	    	// });   
-      }
-      $('#another_game').css('display', 'inline');
+		    });
+        setTimeout(function(){
+          $('#rockScissorsSound')[0].play();
+          setTimeout(function(){
+            $('#winnerSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
+          },2200);
+        },500); 
+      }     
     },
     "click #player1paper": function (event) {
+      function songStart() {
+        for (i=0;i<7;i++) {
+          var control_audio = "audio_player"+i;
+          var audio = document.getElementById(control_audio);
+          var control_test = audio.hasAttribute("controls");
+          console.log("control_audio: "+control_audio);
+          console.log("control_test: "+control_test);
+          if (control_test) {
+              var start_audio = "#audio_player"+i;
+              console.log("start_audio: "+start_audio);
+              $(start_audio)[0].play();
+          }  
+        }
+      }
       $("#player1paper").css("pointer-events", "none");
       console.log("Player one chose paper");
       var id = $("#player1scissors").attr('alt');
@@ -284,14 +282,16 @@ if (Meteor.isClient) {
 		      if (error)
 		        console.log(error)
 		    	});
-		    // var comp_id = $("#player2rock").attr('alt');
-				// var comp_game_id = {id: comp_id};
-				
-	      // var changes = {hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
-	     //  Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-	     //  if (error)
-	     //    console.log(error)
-	    	// });    
+        setTimeout(function(){
+          $('#scissorsPaperSound')[0].play();
+          setTimeout(function(){
+            $('#loserSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
+          },2000);
+        },500); 
       } else if (choice2 === "paper") {
         var player1tie = parseInt($("#player1tie").val());
         var tie = player1tie += 1;
@@ -303,37 +303,51 @@ if (Meteor.isClient) {
 		      if (error)
 		        console.log(error)
 		    	});
-		  //   var comp_id = $("#player2rock").attr('alt');
-				// var comp_game_id = {id: comp_id};
-				
-	      // var changes =  {hal_tie: tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
-	  		// Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-		   //    if (error)
-		   //      console.log(error)
-		   //  });
-      } else {
+        setTimeout(function(){
+          $('#tieSound')[0].play();
+          setTimeout(function(){
+            songStart();
+            $('#another_game').css('display', 'inline');
+          },1000);
+        },500);
+      } else {  
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
         var player2loss = parseInt($("#player2loss").val());
         var loss = player2loss += 1;
-        console.log("Player two chose rock or nothing - you win");
+        console.log("Hal chose rock - you win");
         var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show', hal_wlt: 'lose', hal_loss: loss, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
 		    	});
-		    // var comp_id = $("#player2rock").attr('alt');
-				// var comp_game_id = {id: comp_id};
-				
-	   //    var changes = {hal_wlt: 'lose', hal_loss: loss, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
-				// Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-    // 			if (error)
-    //   			console.log(error)
-  		// 	}); 
+        setTimeout(function(){
+          $('#paperRockSound')[0].play();
+          setTimeout(function(){
+            $('#winnerSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
+          },2000);
+        },500); 
       }
-      $('#another_game').css('display', 'inline');
     },
     "click #player1scissors": function (event) {
+      function songStart() {
+        for (i=0;i<7;i++) {
+          var control_audio = "audio_player"+i;
+          var audio = document.getElementById(control_audio);
+          var control_test = audio.hasAttribute("controls");
+          console.log("control_audio: "+control_audio);
+          console.log("control_test: "+control_test);
+          if (control_test) {
+              var start_audio = "#audio_player"+i;
+              console.log("start_audio: "+start_audio);
+              $(start_audio)[0].play();
+          }  
+        }
+      }
       $("#player1scissors").css("pointer-events", "none");
       console.log("Player one chose scissors");
       var id = $("#player1scissors").attr('alt');
@@ -350,20 +364,22 @@ if (Meteor.isClient) {
         var loss = player1loss += 1;
         var player2win = parseInt($("#player2win").val());
         var win = player2win += 1;         
-        console.log("Player two chose rock - you lose");
+        console.log("Hal chose rock - you lose");
         var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show', hal_win: win, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
 		    	});
-		    // var comp_id = $("#player2rock").attr('alt');
-				// var comp_game_id = {id: comp_id};
-				
-	   //    var changes = {hal_win: win, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
-				// Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-    // 			if (error)
-    //   			console.log(error)
-  		// 	});   
+        setTimeout(function(){
+          $('#rockScissorsSound')[0].play();
+          setTimeout(function(){
+            $('#loserSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
+          },2200);
+        },500); 
       } else if (choice2 === "scissors") {
         var player1tie = parseInt($("#player1tie").val());
         var tie = player1tie += 1;
@@ -375,37 +391,49 @@ if (Meteor.isClient) {
 		      if (error)
 		        console.log(error)
 		    	});
-		    // var comp_id = $("#player2rock").attr('alt');
-				// var comp_game_id = {id: comp_id};
-				
-	   //    var changes = {hal_tie: tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
-				// Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-    // 			if (error)
-    //   			console.log(error)
-  		// 	});   
-      } else {
+        setTimeout(function(){
+          $('#tieSound')[0].play();
+          setTimeout(function(){
+            songStart();
+            $('#another_game').css('display', 'inline');
+          },1000);
+        },500);
+		  } else {
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
         var player2loss = parseInt($("#player2loss").val());
         var loss = player2loss += 1;
-        console.log("Player two chose paper or nothing - you win");
+        console.log("Hal chose paper - you win");
         var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show', hal_loss: loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
 		    	});
-		    // var comp_id = $("#player2rock").attr('alt');
-				// var comp_game_id = {id: comp_id};
-				
-	    //   var changes =  {hal_loss: loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
-	  		// Meteor.call('halUpdate', changes, comp_game_id, function(error, result){
-		   //    if (error)
-		   //      console.log(error)
-		   //  });
+        setTimeout(function(){
+          $('#scissorsPaperSound')[0].play();
+          setTimeout(function(){
+            $('#winnerSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
+          },2000);
+        },500); 
       }
-      $('#another_game').css('display', 'inline');
     },
     "click #another_game": function(event) {
+      for (i=0;i<7;i++) {
+        var control_audio = "audio_player"+i;
+        var audio = document.getElementById(control_audio);
+        var control_test = audio.hasAttribute("controls");
+        console.log("control_audio: "+control_audio);
+        console.log("control_test: "+control_test);
+        if (control_test) {
+            var start_audio = "#audio_player"+i;
+            console.log("start_audio: "+start_audio);
+            $(start_audio)[0].pause();
+        }  
+      }
       $("#player1rock").css("pointer-events", "none");
       $("#player1paper").css("pointer-events", "none");
       $("#player1scissors").css("pointer-events", "none");
@@ -428,24 +456,8 @@ if (Meteor.isClient) {
 	      if (error)
 	        console.log(error)
 	    	});    
-    //   var changes = {hal_avatar_url: avatar_array[computer_avatar], hal_rock_url: rock_array[computer_rps], hal_paper_url: paper_array[computer_rps], hal_scissors_url: scissors_array[computer_rps], hal_rock_class: 'rps_show', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_show', hal_choice: ''};
-  		// Meteor.call('halUpdate', changes, game_id2, function(error, result){
-	   //    if (error)
-	   //      console.log(error)
-	   //  	});
+      $('#readySound')[0].play();
 	    countdown_timer();    
     }
   });
 }
-
-// if (Meteor.isServer) {
-//   Meteor.methods({
-//     'initializePlayer': function(){
-//       var player = {initialize: true};
-//       Meteor.call('playerInsert', player, function (error, result){
-//         if (error)
-//           console.log(error)
-//       });
-//     }
-//   });
-// }

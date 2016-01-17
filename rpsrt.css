@@ -61,30 +61,32 @@
 }
 
 #realtime_opponent_table {
-  margin-left: -6px;
+  margin-left: -11px;
   margin-top: 15px;
+  background-color: orangered;
 }
 
 #realtime_player_table {
-  margin-left: -10px;
+  margin-left: -15px;
   margin-top: 15px;
+  background-color: olive;
 }
 
 #currentRealtimePlayer {
   position: fixed;
   top: 26%;
-  left: 23%;
+  left: 20%;
 }
 
 #opponentRealtimePlayer {
   position: fixed;
   top: 26%;
-  right: 13%;
+  right: 10%;
 }
 
 .realtimeCountdown {
   position: fixed;
-  top: 26%;
+  top: 30%;
   left: 45%;
 }
 
@@ -98,7 +100,7 @@
 
 #realtime_opponent_title {
   color: green;
-  margin-left: -17px;
+  margin-left: -32px;
   font-weight: bold;
   font-size: 22px;
   text-shadow: 1px 1px 1px black;
@@ -118,8 +120,8 @@
 }
 
 .rps_image {
-  height: 90px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   border-radius: 20px;
 }
 
@@ -146,7 +148,7 @@
 }
 
 .rps_rock {
-  margin-top: 100px !important;
+  margin-top: 110px !important;
 }
 
 .wlt_list {
@@ -378,8 +380,8 @@ table {
 }
 
 .rps_image {
-  height: 90px;
-  width: 80px;
+  height: 100px;
+  width: 100px;
   border-radius: 20px;
   margin-top: 5px;
   margin-bottom: 5px;
@@ -565,7 +567,14 @@ header .hide-completed {
 /* styling for game lobby */
 
 .challenge_form {
-  margin-left: 35%;
+  margin-left: -15%;
+  font-size: 20px;
+  font-weight: bold;
+  color: beige;
+}
+
+.else_challenge_form {
+  margin-left: 53%;
   font-size: 20px;
   font-weight: bold;
   color: beige;

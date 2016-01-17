@@ -12,6 +12,7 @@
     </div> -->
     {{#if isCurrent author}}
       <div id="current">
+        <input style="display: none" id="checkActive" value="{{active}}">
         <h3 id="current_title">{{author}}</h3>
         <img id="current_avatar" src="{{avatar_url}}" alt="{{author}}">
         <div id="current_lobby_rps">
@@ -23,10 +24,10 @@
         <div class="{{reject}} challenger">
           {{challenger_name}} has rejected your challenge!
         </div>
-        <div class="{{game}} challenger">
+        <!-- <div class="{{game}} challenger">
           {{challenger_name}} has accepted your challenge!
           <button class="game_on">RaShamBo!</button>
-        </div>
+        </div> -->
         <div class="{{accept}} challenge_form">
           Does {{author}} accept {{challenger_name}}'s challenge?
           <form>

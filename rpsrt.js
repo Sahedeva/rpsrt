@@ -40,6 +40,45 @@ if (Meteor.isClient) {
   }
   var currentUserId = Meteor.userId();
   Template.newUser.events({
+    "mouseenter #rock": function() {
+      $('#rockSound')[0].play();  
+    },
+    "mouseenter #paper": function() {
+      $('#paperSound')[0].play();  
+    },
+    "mouseenter #scissors": function() {
+      $('#scissorsSound')[0].play();  
+    },
+    "mouseenter #female": function() {
+      $('#femaleSound')[0].play();  
+    },
+    "mouseenter #male": function() {
+      $('#maleSound')[0].play();  
+    },
+    "mouseenter #cat": function() {
+      $('#catSound')[0].play();  
+    },
+    "mouseenter #dog": function() {
+      $('#dogSound')[0].play();  
+    },
+    "mouseenter #element": function() {
+      $('#elementSound')[0].play();  
+    },
+    "mouseenter #custom": function() {
+      $('#customSound')[0].play();  
+    },
+    "mouseenter #jedi": function() {
+      $('#jediSound')[0].play();  
+    },
+    "mouseenter #warrior": function() {
+      $('#warriorSound')[0].play();  
+    },
+    "mouseenter #wizard": function() {
+      $('#wizardSound')[0].play();  
+    },
+    "mouseenter #healer": function() {
+      $('#healerSound')[0].play();  
+    },
     // first choice of avatar
     "click .first_choice": function(event){
       choice1 = event.currentTarget.id;
@@ -217,9 +256,9 @@ if (Meteor.isClient) {
       console.log(rpsChoice);
       if (rpsChoice === "female") {
         console.log("Female RPS choice");
-        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/femalerock.jpg">');
-        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/femalepaper.jpg">');
-        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/femalescissors.jpg">');
+        $("#rock_placeholder").append('<img id="rock" class="rps_image" src="/rps_images/femalerock.jpg">');
+        $("#paper_placeholder").append('<img id="paper" class="rps_image" src="/rps_images/femalepaper.jpg">');
+        $("#scissors_placeholder").append('<img id="scissors" class="rps_image" src="/rps_images/femalescissors.jpg">');
         var choice1 = "/rps_images/femalerock.jpg"
         var choice2 = "/rps_images/femalepaper.jpg"
         var choice3 = "/rps_images/femalescissors.jpg"
@@ -231,9 +270,9 @@ if (Meteor.isClient) {
         document.getElementById('scissors_image').style.display = '';     
       } else if (rpsChoice === "male") {
         console.log("Male RPS choice");
-        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/malerock.jpg">');
-        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/malepaper.jpg">');
-        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/malescissors.jpg">');
+        $("#rock_placeholder").append('<img id="rock" class="rps_image" src="/rps_images/malerock.jpg">');
+        $("#paper_placeholder").append('<img id="paper" class="rps_image" src="/rps_images/malepaper.jpg">');
+        $("#scissors_placeholder").append('<img id="scissors" class="rps_image" src="/rps_images/malescissors.jpg">');
         var choice1 = "/rps_images/malerock.jpg"
         var choice2 = "/rps_images/malepaper.jpg"
         var choice3 = "/rps_images/malescissors.jpg"
@@ -245,9 +284,9 @@ if (Meteor.isClient) {
         document.getElementById('scissors_image').style.display = '';
       } else if (rpsChoice === "cat") {
         console.log("Cat RPS choice");
-        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/catrock.JPG">');
-        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/catpaper.jpg">');
-        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/catscissors.jpg">');
+        $("#rock_placeholder").append('<img id="rock" class="rps_image" src="/rps_images/catrock.JPG">');
+        $("#paper_placeholder").append('<img id="paper" class="rps_image" src="/rps_images/catpaper.jpg">');
+        $("#scissors_placeholder").append('<img id="scissors" class="rps_image" src="/rps_images/catscissors.jpg">');
         var choice1 = "/rps_images/catrock.JPG"
         var choice2 = "/rps_images/catpaper.jpg"
         var choice3 = "/rps_images/catscissors.jpg"
@@ -259,9 +298,9 @@ if (Meteor.isClient) {
         document.getElementById('scissors_image').style.display = '';
       } else if (rpsChoice === "dog") {
         console.log("Dog RPS choice");
-        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/dogrock.jpg">');
-        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/dogpaper.jpg">');
-        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/dogscissors.jpg">');
+        $("#rock_placeholder").append('<img id="rock" class="rps_image" src="/rps_images/dogrock.jpg">');
+        $("#paper_placeholder").append('<img id="paper" class="rps_image" src="/rps_images/dogpaper.jpg">');
+        $("#scissors_placeholder").append('<img id="scissors" class="rps_image" src="/rps_images/dogscissors.jpg">');
         var choice1 = "/rps_images/dogrock.jpg"
         var choice2 = "/rps_images/dogpaper.jpg"
         var choice3 = "/rps_images/dogscissors.jpg"
@@ -273,9 +312,9 @@ if (Meteor.isClient) {
         document.getElementById('scissors_image').style.display = '';
       } else if (rpsChoice === "modern") {
         console.log("Modern RPS choice");
-        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/objectrock1.jpg">');
-        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/objectpaper1.jpg">');
-        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/objectscissors1.jpg">');
+        $("#rock_placeholder").append('<img id="rock" class="rps_image" src="/rps_images/objectrock1.jpg">');
+        $("#paper_placeholder").append('<img id="paper" class="rps_image" src="/rps_images/objectpaper1.jpg">');
+        $("#scissors_placeholder").append('<img id="scissors" class="rps_image" src="/rps_images/objectscissors1.jpg">');
         var choice1 = "/rps_images/objectrock1.jpg"
         var choice2 = "/rps_images/objectpaper1.jpg"
         var choice3 = "/rps_images/objectscissors1.jpg"
@@ -287,9 +326,9 @@ if (Meteor.isClient) {
         document.getElementById('scissors_image').style.display = '';
       } else if (rpsChoice === "ancient") {
         console.log("Ancient RPS choice");
-        $("#rock_placeholder").append('<img class="rps_image" src="/rps_images/objectrock2.jpg">');
-        $("#paper_placeholder").append('<img class="rps_image" src="/rps_images/objectpaper2.jpg">');
-        $("#scissors_placeholder").append('<img class="rps_image" src="/rps_images/objectscissors2.jpg">');
+        $("#rock_placeholder").append('<img id="rock" class="rps_image" src="/rps_images/objectrock2.jpg">');
+        $("#paper_placeholder").append('<img id="paper" class="rps_image" src="/rps_images/objectpaper2.jpg">');
+        $("#scissors_placeholder").append('<img id="scissors" class="rps_image" src="/rps_images/objectscissors2.jpg">');
         var choice1 = "/rps_images/objectrock2.jpg"
         var choice2 = "/rps_images/objectpaper2.jpg"
         var choice3 = "/rps_images/objectscissors2.jpg"
