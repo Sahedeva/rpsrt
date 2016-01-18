@@ -65,14 +65,54 @@ Template.footer.events({
         console.log("typeof(songArray): "+typeof(songArray));
         console.log("songArray after push: "+songArray);
       }
-      if (songArray.length == 7) {
+      audio = document.getElementById("audio_player7");
+      if (audio.hasAttribute("controls")) {
+        audio.removeAttribute("controls");
+        console.log("songArray before push: "+songArray);
+        songArray.push(7);
+        console.log("typeof(songArray): "+typeof(songArray));
+        console.log("songArray after push: "+songArray);
+      }
+      audio = document.getElementById("audio_player8");
+      if (audio.hasAttribute("controls")) {
+        audio.removeAttribute("controls");
+        console.log("songArray before push: "+songArray);
+        songArray.push(8);
+        console.log("typeof(songArray): "+typeof(songArray));
+        console.log("songArray after push: "+songArray);
+      }
+      audio = document.getElementById("audio_player9");
+      if (audio.hasAttribute("controls")) {
+        audio.removeAttribute("controls");
+        console.log("songArray before push: "+songArray);
+        songArray.push(9);
+        console.log("typeof(songArray): "+typeof(songArray));
+        console.log("songArray after push: "+songArray);
+      }
+      audio = document.getElementById("audio_player10");
+      if (audio.hasAttribute("controls")) {
+        audio.removeAttribute("controls");
+        console.log("songArray before push: "+songArray);
+        songArray.push(10);
+        console.log("typeof(songArray): "+typeof(songArray));
+        console.log("songArray after push: "+songArray);
+      }
+      audio = document.getElementById("audio_player11");
+      if (audio.hasAttribute("controls")) {
+        audio.removeAttribute("controls");
+        console.log("songArray before push: "+songArray);
+        songArray.push(11);
+        console.log("typeof(songArray): "+typeof(songArray));
+        console.log("songArray after push: "+songArray);
+      }
+      if (songArray.length == 12) {
         console.log('songArray: '+songArray);
         console.log('songArray is maxed - will reset array');
         var songArray = [0];
         var randNum = 0;
       } else {
         while (cond != -1) { 
-          var randNum = Math.floor(Math.random()*6)+1; 
+          var randNum = Math.floor(Math.random()*11)+1; 
           console.log(randNum); 
           console.log(songArray); 
           var cond = $.inArray(randNum, songArray); 

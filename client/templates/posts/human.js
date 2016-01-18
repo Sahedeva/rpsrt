@@ -208,7 +208,7 @@ if (Meteor.isClient) {
   
   Template.human.rendered = function() {
     $('.container').css('background-image', 'url(/background_images/battleInHeaven.jpg');
-    for (i=0;i<7;i++) {
+    for (i=0;i<12;i++) {
       var control_audio = "audio_player"+i;
       var audio = document.getElementById(control_audio);
       var control_test = audio.hasAttribute("controls");
@@ -233,15 +233,23 @@ if (Meteor.isClient) {
     	countdown_timer();
     }, 1000);
     Tracker.autorun(function(){
-	  	var test = $("#player1paper").attr('alt');
-	  	console.log("tracker - test:"+test);
-	    if (test == 'on') {
-	    	Meteor.call('timerOff');
-	    	console.log("setting test to off so route doesn't get hit again")
-	      console.log("test is on - start countdown");
+    	if (Players.find({countdownTimer: "on", userId: Meteor.userId()}).count()==1) {
+        Meteor.call('timerOff');
+	    	console.log("setting countdownTimer to off so route doesn't get hit again")
+	      console.log("timer was on - start countdown");
 	      countdown_timer();
-	    }
-  	}); 
+      }
+    }); 
+   //  Tracker.autorun(function(){
+	  // 	var test = $("#player1paper").attr('alt');
+	  // 	console.log("tracker - test:"+test);
+	  //   if (test == 'on') {
+	  //   	Meteor.call('timerOff');
+	  //   	console.log("setting test to off so route doesn't get hit again")
+	  //     console.log("test is on - start countdown");
+	  //     countdown_timer();
+	  //   }
+  	// }); 
   };
 
   Template.human.events({

@@ -37,12 +37,12 @@ if (Meteor.isClient) {
 	    		var player1loss = parseInt($("#player1loss").val());
 	        var loss = player1loss += 1;
           var player2win = parseInt($("#player2win").val());
-          var win = player2win += 1;
+          var hal_win = player2win += 1;
 	        var changes = {go_class: 'countdown_none', lose_class: 'countdown_show', loss: loss};
           setTimeout(function(){
             $('#loserSound')[0].play();
             setTimeout(function(){
-              for (i=0;i<7;i++) {
+              for (i=0;i<12;i++) {
                 var control_audio = "audio_player"+i;
                 var audio = document.getElementById(control_audio);
                 var control_test = audio.hasAttribute("controls");
@@ -62,19 +62,19 @@ if (Meteor.isClient) {
 			        console.log(error)
 			    	});
     			if (comp_choice=="rock") {
-            var changes = {hal_win: win, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'}
+            var changes = {hal_win: hal_win, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'}
   					Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 	      			if (error)
 	        			console.log(error)
 	    			});    
     			} else if (comp_choice=="paper") {
-    				var changes =  {hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
+    				var changes =  {hal_win: hal_win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
 			  		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 				      if (error)
 				        console.log(error)
 				    });
     			} else if (comp_choice=="scissors") {
-    				var changes = {hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
+    				var changes = {hal_win: hal_win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
 			      Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 			      if (error)
 			        console.log(error)
@@ -120,7 +120,7 @@ if (Meteor.isClient) {
 
   Template.hal.rendered = function() {
     $('.container').css('background-image', 'url(/background_images/battleInHeaven.jpg');
-    for (i=0;i<7;i++) {
+    for (i=0;i<12;i++) {
       var control_audio = "audio_player"+i;
       var audio = document.getElementById(control_audio);
       var control_test = audio.hasAttribute("controls");
@@ -156,7 +156,7 @@ if (Meteor.isClient) {
   Template.hal.events({
     "click #player1rock": function (event) {
       function songStart() {
-        for (i=0;i<7;i++) {
+        for (i=0;i<12;i++) {
           var control_audio = "audio_player"+i;
           var audio = document.getElementById(control_audio);
           var control_test = audio.hasAttribute("controls");
@@ -186,9 +186,9 @@ if (Meteor.isClient) {
         var player1loss = parseInt($("#player1loss").val());
         var loss = player1loss += 1;
         var player2win = parseInt($("#player2win").val());
-        var win = player2win += 1; 
+        var hal_win = player2win += 1; 
         console.log("Player two chose paper - you lose");
-        var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show',hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
+        var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show',hal_win: hal_win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -207,9 +207,9 @@ if (Meteor.isClient) {
         var player1tie = parseInt($("#player1tie").val());
         var tie = player1tie += 1;
         var player2tie = parseInt($("#player2tie").val());
-        var tie = player2tie += 1;
+        var hal_tie = player2tie += 1;
         console.log("Player two chose rock - you tie");
-        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show',hal_tie: tie, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
+        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show',hal_tie: hal_tie, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -225,9 +225,9 @@ if (Meteor.isClient) {
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
         var player2loss = parseInt($("#player2loss").val());
-        var loss = player2loss += 1;
+        var hal_loss = player2loss += 1;
         console.log("Hal chose scissors - you win");
-        var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show',hal_loss: loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
+        var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show',hal_loss: hal_loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -246,7 +246,7 @@ if (Meteor.isClient) {
     },
     "click #player1paper": function (event) {
       function songStart() {
-        for (i=0;i<7;i++) {
+        for (i=0;i<12;i++) {
           var control_audio = "audio_player"+i;
           var audio = document.getElementById(control_audio);
           var control_test = audio.hasAttribute("controls");
@@ -275,9 +275,9 @@ if (Meteor.isClient) {
         var player1loss = parseInt($("#player1loss").val());
         var loss = player1loss += 1;
         var player2win = parseInt($("#player2win").val());
-        var win = player2win += 1; 
+        var hal_win = player2win += 1; 
         console.log("Player two chose scissors - you lose");
-        var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show',hal_win: win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
+        var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show',hal_win: hal_win, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -296,9 +296,9 @@ if (Meteor.isClient) {
         var player1tie = parseInt($("#player1tie").val());
         var tie = player1tie += 1;
         var player2tie = parseInt($("#player2tie").val());
-        var tie = player2tie += 1;
+        var hal_tie = player2tie += 1;
         console.log("Player two chose paper - you tie");
-        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show',hal_tie: tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
+        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show',hal_tie: hal_tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -314,9 +314,9 @@ if (Meteor.isClient) {
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
         var player2loss = parseInt($("#player2loss").val());
-        var loss = player2loss += 1;
+        var hal_loss = player2loss += 1;
         console.log("Hal chose rock - you win");
-        var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show', hal_wlt: 'lose', hal_loss: loss, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
+        var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show', hal_wlt: 'lose', hal_loss: hal_loss, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -335,7 +335,7 @@ if (Meteor.isClient) {
     },
     "click #player1scissors": function (event) {
       function songStart() {
-        for (i=0;i<7;i++) {
+        for (i=0;i<12;i++) {
           var control_audio = "audio_player"+i;
           var audio = document.getElementById(control_audio);
           var control_test = audio.hasAttribute("controls");
@@ -363,9 +363,9 @@ if (Meteor.isClient) {
         var player1loss = parseInt($("#player1loss").val());
         var loss = player1loss += 1;
         var player2win = parseInt($("#player2win").val());
-        var win = player2win += 1;         
+        var hal_win = player2win += 1;         
         console.log("Hal chose rock - you lose");
-        var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show', hal_win: win, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
+        var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show', hal_win: hal_win, hal_rock_class: 'rps_red rps_rock', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_none', hal_choice: 'rock'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -384,9 +384,9 @@ if (Meteor.isClient) {
         var player1tie = parseInt($("#player1tie").val());
         var tie = player1tie += 1;
         var player2tie = parseInt($("#player2tie").val());
-        var tie = player2tie += 1;
+        var hal_tie = player2tie += 1;
         console.log("Player two chose scissors - you tie");
-        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show', hal_tie: tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
+        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show', hal_tie: hal_tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -402,9 +402,9 @@ if (Meteor.isClient) {
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
         var player2loss = parseInt($("#player2loss").val());
-        var loss = player2loss += 1;
+        var hal_loss = player2loss += 1;
         console.log("Hal chose paper - you win");
-        var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show', hal_loss: loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
+        var changes = {wlt: 'win', win: win, go_class: 'countdown_none', win_class: 'countdown_show', hal_loss: hal_loss, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_hidden', hal_paper_class: 'rps_red', hal_choice: 'paper'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
@@ -422,7 +422,7 @@ if (Meteor.isClient) {
       }
     },
     "click #another_game": function(event) {
-      for (i=0;i<7;i++) {
+      for (i=0;i<12;i++) {
         var control_audio = "audio_player"+i;
         var audio = document.getElementById(control_audio);
         var control_test = audio.hasAttribute("controls");

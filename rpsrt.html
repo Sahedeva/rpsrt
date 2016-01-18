@@ -24,12 +24,12 @@
   <p style="display: none" id='rps_title'>Choose the type of troops you will lead to victory!</p>
   <div class="row">
     <div id="first_choice_div" class="col-sx-12">
-      <img class="first_choice" id="female" src="/choice_images/femaleSilhouette.jpg">
-      <img class="first_choice" id="male" src="/choice_images/maleSilhouette.jpg">
-      <img class="first_choice" id="cat" src="/choice_images/catSilhouette.jpeg">
-      <img class="first_choice" id="dog" src="/choice_images/dogSilhouette.jpg">
-      <img class="first_choice" id="abstract" src="/choice_images/abstractSilhouette.jpg">
-      <img class="first_choice" id="custom" src="/choice_images/questionSilhouette.jpg">
+      <img class="first_choice female" id="female" src="/choice_images/femaleSilhouette.jpg">
+      <img class="first_choice male" id="male" src="/choice_images/maleSilhouette.jpg">
+      <img class="first_choice cat" id="cat" src="/choice_images/catSilhouette.jpeg">
+      <img class="first_choice dog" id="dog" src="/choice_images/dogSilhouette.jpg">
+      <img class="first_choice abstract" id="abstract" src="/choice_images/abstractSilhouette.jpg">
+      <img class="first_choice custom" id="custom" src="/choice_images/questionSilhouette.jpg">
     </div>
   </div>
   <div class="row">
@@ -50,13 +50,13 @@
   </div>
   <div class="row">
     <div style="display: none" id="rps_choice_div" class="col-sx-12">
-      <img class="rps_choice" id="female" src="/choice_images/femaleSilhouette.jpg">
-      <img class="rps_choice" id="male" src="/choice_images/maleSilhouette.jpg">
-      <img class="rps_choice" id="cat" src="/choice_images/catSilhouette.jpeg">
-      <img class="rps_choice" id="dog" src="/choice_images/dogSilhouette.jpg">
-      <img class="rps_choice" id="modern" src="/choice_images/modern.jpg">
-      <img class="rps_choice" id="ancient" src="/choice_images/ancient.jpg">
-      <img class="rps_choice" id="custom" src="/choice_images/questionSilhouette.jpg">
+      <img class="rps_choice female" id="female" src="/choice_images/femaleSilhouette.jpg">
+      <img class="rps_choice male" id="male" src="/choice_images/maleSilhouette.jpg">
+      <img class="rps_choice cat" id="cat" src="/choice_images/catSilhouette.jpeg">
+      <img class="rps_choice dog" id="dog" src="/choice_images/dogSilhouette.jpg">
+      <img class="rps_choice modern" id="modern" src="/choice_images/modern.jpg">
+      <img class="rps_choice ancient" id="ancient" src="/choice_images/ancient.jpg">
+      <img class="rps_choice custom" id="custom" src="/choice_images/questionSilhouette.jpg">
     </div>
   </div>
   <form id="custom_avatar_form">
@@ -71,7 +71,7 @@
   <form id="custom_scissors_form">
     <input style="display: none" id="custom_scissors" type="text" name="custom_scissors" placeholder="Type scissors image url" />
   </form>
-  <audio id="femalSound" class="my_audio" preload="none">
+  <audio id="femaleSound" class="my_audio" preload="none">
     <source src="/audio/female.wav" type="audio/wav">
   </audio>
   <audio id="maleSound" class="my_audio" preload="none">
@@ -92,6 +92,12 @@
   <audio id="jediSound" class="my_audio" preload="none">
     <source src="/audio/jedi.wav" type="audio/wav">
   </audio>
+  <audio id="modernSound" class="my_audio" preload="none">
+    <source src="/audio/modern.wav" type="audio/wav">
+  </audio>
+  <audio id="ancientSound" class="my_audio" preload="none">
+    <source src="/audio/ancient.wav" type="audio/wav">
+  </audio>
   <audio id="warriorSound" class="my_audio" preload="none">
     <source src="/audio/warrior.wav" type="audio/wav">
   </audio>
@@ -109,7 +115,13 @@
   </audio>
   <audio id="scissorsSound" class="my_audio" preload="none">
     <source src="/audio/scissors.wav" type="audio/wav">
-  </audio> 
+  </audio>
+  <audio id="generalSound" class="my_audio" preload="none">
+    <source src="/audio/chooseGeneralAvatar.wav" type="audio/wav">
+  </audio>
+  <audio id="troopsSound" class="my_audio" preload="none">
+    <source src="/audio/chooseTroops.wav" type="audio/wav">
+  </audio>  
 </template>
 <!--         <select class="first_choice" id="avatar" name="avatar">
           <option id="choose_avatar" value="">Choose Race...</option>

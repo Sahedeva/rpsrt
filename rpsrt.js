@@ -4,7 +4,7 @@ if (Meteor.isClient) {
   var choice1 = "";
   Template.newUser.rendered = function() {
     $('.container').css('background-image', 'url(/background_images/samurai.jpg');
-    for (i=0;i<5;i++) {
+    for (i=0;i<12;i++) {
       var control_audio = "audio_player"+i;
       var audio = document.getElementById(control_audio);
       var control_test = audio.hasAttribute("controls");
@@ -49,23 +49,29 @@ if (Meteor.isClient) {
     "mouseenter #scissors": function() {
       $('#scissorsSound')[0].play();  
     },
-    "mouseenter #female": function() {
+    "mouseenter .female": function() {
       $('#femaleSound')[0].play();  
     },
-    "mouseenter #male": function() {
+    "mouseenter .male": function() {
       $('#maleSound')[0].play();  
     },
-    "mouseenter #cat": function() {
+    "mouseenter .cat": function() {
       $('#catSound')[0].play();  
     },
-    "mouseenter #dog": function() {
+    "mouseenter .dog": function() {
       $('#dogSound')[0].play();  
     },
-    "mouseenter #element": function() {
+    "mouseenter .abstract": function() {
       $('#elementSound')[0].play();  
     },
-    "mouseenter #custom": function() {
+    "mouseenter .custom": function() {
       $('#customSound')[0].play();  
+    },
+    "mouseenter .modern": function() {
+      $('#modernSound')[0].play();  
+    },
+    "mouseenter .anceint": function() {
+      $('#ancientSound')[0].play();  
     },
     "mouseenter #jedi": function() {
       $('#jediSound')[0].play();  
@@ -78,6 +84,12 @@ if (Meteor.isClient) {
     },
     "mouseenter #healer": function() {
       $('#healerSound')[0].play();  
+    },
+    "mouseenter #first_choice_title": function() {
+      $('#generalSound')[0].play();  
+    },
+    "mouseenter #rps_title": function() {
+      $('#troopsSound')[0].play();  
     },
     // first choice of avatar
     "click .first_choice": function(event){
