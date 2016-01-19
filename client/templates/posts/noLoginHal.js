@@ -114,13 +114,11 @@ if (Meteor.isClient) {
 				// document.getElementById('player2rock').style.padding = '0px';
 				// document.getElementById('player2paper').style.display = 'none';
 	   //    document.getElementById('player2scissors').style.visibility = 'hidden';
+        $('#tieSound')[0].play();
         setTimeout(function(){
-          $('#tieSound')[0].play();
-          setTimeout(function(){
-            songStart();
-            $('#another_game').css('display', 'inline');
-          },1000);
-        },500);
+          songStart();
+          $('#another_game').css('display', 'inline');
+        },2000);
       } else {   
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
@@ -210,7 +208,7 @@ if (Meteor.isClient) {
         setTimeout(function(){
           songStart();
           $('#another_game').css('display', 'inline');
-        },1000);
+        },2000);
       } else if (choice2 === "rock") {
       	var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
@@ -392,13 +390,11 @@ if (Meteor.isClient) {
       	$('#tie').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#tie').addClass('countdown_show');
+        $('#tieSound')[0].play();
         setTimeout(function(){
-          $('#tieSound')[0].play();
-          setTimeout(function(){
-            songStart();
-            $('#another_game').css('display', 'inline');
-          },1000);
-        },500);
+          songStart();
+          $('#another_game').css('display', 'inline');
+        },2000);
       }     
     },
     "click #another_game": function(event) {

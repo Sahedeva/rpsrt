@@ -1,3 +1,64 @@
+/* CSS for formatTest template */
+#testContainer {
+  background-image: url(/background_images/battleInHeaven.jpg);
+  background-size: cover;
+  background-attachment: fixed;
+  min-height: 600px;
+}
+
+.noPad {
+  padding-left: 5px;
+}
+
+#testPlayerTitle {
+  color: gold;
+  margin: auto;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px black;
+}
+
+#player1, #player2 {
+  height: 150px;
+  width: 100px;
+  border-radius: 20px;
+  margin-top: 10px;
+}
+
+#testPlayerTable {
+  margin: auto;
+  background-color: olive;
+}
+
+#testPlayerRps {
+  margin: auto;
+}
+
+.testCountdown {
+  margin: auto;
+}
+
+/*.testCountdownResults {
+
+}*/
+
+#testHalRps {
+  margin: auto;
+}
+
+#testHalTitle {
+  color: green;
+  margin: auto;
+  font-weight: bold;
+  font-size: 22px;
+  text-shadow: 1px 1px 1px black;
+}
+
+#testHalTable {
+  margin: auto;
+  background-color: orangered;
+}
+
 /* CSS for index template */
 #history {
   color: gold;
