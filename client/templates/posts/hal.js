@@ -219,7 +219,7 @@ if (Meteor.isClient) {
           setTimeout(function(){
             songStart();
             $('#another_game').css('display', 'inline');
-          },1000);
+          },2000);
         },500);
       } else {   
         var player1win = parseInt($("#player1win").val());
@@ -308,7 +308,7 @@ if (Meteor.isClient) {
           setTimeout(function(){
             songStart();
             $('#another_game').css('display', 'inline');
-          },1000);
+          },2000);
         },500);
       } else {  
         var player1win = parseInt($("#player1win").val());
@@ -396,7 +396,7 @@ if (Meteor.isClient) {
           setTimeout(function(){
             songStart();
             $('#another_game').css('display', 'inline');
-          },1000);
+          },2000);
         },500);
 		  } else {
         var player1win = parseInt($("#player1win").val());

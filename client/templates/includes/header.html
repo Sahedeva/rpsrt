@@ -7,17 +7,17 @@
 			<span class="icon-bar"></span>
 			<span class="icon-bar"></span>
 			</button>
-			<a class="navbar-brand" href="{{pathFor 'about'}}">Ro Sham Bo!</a>
+			<a class="navbar-brand" href="{{pathFor 'history'}}">Ro Sham Bo!</a>
 		</div>
 		<div class="collapse navbar-collapse" id="navigation">
 			<ul class="nav navbar-nav">
 				{{#if currentUser}}
-				<li><a href="/history">History</a></li>
+				<li><a href="/about">About</a></li>
 				<li><a href="/new">Choose Avatar</a></li>
 				<li><a href="/lobby">Game Lobby</a></li>
 				<li><a href="/hal">Play Hal</a></li>
 				{{else}}
-				<li><a href="/history">History</a></li>
+				<li><a href="/about">About</a></li>
 				<li><a href="/noLoginHal">Play the Computer</a></li>
 				{{/if}}
 			</ul>

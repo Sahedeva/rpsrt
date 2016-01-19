@@ -9,6 +9,7 @@ if (Meteor.isClient) {
     }); 
     setTimeout(function(){ 
       var changes = {countthree_class: 'countdown_none', go_class: 'countdown_show'};
+      $('#goSound')[0].play();
       console.log('5 seconds should have elapsed');
       console.log('changes: '+JSON.stringify(changes));
       console.log('game_id: '+JSON.stringify(game_id));
@@ -20,6 +21,20 @@ if (Meteor.isClient) {
       $("#player1paper").css("pointer-events", "auto");
       $("#player1scissors").css("pointer-events", "auto");
       setTimeout(function(){
+      	function songStart() {
+	        for (i=0;i<12;i++) {
+	          var control_audio = "audio_player"+i;
+	          var audio = document.getElementById(control_audio);
+	          var control_test = audio.hasAttribute("controls");
+	          console.log("control_audio: "+control_audio);
+	          console.log("control_test: "+control_test);
+	          if (control_test) {
+	              var start_audio = "#audio_player"+i;
+	              console.log("start_audio: "+start_audio);
+	              $(start_audio)[0].play();
+	          }  
+	        }
+	      }
         $("#player1rock").css("pointer-events", "none");
     		$("#player1paper").css("pointer-events", "none");
     		$("#player1scissors").css("pointer-events", "none");
@@ -37,6 +52,16 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#paperRockSound')[0].play();
+		          setTimeout(function(){
+		            $('#loserSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
+		          },2000);
+		        },500); 
 		      } else if (choice2 === "rock") {
 		        var player1tie = parseInt($("#player1tie").val());
 		        var tie = player1tie += 1;
@@ -46,6 +71,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#tieSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		      } else if (choice2 === "scissors") {
 		        var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -55,6 +87,16 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#rockScissorsSound')[0].play();
+		          setTimeout(function(){
+		            $('#winnerSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
+		          },2200);
+		        },500);      
 		      } else {
 		      	var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -64,6 +106,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#winnerSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		      }
 		    } else if (choice1 === "paper") {
 		      if (choice2 === "scissors") {
@@ -75,6 +124,16 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#scissorsPaperSound')[0].play();
+		          setTimeout(function(){
+		            $('#loserSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
+		          },2000);
+		        },500); 
 		      } else if (choice2 === "paper") {
 		        var player1tie = parseInt($("#player1tie").val());
 		        var tie = player1tie += 1;
@@ -84,6 +143,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#tieSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		      } else if (choice2 === "rock") {
 		        var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -93,6 +159,16 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#paperRockSound')[0].play();
+		          setTimeout(function(){
+		            $('#winnerSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
+		          },2000);
+		        },500); 
 		      } else {
 		      	var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -102,6 +178,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#winnerSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		      }
 		    } else if (choice2 === "scissors") { 
 		      if (choice2 === "rock") {
@@ -112,7 +195,17 @@ if (Meteor.isClient) {
 		    		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 				      if (error)
 				        console.log(error)
-				    	}); 
+				    	});
+				    setTimeout(function(){
+		          $('#rockScissorsSound')[0].play();
+		          setTimeout(function(){
+		            $('#loserSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
+		          },2200);
+		        },500);  
 		      } else if (choice2 === "scissors") {
 		        var player1tie = parseInt($("#player1tie").val());
 		        var tie = player1tie += 1;
@@ -121,7 +214,14 @@ if (Meteor.isClient) {
 		    		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 				      if (error)
 				        console.log(error)
-				    	}); 
+				    	});
+				    setTimeout(function(){
+		          $('#tieSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500); 
 		      } else if (choice2 === "paper") {
 		        var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -131,6 +231,16 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#scissorsPaperSound')[0].play();
+		          setTimeout(function(){
+		            $('#winnerSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
+		          },2000);
+		        },500); 
 		      } else {
 		      	var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -140,6 +250,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#winnerSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		      }
 		    } else {
 		    	if (choice2 ==="rock") {
@@ -149,6 +266,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#loserSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		    	} else if (choice2 ==="paper") {
 		    		console.log("You chose nothing and opponent chose paper - you lose");
 		    		var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show', another: 'show'};
@@ -156,6 +280,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#loserSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		    	} else if (choice2 ==="scissors") {
 		    		console.log("You chose nothing and opponent chose scissors - you lose");
 		    		var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show', another: 'show'};
@@ -163,6 +294,13 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#loserSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		    	} else {
 		    		console.log("You chose nothing and opponent chose nothing - you tie");
 		    		var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show', another: 'show'};
@@ -170,12 +308,20 @@ if (Meteor.isClient) {
 				      if (error)
 				        console.log(error)
 				    	});
+		    		setTimeout(function(){
+		          $('#tieSound')[0].play();
+		          setTimeout(function(){
+		            songStart();
+		            $('#another_game').css('display', 'inline');
+		          },2000);
+		        },500);
 		    	}
 		    }
-		  }, 1000);
-    }, 5000);
+		  }, 1300);
+    }, 6200);
     setTimeout(function(){ 
       var changes = {counttwo_class: 'countdown_none', countthree_class: 'countdown_show'};
+      $('#threeSound')[0].play();
       console.log('4 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -183,9 +329,10 @@ if (Meteor.isClient) {
         if (error)
           console.log(error)
         });   
-    }, 4000);
+    }, 4800);
     setTimeout(function(){
       var changes = {countone_class: 'countdown_none', counttwo_class: 'countdown_show'};
+      $('#twoSound')[0].play();
       console.log('3 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -193,9 +340,10 @@ if (Meteor.isClient) {
         if (error)
           console.log(error)
         });   
-    }, 3000);
+    }, 4000);
     setTimeout(function(){ 
       var changes = {ready_class: 'countdown_none', countone_class: 'countdown_show'};
+      $('#oneSound')[0].play();
       console.log('2 seconds should have elapsed');
       console.log('changes: '+changes);
       console.log('game_id: '+game_id);
@@ -203,7 +351,7 @@ if (Meteor.isClient) {
         if (error)
           console.log(error)
         });   
-    }, 2000);
+    }, 2800);
   };
   
   Template.human.rendered = function() {
@@ -217,7 +365,7 @@ if (Meteor.isClient) {
       if (control_test) {
           var start_audio = "#audio_player"+i;
           console.log("start_audio: "+start_audio);
-          $(start_audio)[0].play();
+          $(start_audio)[0].pause();
       }  
     }
     console.log("should hit this for humanUpdate");
@@ -230,13 +378,15 @@ if (Meteor.isClient) {
     $("#player2scissors").css("pointer-events", "none");
     setTimeout(function(){
     	console.log('waiting 1 seconds to allow for both players to hit game room');
+    	$('#readySound')[0].play();  
     	countdown_timer();
     }, 1000);
     Tracker.autorun(function(){
-    	if (Players.find({countdownTimer: "on", userId: Meteor.userId()}).count()==1) {
+    	if (Players.findOne({countdownTimer: "on", userId: Meteor.userId()})) {
         Meteor.call('timerOff');
 	    	console.log("setting countdownTimer to off so route doesn't get hit again")
 	      console.log("timer was on - start countdown");
+	      $('#readySound')[0].play();
 	      countdown_timer();
       }
     }); 
@@ -289,6 +439,18 @@ if (Meteor.isClient) {
     	});    
     },
     "click #another_game": function(event) {
+    	for (i=0;i<12;i++) {
+        var control_audio = "audio_player"+i;
+        var audio = document.getElementById(control_audio);
+        var control_test = audio.hasAttribute("controls");
+        console.log("control_audio: "+control_audio);
+        console.log("control_test: "+control_test);
+        if (control_test) {
+            var start_audio = "#audio_player"+i;
+            console.log("start_audio: "+start_audio);
+            $(start_audio)[0].pause();
+        }  
+      }
     	var oppId = $("#player2scissors").attr('alt');
     	console.log('oppId: '+oppId);
     	var opponent_id = {_id: oppId};

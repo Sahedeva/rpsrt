@@ -20,6 +20,36 @@ if (Meteor.isClient) {
     }
   };
 
+  // Tracker.autorun(function(){
+  //   if (Meteor.user() == null) {
+  //     console.log("Meteor.user() is null");
+  //   } else {
+  //     console.log("Meteor.user() is not null");
+  //     if (Players.findOne({userId: Meteor.user()._id})) {
+  //       console.log("On login - should only get here the first time you create a new user");
+  //       var player = {initialize: true};
+  //       Meteor.call('playerInsert', player, function (error, result){
+  //         if (error)
+  //           console.log(error)
+  //       });
+  //     } else {
+  //       console.log("logged in user has a player already will check lobby and active");
+  //       if (Players.findOne({lobby: true, userId: Meteor.user()._id})) {
+  //         console.log('lobby is true - hitting removeLobby');
+  //         Meteor.call('removeLobby');
+  //       } else {
+  //         console.log('lobby is false - no need to take action');
+  //       }
+  //       if (Players.findOne({active: true, userId: Meteor.user()._id})) {
+  //         console.log('active is true - hitting removeLobby');
+  //         Meteor.call('removeActive');
+  //       } else {
+  //         console.log('active is false - no need to take action');
+  //       }
+  //     }
+  //   }
+  // }); 
+
   Template.noLoginHal.events({
   	"click #player1rock": function (event) {
   		function songStart() {

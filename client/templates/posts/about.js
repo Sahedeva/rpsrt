@@ -14,30 +14,33 @@ Template.about.rendered = function() {
   }
 }
 
-Tracker.autorun(function(){
-  setTimeout(function(){
-    var currentUserId = Meteor.userId();
-    console.log(currentUserId);
-    if (currentUserId == null) {
-      console.log("currentUserId is null");
-    } else {
-      setTimeout(function(){
-        console.log("currentUserId is not null");
-        var countPlayer = Players.find({userId: currentUserId}).count();
-        console.log("countPlayers: "+countPlayer);
-        if (countPlayer === 0) {
-          console.log("On login - should only get here the first time you create a new user");
-          var player = {initialize: true};
-          Meteor.call('playerInsert', player, function (error, result){
-            if (error)
-              console.log(error)
-          });
-        } else {
-          console.log("logged in user has a player already - will call removeLobbyActive");
-          Meteor.call('removeLobbyActive');
-        }
-      },500);
-    }
-  },500);
-});  
+// Tracker.autorun(function(){
+//   if (Meteor.user() == null) {
+//     console.log("Meteor.user() is null");
+//   } else {
+//     console.log("Meteor.user() is not null");
+//     if (Players.findOne({userId: Meteor.user()._id})) {
+//       console.log("On login - should only get here the first time you create a new user");
+//       var player = {initialize: true};
+//       Meteor.call('playerInsert', player, function (error, result){
+//         if (error)
+//           console.log(error)
+//       });
+//     } else {
+//       console.log("logged in user has a player already will check lobby and active");
+//       if (Players.findOne({lobby: true, userId: Meteor.user()._id})) {
+//         console.log('lobby is true - hitting removeLobby');
+//         Meteor.call('removeLobby');
+//       } else {
+//         console.log('lobby is false - no need to take action');
+//       }
+//       if (Players.findOne({active: true, userId: Meteor.user()._id})) {
+//         console.log('active is true - hitting removeLobby');
+//         Meteor.call('removeActive');
+//       } else {
+//         console.log('active is false - no need to take action');
+//       }
+//     }
+//   }
+// });  
   
