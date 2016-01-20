@@ -8,7 +8,7 @@ if (Meteor.isClient) {
           console.log(error)
     }); 
     setTimeout(function(){ 
-      var changes = {countthree_class: 'countdown_none', go_class: 'countdown_show'};
+      var changes = {countthree_class: 'countdown_none', go_class: 'countdown_show', rock_class: 'rps_green', scissors_class: 'rps_green', paper_class: 'rps_green'};
       $('#goSound')[0].play();
       console.log('5 seconds should have elapsed');
       console.log('changes: '+JSON.stringify(changes));
@@ -386,6 +386,18 @@ if (Meteor.isClient) {
         Meteor.call('timerOff');
 	    	console.log("setting countdownTimer to off so route doesn't get hit again")
 	      console.log("timer was on - start countdown");
+	      for (i=0;i<12;i++) {
+	        var control_audio = "audio_player"+i;
+	        var audio = document.getElementById(control_audio);
+	        var control_test = audio.hasAttribute("controls");
+	        console.log("control_audio: "+control_audio);
+	        console.log("control_test: "+control_test);
+	        if (control_test) {
+	            var start_audio = "#audio_player"+i;
+	            console.log("start_audio: "+start_audio);
+	            $(start_audio)[0].pause();
+	        }  
+	      }
 	      $('#readySound')[0].play();
 	      countdown_timer();
       }
@@ -439,18 +451,6 @@ if (Meteor.isClient) {
     	});    
     },
     "click #another_game": function(event) {
-    	for (i=0;i<12;i++) {
-        var control_audio = "audio_player"+i;
-        var audio = document.getElementById(control_audio);
-        var control_test = audio.hasAttribute("controls");
-        console.log("control_audio: "+control_audio);
-        console.log("control_test: "+control_test);
-        if (control_test) {
-            var start_audio = "#audio_player"+i;
-            console.log("start_audio: "+start_audio);
-            $(start_audio)[0].pause();
-        }  
-      }
     	var oppId = $("#player2scissors").attr('alt');
     	console.log('oppId: '+oppId);
     	var opponent_id = {_id: oppId};
