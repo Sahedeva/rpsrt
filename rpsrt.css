@@ -62,11 +62,15 @@
 /* CSS for index template */
 #history {
   color: gold;
-  font-size: 23px;
+  font-size: 22px;
   font-weight: bold;
-  padding: 50px;
+  padding: 5px 45px;
   text-shadow: 2px 2px 2px black;
-  margin-top: -40px;
+  margin-top: -10px;
+}
+
+#historyText {
+  display: inline;
 }
 
 #characters {
@@ -74,8 +78,10 @@
 }
 
 #rashambo {
-  color: red;
+  color: honeydew;
   font-size: 24px;
+  font-weight: bold;
+  text-shadow: 2px 2px 0px black;
 }
 
 .first_choice, .second_choice, .rps_choice {
@@ -654,10 +660,20 @@ header .hide-completed {
 }
 
 .challenger {
-  margin-left: 30%;
-  font-size: 20px;
-  font-weight: bold;
+  font-size: 16px;
   color: beige;
+  max-height: 54px;
+  overflow: scroll;
+  overflow-x: hidden;
+  line-height: 90%;
+}
+
+.rejectMessage {
+  margin: 0;
+}
+
+::-webkit-scrollbar {
+    width: 0px;
 }
 
 .reject {
@@ -667,7 +683,10 @@ header .hide-completed {
   color: beige;
 }
 
-.game_on {
-  color: purple;
+.yes {
+  color: black;
+  margin-left: 26%;
+  background-color: gold;
+  border-radius: 20px;
 }
 

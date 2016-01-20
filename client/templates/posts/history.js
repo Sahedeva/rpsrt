@@ -57,7 +57,21 @@ Tracker.autorun(function(){
 }); 
 
 Template.history.events({
-  "ended .my_audio": function(event){
-  	$(stop_audio)[0].play();
+  "ended #history_audio": function(event){
+    $('#ra_audio')[0].play();
+    $('#historyText').html('<span id="rashambo">Ra&nbsp;</span>');
+  },
+  "ended #ra_audio": function(event){
+    $('#sham_audio')[0].play();
+    $('#historyText').append('<span id="rashambo">Sham&nbsp;</span>');
+  },
+  "ended #sham_audio": function(event){
+    $('#bo_audio')[0].play();
+    $('#historyText').append('<span id="rashambo">Bo!</span>');
+  },
+  "ended #bo_audio": function(event){
+    setTimeout(function(){
+      $(stop_audio)[0].play();
+    },1000);
   }
 });
