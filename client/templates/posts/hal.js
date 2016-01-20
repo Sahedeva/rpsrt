@@ -13,7 +13,7 @@ if (Meteor.isClient) {
           console.log(error)
         }); 
     setTimeout(function(){ 
-      var changes = {countthree_class: 'countdown_none', go_class: 'countdown_show'};
+      var changes = {countthree_class: 'countdown_none', go_class: 'countdown_show', rock_class: 'rps_green', scissors_class: 'rps_green', paper_class: 'rps_green', hal_rock_class: 'rps_green', hal_scissors_class: 'rps_green', hal_paper_class: 'rps_green'};
       $('#goSound')[0].play();
       console.log('5 seconds should have elapsed');
       console.log('changes: '+JSON.stringify(changes));
@@ -40,23 +40,26 @@ if (Meteor.isClient) {
           var hal_win = player2win += 1;
 	        var changes = {go_class: 'countdown_none', lose_class: 'countdown_show', loss: loss};
           setTimeout(function(){
-            $('#loserSound')[0].play();
+            $('#tooSlowSound')[0].play();
             setTimeout(function(){
-              for (i=0;i<12;i++) {
-                var control_audio = "audio_player"+i;
-                var audio = document.getElementById(control_audio);
-                var control_test = audio.hasAttribute("controls");
-                console.log("control_audio: "+control_audio);
-                console.log("control_test: "+control_test);
-                if (control_test) {
-                    var start_audio = "#audio_player"+i;
-                    console.log("start_audio: "+start_audio);
-                    $(start_audio)[0].play();
-                }  
-              }
-              $('#another_game').css('display', 'inline');
-            },1000);
-          },500);
+              $('#loserSound')[0].play();
+              setTimeout(function(){
+                for (i=0;i<12;i++) {
+                  var control_audio = "audio_player"+i;
+                  var audio = document.getElementById(control_audio);
+                  var control_test = audio.hasAttribute("controls");
+                  console.log("control_audio: "+control_audio);
+                  console.log("control_test: "+control_test);
+                  if (control_test) {
+                      var start_audio = "#audio_player"+i;
+                      console.log("start_audio: "+start_audio);
+                      $(start_audio)[0].play();
+                  }  
+                }
+                $('#another_game').css('display', 'inline');
+              },2000);
+            },2000);
+          },500); 
 	    		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 			      if (error)
 			        console.log(error)
@@ -144,7 +147,7 @@ if (Meteor.isClient) {
     $("#player2scissors").css("pointer-events", "none");
     var id = $("#player1rock").attr('alt');
     var game_id = {id: id};
-    var changes = {win_class: 'countdown_none',lose_class: 'countdown_none',tie_class: 'countdown_none',ready_class: 'countdown_show',rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: '', hal_rock_class: 'rps_show', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_show', hal_choice: '', ready_class: 'countdown_show', countone_class: 'countdown_none', counttwo_class: 'countdown_none', countthree_class: 'countdown_none', go_class: 'countdown_none', win_class: 'countdown_none', lose_class: 'countdown_none', tie_class: 'countdown_none', clicked: 'no'};
+    var changes = {win_class: 'countdown_none',lose_class: 'countdown_none',tie_class: 'countdown_none',ready_class: 'countdown_show',rock_class: 'rps_show rps_yellow', scissors_class: 'rps_show rps_yellow', paper_class: 'rps_show rps_yellow', choice: '', hal_rock_class: 'rps_show rps_yellow', hal_scissors_class: 'rps_show rps_yellow', hal_paper_class: 'rps_show rps_yellow', hal_choice: '', ready_class: 'countdown_show', countone_class: 'countdown_none', counttwo_class: 'countdown_none', countthree_class: 'countdown_none', go_class: 'countdown_none', win_class: 'countdown_none', lose_class: 'countdown_none', tie_class: 'countdown_none', clicked: 'no'};
     Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
         if (error)
           console.log(error)
@@ -215,12 +218,15 @@ if (Meteor.isClient) {
 		        console.log(error)
 		    	});
         setTimeout(function(){
-          $('#tieSound')[0].play();
+          $('#rockRockSound')[0].play();
           setTimeout(function(){
-            songStart();
-            $('#another_game').css('display', 'inline');
+            $('#tieSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
           },2000);
-        },500);
+        },500); 
       } else {   
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
@@ -304,12 +310,15 @@ if (Meteor.isClient) {
 		        console.log(error)
 		    	});
         setTimeout(function(){
-          $('#tieSound')[0].play();
+          $('#paperPaperSound')[0].play();
           setTimeout(function(){
-            songStart();
-            $('#another_game').css('display', 'inline');
+            $('#tieSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
           },2000);
-        },500);
+        },500); 
       } else {  
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
@@ -386,18 +395,21 @@ if (Meteor.isClient) {
         var player2tie = parseInt($("#player2tie").val());
         var hal_tie = player2tie += 1;
         console.log("Player two chose scissors - you tie");
-        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show', hal_tie: hal_tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
+        var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show', hal_tie: hal_tie, hal_rock_class: 'rps_hidden', hal_scissors_class: 'rps_red', hal_paper_class: 'rps_none', hal_choice: 'scissors'};
     		Meteor.call('realtimeGameUpdate', changes, game_id, function(error, result){
 		      if (error)
 		        console.log(error)
 		    	});
         setTimeout(function(){
-          $('#tieSound')[0].play();
+          $('#scissorsScissorsSound')[0].play();
           setTimeout(function(){
-            songStart();
-            $('#another_game').css('display', 'inline');
+            $('#tieSound')[0].play();
+            setTimeout(function(){
+              songStart();
+              $('#another_game').css('display', 'inline');
+            },2000);
           },2000);
-        },500);
+        },500); 
 		  } else {
         var player1win = parseInt($("#player1win").val());
         var win = player1win += 1;
@@ -451,7 +463,7 @@ if (Meteor.isClient) {
 		  var rock_array = ["/rps_images/malerock.jpg","/rps_images/femalerock.jpg","/rps_images/catrock.JPG","/rps_images/dogrock.jpg","/rps_images/objectrock1.jpg","/rps_images/objectrock2.jpg"];
 		  var paper_array = ["/rps_images/malepaper.jpg","/rps_images/femalepaper.jpg","/rps_images/catpaper.jpg","/rps_images/dogpaper.jpg","/rps_images/objectpaper1.jpg","/rps_images/objectpaper2.jpg"];
 		  var scissors_array = ["/rps_images/malescissors.jpg","/rps_images/femalescissors.jpg","/rps_images/catscissors.jpg","/rps_images/dogscissors.jpg","/rps_images/objectscissors1.jpg","/rps_images/objectscissors2.jpg"];
-      var changes = {rock_class: 'rps_show', scissors_class: 'rps_show', paper_class: 'rps_show', choice: '', clicked: 'no', hal_avatar_url: avatar_array[computer_avatar], hal_rock_url: rock_array[computer_rps], hal_paper_url: paper_array[computer_rps], hal_scissors_url: scissors_array[computer_rps], hal_rock_class: 'rps_show', hal_scissors_class: 'rps_show', hal_paper_class: 'rps_show', hal_choice: ''};
+      var changes = {rock_class: 'rps_show rps_yellow', scissors_class: 'rps_show rps_yellow', paper_class: 'rps_show rps_yellow', choice: '', clicked: 'no', hal_avatar_url: avatar_array[computer_avatar], hal_rock_url: rock_array[computer_rps], hal_paper_url: paper_array[computer_rps], hal_scissors_url: scissors_array[computer_rps], hal_rock_class: 'rps_show rps_yellow', hal_scissors_class: 'rps_show rps_yellow', hal_paper_class: 'rps_show rps_yellow', hal_choice: ''};
   		Meteor.call('realtimeGameUpdate', changes, game_id1, function(error, result){
 	      if (error)
 	        console.log(error)

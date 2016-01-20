@@ -52,11 +52,11 @@ if (Meteor.isClient) {
 		}
 		storage_getter();
 		// ptemp = parseInt(pwin) + 1;
-		if (pwin) {
-			console.log("if pwin is truthy: pwin is "+pwin);
-		} else {
-			console.log("pwin is falsey");
-		}
+		// if (pwin) {
+		// 	console.log("if pwin is truthy: pwin is "+pwin);
+		// } else {
+		// 	console.log("pwin is falsey");
+		// }
 		table_update();
 		// Meteor.startup(
 		// function(){

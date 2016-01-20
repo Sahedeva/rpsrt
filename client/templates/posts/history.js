@@ -16,9 +16,6 @@ Template.history.rendered = function() {
       	$(stop_audio)[0].pause();
     }  
 	}
-};
-
-Tracker.autorun(function(){
   if (Meteor.user() == null) {
     console.log("Meteor.user() is null");
   } else {
@@ -31,12 +28,23 @@ Tracker.autorun(function(){
       } else {
         console.log('lobby is false - no need to take action');
       }
-      if (Players.findOne({active: true, userId: Meteor.user()._id})) {
-        console.log('active is true - hitting removeLobby');
-        Meteor.call('removeActive');
+      if (Players.findOne({human: true, userId: Meteor.user()._id})) {
+        console.log('human is true - hitting removeHuman');
+        Meteor.call('removeHuman');
       } else {
-        console.log('active is false - no need to take action');
+        console.log('human is false - no need to take action');
       }
+    }
+  }
+};
+
+Tracker.autorun(function(){
+  if (Meteor.user() == null) {
+    console.log("Meteor.user() is null");
+  } else {
+    console.log("Meteor.user() is not null");
+    if (Players.findOne({userId: Meteor.user()._id})) {
+      console.log("logged in user has a player already");
     } else {
       console.log("On login - should only get here the first time you create a new user");
       var player = {initialize: true};

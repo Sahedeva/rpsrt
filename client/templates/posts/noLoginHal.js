@@ -18,37 +18,27 @@ if (Meteor.isClient) {
           $(start_audio)[0].pause();
       }  
     }
+    if (Meteor.user() == null) {
+      console.log("Meteor.user() is null");
+    } else {
+      console.log("Meteor.user() is not null");
+      if (Players.findOne({userId: Meteor.user()._id})) {
+        console.log("logged in user has a player already will check lobby and active");
+        if (Players.findOne({lobby: true, userId: Meteor.user()._id})) {
+          console.log('lobby is true - hitting removeLobby');
+          Meteor.call('removeLobby');
+        } else {
+          console.log('lobby is false - no need to take action');
+        }
+        if (Players.findOne({human: true, userId: Meteor.user()._id})) {
+          console.log('human is true - hitting removeHuman');
+          Meteor.call('removeHuman');
+        } else {
+          console.log('human is false - no need to take action');
+        }
+      }
+    }
   };
-
-  // Tracker.autorun(function(){
-  //   if (Meteor.user() == null) {
-  //     console.log("Meteor.user() is null");
-  //   } else {
-  //     console.log("Meteor.user() is not null");
-  //     if (Players.findOne({userId: Meteor.user()._id})) {
-  //       console.log("On login - should only get here the first time you create a new user");
-  //       var player = {initialize: true};
-  //       Meteor.call('playerInsert', player, function (error, result){
-  //         if (error)
-  //           console.log(error)
-  //       });
-  //     } else {
-  //       console.log("logged in user has a player already will check lobby and active");
-  //       if (Players.findOne({lobby: true, userId: Meteor.user()._id})) {
-  //         console.log('lobby is true - hitting removeLobby');
-  //         Meteor.call('removeLobby');
-  //       } else {
-  //         console.log('lobby is false - no need to take action');
-  //       }
-  //       if (Players.findOne({active: true, userId: Meteor.user()._id})) {
-  //         console.log('active is true - hitting removeLobby');
-  //         Meteor.call('removeActive');
-  //       } else {
-  //         console.log('active is false - no need to take action');
-  //       }
-  //     }
-  //   }
-  // }); 
 
   Template.noLoginHal.events({
   	"click #player1rock": function (event) {
@@ -70,17 +60,12 @@ if (Meteor.isClient) {
       $("#player1paper").css("pointer-events", "none");
       $("#player1scissors").css("pointer-events", "none");
       console.log("Player one chose rock");
-      $('#player1rock').removeClass('rps_show');
-      $('#player1paper').removeClass('rps_show');
-      $('#player1scissors').removeClass('rps_show');
+      $('#player1rock').removeClass('rps_show rps_green');
+      $('#player1paper').removeClass('rps_show rps_green');
+      $('#player1scissors').removeClass('rps_show rps_green');
       $('#player1rock').addClass('rps_red rps_rock');
       $('#player1paper').addClass('rps_none');
       $('#player1scissors').addClass('rps_hidden');
-			// document.getElementById('player1rock').style.marginTop = '110px';
-			// document.getElementById('player1rock').style.border = '4px solid red';
-			// document.getElementById('player1rock').style.padding = '0px';
-			// document.getElementById('player1paper').style.display = 'none';
-   //    document.getElementById('player1scissors').style.visibility = 'hidden';
       var comp_random = Math.floor(Math.random()*3);
 	    var choice2 = comp_choice_array[comp_random];   
       if (choice2 === "paper") {
@@ -93,9 +78,9 @@ if (Meteor.isClient) {
         $("#player2win").val(hal_win);
         $("#cwin").html(hal_win);
         console.log("Hal chose paper - you lose");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_hidden');
 	      $('#player2paper').addClass('rps_red');
 	      $('#player2scissors').addClass('rps_hidden');
@@ -103,12 +88,6 @@ if (Meteor.isClient) {
       	$('#loser').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#loser').addClass('countdown_show');
-    //     document.getElementById('go').style.display = 'none';
-    //     document.getElementById('loser').style.display = '';
-    //     document.getElementById('player2paper').style.border = '4px solid red';
-				// document.getElementById('player2paper').style.padding = '0px';
-				// document.getElementById('player2rock').style.visibility = 'hidden';
-    //     document.getElementById('player2scissors').style.visibility = 'hidden';
         $('#paperRockSound')[0].play();
         setTimeout(function(){
           $('#loserSound')[0].play();
@@ -127,9 +106,9 @@ if (Meteor.isClient) {
         $("#player2tie").val(hal_tie);
         $("#ctie").html(hal_tie);
         console.log("Hal chose rock - you tie");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_red rps_rock');
 	      $('#player2paper').addClass('rps_none');
 	      $('#player2scissors').addClass('rps_hidden');
@@ -137,17 +116,13 @@ if (Meteor.isClient) {
       	$('#tie').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#tie').addClass('countdown_show');
-    //     document.getElementById('go').style.display = 'none';
-    //     document.getElementById('tie').style.display = '';
-    //     document.getElementById('player2rock').style.marginTop = '110px';
-				// document.getElementById('player2rock').style.border = '4px solid red';
-				// document.getElementById('player2rock').style.padding = '0px';
-				// document.getElementById('player2paper').style.display = 'none';
-	   //    document.getElementById('player2scissors').style.visibility = 'hidden';
-        $('#tieSound')[0].play();
+        $('#rockRockSound')[0].play();
         setTimeout(function(){
-          songStart();
-          $('#another_game').css('display', 'inline');
+          $('#tieSound')[0].play();
+          setTimeout(function(){
+            songStart();
+            $('#another_game').css('display', 'inline');
+          },2000);
         },2000);
       } else {   
         var player1win = parseInt($("#player1win").val());
@@ -159,9 +134,9 @@ if (Meteor.isClient) {
         $("#player2loss").val(hal_loss);
         $("#closs").html(hal_loss);
         console.log("Hal chose scissors - you win");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_hidden');
 	      $('#player2paper').addClass('rps_none');
 	      $('#player2scissors').addClass('rps_red');
@@ -200,9 +175,9 @@ if (Meteor.isClient) {
       $("#player1paper").css("pointer-events", "none");
       $("#player1scissors").css("pointer-events", "none");
       console.log("Player one chose paper");
-      $('#player1rock').removeClass('rps_show');
-      $('#player1paper').removeClass('rps_show');
-      $('#player1scissors').removeClass('rps_show');
+      $('#player1rock').removeClass('rps_show rps_green');
+      $('#player1paper').removeClass('rps_show rps_green');
+      $('#player1scissors').removeClass('rps_show rps_green');
       $('#player1rock').addClass('rps_hidden');
       $('#player1paper').addClass('rps_red');
       $('#player1scissors').addClass('rps_hidden');
@@ -218,9 +193,9 @@ if (Meteor.isClient) {
         $("#player2tie").val(hal_tie);
         $("#ctie").html(hal_tie);
         console.log("Hal chose paper - you tie");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_hidden');
 	      $('#player2paper').addClass('rps_red');
 	      $('#player2scissors').addClass('rps_hidden');
@@ -228,16 +203,13 @@ if (Meteor.isClient) {
       	$('#tie').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#tie').addClass('countdown_show');
-    //     document.getElementById('go').style.display = 'none';
-    //     document.getElementById('loser').style.display = '';
-    //     document.getElementById('player2paper').style.border = '4px solid red';
-				// document.getElementById('player2paper').style.padding = '0px';
-				// document.getElementById('player2rock').style.visibility = 'hidden';
-    //     document.getElementById('player2scissors').style.visibility = 'hidden';
-        $('#tieSound')[0].play();
+        $('#paperPaperSound')[0].play();
         setTimeout(function(){
-          songStart();
-          $('#another_game').css('display', 'inline');
+          $('#tieSound')[0].play();
+          setTimeout(function(){
+            songStart();
+            $('#another_game').css('display', 'inline');
+          },2000);
         },2000);
       } else if (choice2 === "rock") {
       	var player1win = parseInt($("#player1win").val());
@@ -249,9 +221,9 @@ if (Meteor.isClient) {
         $("#player2loss").val(hal_loss);
         $("#closs").html(hal_loss);
         console.log("Hal chose rock - you win");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_red rps_rock');
 	      $('#player2paper').addClass('rps_none');
 	      $('#player2scissors').addClass('rps_hidden');
@@ -259,13 +231,6 @@ if (Meteor.isClient) {
       	$('#winner').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#winner').addClass('countdown_show');
-    //     document.getElementById('go').style.display = 'none';
-    //     document.getElementById('tie').style.display = '';
-    //     document.getElementById('player2rock').style.marginTop = '110px';
-				// document.getElementById('player2rock').style.border = '4px solid red';
-				// document.getElementById('player2rock').style.padding = '0px';
-				// document.getElementById('player2paper').style.display = 'none';
-	   //    document.getElementById('player2scissors').style.visibility = 'hidden';
         $('#paperRockSound')[0].play();
         setTimeout(function(){
           $('#winnerSound')[0].play();
@@ -284,9 +249,9 @@ if (Meteor.isClient) {
         $("#player2win").val(hal_win);
         $("#cwin").html(hal_win);
         console.log("Hal chose scissors - you lose");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_hidden');
 	      $('#player2paper').addClass('rps_none');
 	      $('#player2scissors').addClass('rps_red');
@@ -323,9 +288,9 @@ if (Meteor.isClient) {
       $("#player1paper").css("pointer-events", "none");
       $("#player1scissors").css("pointer-events", "none");
       console.log("Player one chose scissors");
-      $('#player1rock').removeClass('rps_show');
-      $('#player1paper').removeClass('rps_show');
-      $('#player1scissors').removeClass('rps_show');
+      $('#player1rock').removeClass('rps_show rps_green');
+      $('#player1paper').removeClass('rps_show rps_green');
+      $('#player1scissors').removeClass('rps_show rps_green');
       $('#player1rock').addClass('rps_hidden');
       $('#player1paper').addClass('rps_none');
       $('#player1scissors').addClass('rps_red');
@@ -341,9 +306,9 @@ if (Meteor.isClient) {
         $("#player2loss").val(hal_loss);
         $("#closs").html(hal_loss);
         console.log("Hal chose paper - you win");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_hidden');
 	      $('#player2paper').addClass('rps_red');
 	      $('#player2scissors').addClass('rps_hidden');
@@ -351,12 +316,6 @@ if (Meteor.isClient) {
       	$('#winner').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#winner').addClass('countdown_show');
-    //     document.getElementById('go').style.display = 'none';
-    //     document.getElementById('loser').style.display = '';
-    //     document.getElementById('player2paper').style.border = '4px solid red';
-				// document.getElementById('player2paper').style.padding = '0px';
-				// document.getElementById('player2rock').style.visibility = 'hidden';
-    //     document.getElementById('player2scissors').style.visibility = 'hidden';
         $('#scissorsPaperSound')[0].play();
         setTimeout(function(){
           $('#winnerSound')[0].play();
@@ -375,9 +334,9 @@ if (Meteor.isClient) {
         $("#player2win").val(hal_win);
         $("#cwin").html(hal_win);
         console.log("Hal chose rock - you lose");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_red rps_rock');
 	      $('#player2paper').addClass('rps_none');
 	      $('#player2scissors').addClass('rps_hidden');
@@ -385,13 +344,6 @@ if (Meteor.isClient) {
       	$('#loser').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#loser').addClass('countdown_show');
-    //     document.getElementById('go').style.display = 'none';
-    //     document.getElementById('tie').style.display = '';
-    //     document.getElementById('player2rock').style.marginTop = '110px';
-				// document.getElementById('player2rock').style.border = '4px solid red';
-				// document.getElementById('player2rock').style.padding = '0px';
-				// document.getElementById('player2paper').style.display = 'none';
-	   //    document.getElementById('player2scissors').style.visibility = 'hidden';
         $('#rockScissorsSound')[0].play();
         setTimeout(function(){
           $('#loserSound')[0].play();
@@ -410,9 +362,9 @@ if (Meteor.isClient) {
         $("#player2tie").val(hal_tie);
         $("#ctie").html(hal_tie);
         console.log("Hal chose scissors - you tie");
-        $('#player2rock').removeClass('rps_show');
-	      $('#player2paper').removeClass('rps_show');
-	      $('#player2scissors').removeClass('rps_show');
+        $('#player2rock').removeClass('rps_show rps_green');
+	      $('#player2paper').removeClass('rps_show rps_green');
+	      $('#player2scissors').removeClass('rps_show rps_green');
         $('#player2rock').addClass('rps_hidden');
 	      $('#player2paper').addClass('rps_none');
 	      $('#player2scissors').addClass('rps_red');
@@ -420,10 +372,13 @@ if (Meteor.isClient) {
       	$('#tie').removeClass('countdown_none');
 	      $('#go').addClass('countdown_none');
 	      $('#tie').addClass('countdown_show');
-        $('#tieSound')[0].play();
+        $('#scissorsScissorsSound')[0].play();
         setTimeout(function(){
-          songStart();
-          $('#another_game').css('display', 'inline');
+          $('#tieSound')[0].play();
+          setTimeout(function(){
+            songStart();
+            $('#another_game').css('display', 'inline');
+          },2000);
         },2000);
       }     
     },
@@ -470,12 +425,12 @@ if (Meteor.isClient) {
       $('#player2paper').removeClass('rps_none rps_hidden rps_red');
       $('#player1scissors').removeClass('rps_none rps_hidden rps_red');
       $('#player2scissors').removeClass('rps_none rps_hidden rps_red');
-      $('#player1rock').addClass('rps_show');
-      $('#player1paper').addClass('rps_show');
-      $('#player1scissors').addClass('rps_show');
-      $('#player2rock').addClass('rps_show');
-      $('#player2paper').addClass('rps_show');
-      $('#player2scissors').addClass('rps_show');
+      $('#player1rock').addClass('rps_show rps_green');
+      $('#player1paper').addClass('rps_show rps_green');
+      $('#player1scissors').addClass('rps_show rps_green');
+      $('#player2rock').addClass('rps_show rps_green');
+      $('#player2paper').addClass('rps_show rps_green');
+      $('#player2scissors').addClass('rps_show rps_green');
       $('#goSound')[0].play(); 
     }
   });

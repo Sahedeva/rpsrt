@@ -72,12 +72,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#tieSound')[0].play();
+		          $('#rockRockSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#tieSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		      } else if (choice2 === "scissors") {
 		        var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -107,12 +110,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#winnerSound')[0].play();
+		          $('#opponentTooSlowSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#winnerSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		      }
 		    } else if (choice1 === "paper") {
 		      if (choice2 === "scissors") {
@@ -144,12 +150,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#tieSound')[0].play();
+		          $('#paperPaperSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#tieSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		      } else if (choice2 === "rock") {
 		        var player1win = parseInt($("#player1win").val());
 		        var win = player1win += 1;
@@ -179,14 +188,17 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#winnerSound')[0].play();
+		          $('#opponentTooSlowSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#winnerSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		      }
-		    } else if (choice2 === "scissors") { 
+		    } else if (choice1 === "scissors") { 
 		      if (choice2 === "rock") {
 		        var player1loss = parseInt($("#player1loss").val());
 		        var loss = player1loss += 1;         
@@ -216,10 +228,13 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 				    setTimeout(function(){
-		          $('#tieSound')[0].play();
+		          $('#scissorsScissorsSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#tieSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
 		        },500); 
 		      } else if (choice2 === "paper") {
@@ -251,12 +266,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#winnerSound')[0].play();
+		          $('#opponentTooSlowSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#winnerSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		      }
 		    } else {
 		    	if (choice2 ==="rock") {
@@ -267,12 +285,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#loserSound')[0].play();
+		          $('#tooSlowSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#loserSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		    	} else if (choice2 ==="paper") {
 		    		console.log("You chose nothing and opponent chose paper - you lose");
 		    		var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show', another: 'show'};
@@ -281,12 +302,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#loserSound')[0].play();
+		          $('#tooSlowSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#loserSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		    	} else if (choice2 ==="scissors") {
 		    		console.log("You chose nothing and opponent chose scissors - you lose");
 		    		var changes = {wlt: 'lose', loss: loss, go_class: 'countdown_none', lose_class: 'countdown_show', another: 'show'};
@@ -295,12 +319,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#loserSound')[0].play();
+		          $('#tooSlowSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#loserSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		    	} else {
 		    		console.log("You chose nothing and opponent chose nothing - you tie");
 		    		var changes = {wlt: 'tie', tie: tie, go_class: 'countdown_none', tie_class: 'countdown_show', another: 'show'};
@@ -309,12 +336,15 @@ if (Meteor.isClient) {
 				        console.log(error)
 				    	});
 		    		setTimeout(function(){
-		          $('#tieSound')[0].play();
+		          $('#bothTooSlowSound')[0].play();
 		          setTimeout(function(){
-		            songStart();
-		            $('#another_game').css('display', 'inline');
+		            $('#tieSound')[0].play();
+		            setTimeout(function(){
+		              songStart();
+		              $('#another_game').css('display', 'inline');
+		            },2000);
 		          },2000);
-		        },500);
+		        },500); 
 		    	}
 		    }
 		  }, 1300);

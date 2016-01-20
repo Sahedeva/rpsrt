@@ -482,6 +482,8 @@ table {
   border-radius: 20px;
   margin-left: 8px;
   margin-top: 15px;
+  padding: 0px;
+  background-color: sandybrown;
 }
 
 /* http://www.woa.tv/images/history/hi_samurai/hi_samurai_01_1776x960_or.jpg */
